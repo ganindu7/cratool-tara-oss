@@ -8,7 +8,7 @@
 # or simply `docker compose up` (compose.yaml).
 
 # ---- build the screens (needs the development dependencies)
-FROM node:24-alpine AS build
+FROM node:26-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 COPY packages/core/package.json packages/core/
@@ -23,7 +23,7 @@ COPY apps apps
 RUN npm run build
 
 # ---- the tool itself: sources, the built screens, and only what is needed to run
-FROM node:24-alpine
+FROM node:26-alpine
 ENV NODE_ENV=production \
     HOST=0.0.0.0 \
     PORT=8787 \
