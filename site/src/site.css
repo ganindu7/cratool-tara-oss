@@ -1,0 +1,603 @@
+/* The look of the website. It shares the tool's own: the same three voices of type (the interface face for
+   navigation, a text face for what is read, a DIN face for headings, IDs and values), the same colours with
+   the same meanings, and nothing downloaded. apps/web/src/styles.css explains the choices. */
+
+:root {
+  --paper: #ffffff;
+  --ground: #f2f4f1;
+  --ink: #17212b;
+  --ink-soft: #4d5a65;
+  --line: #d3d8d4;
+  --accent: #1d5d8c;
+  --accent-deep: #154566;
+  --accent-wash: #e5eef5;
+  --value-2: #86a436;
+  --value-5: #b3261e;
+  --face-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --face-text: Charter, "Bitstream Charter", "Sitka Text", Cambria, "Iowan Old Style", Georgia, serif;
+  --face-mark: "DIN Alternate", Bahnschrift, "DIN Condensed", "Roboto Condensed", "Arial Narrow", system-ui, sans-serif;
+  --measure: 66ch;
+  --page: min(74rem, 100% - 3rem);
+  color-scheme: light;
+  font: 17px / 1.6 var(--face-text);
+  color: var(--ink);
+  background: var(--paper);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+pre {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--face-mark);
+  font-weight: 700;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: var(--accent-deep);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+code {
+  font:
+    0.86em / 1.5 ui-monospace,
+    "SF Mono",
+    Menlo,
+    Consolas,
+    monospace;
+}
+pre {
+  overflow-x: auto;
+  padding: 1.1rem 1.3rem;
+  border-left: 3px solid var(--accent);
+  background: var(--ground);
+}
+pre code {
+  font-size: 0.82rem;
+}
+
+/* ------------------------------------------------------------------------------------------- masthead */
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  width: var(--page);
+  margin-inline: auto;
+  padding: 1.4rem 0 1.2rem;
+  border-bottom: 2px solid var(--ink);
+  font-family: var(--face-ui);
+}
+.brand {
+  font: 700 1.45rem / 1 var(--face-mark);
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.brand span {
+  margin-left: 0.3rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
+.masthead nav {
+  display: flex;
+  gap: 1.6rem;
+  font-size: 0.95rem;
+}
+.masthead nav a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.masthead nav a:hover,
+.masthead nav a[aria-current] {
+  text-decoration: underline;
+}
+.button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  font: 600 1rem var(--face-ui);
+  color: var(--ink);
+  text-decoration: none;
+}
+.button:hover {
+  background: var(--ground);
+  color: var(--ink);
+}
+.button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.button.primary:hover {
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.8rem;
+}
+
+/* ------------------------------------------------------------------------------------- the start page */
+.home main > section {
+  width: var(--page);
+  margin-inline: auto;
+  padding-block: 4.5rem 0;
+}
+.home .lede,
+.home .text p,
+.home section > p {
+  max-width: var(--measure);
+}
+.home .text p + p,
+.home .text ul,
+.home section > p + p {
+  margin-top: 0.9rem;
+}
+.home h2 {
+  font-size: clamp(1.7rem, 1.2rem + 1.6vw, 2.5rem);
+  max-width: 24ch;
+  margin-bottom: 1.1rem;
+}
+.home h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 1.4rem + 5.4vw, 5.6rem);
+  max-width: 15ch;
+  letter-spacing: -0.005em;
+}
+.hero .lede {
+  margin-top: 1.6rem;
+  font-size: 1.2rem;
+}
+
+/* One risk as a chain of records, inside the dashed frame of a trust boundary: the picture of what a TARA builds. */
+.chain {
+  margin-top: 3.5rem;
+  padding: 2.2rem 1.4rem 1.2rem;
+  border: 1.5px dashed var(--accent);
+  border-radius: 4px;
+  background: rgb(29 93 140 / 4%);
+}
+.chain ol {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 1.4rem;
+  list-style: none;
+}
+.chain .link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.7rem 0.75rem 0.8rem;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  font: 0.86rem / 1.35 var(--face-text);
+}
+/* the line that joins a record to the next, with its arrowhead */
+.chain .link + .link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: 1.4rem;
+  border-top: 1.5px solid var(--ink);
+}
+.chain .link + .link::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  border: 5px solid transparent;
+  border-left-color: var(--ink);
+  transform: translate(5px, -50%);
+}
+.chain .kind {
+  font: 600 0.72rem var(--face-ui);
+  color: var(--ink-soft);
+}
+.chain .id {
+  font: 700 1rem / 1 var(--face-mark);
+  color: var(--accent);
+}
+.chain .rating {
+  margin-top: auto;
+  padding-top: 0.4rem;
+  font: 600 0.74rem var(--face-ui);
+  color: var(--ink-soft);
+}
+.chain .risk p {
+  font: 600 0.9rem var(--face-ui);
+}
+.value {
+  display: inline-grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  margin-right: 0.3rem;
+  border-radius: 2px;
+  font: 700 1.5rem / 1 var(--face-mark);
+  color: #fff;
+}
+.value-5 {
+  background: var(--value-5);
+}
+.value-2 {
+  background: var(--value-2);
+}
+.chain figcaption {
+  margin-top: 1.1rem;
+  font: 0.85rem var(--face-ui);
+  color: var(--accent-deep);
+}
+.home main > .shot {
+  padding-top: 3rem;
+}
+.shot img,
+.questions img,
+.report img {
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 50px -30px rgb(23 33 43 / 45%);
+}
+
+.questions > ol {
+  list-style: none;
+  counter-reset: question;
+}
+.questions > ol > li {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  align-items: start;
+  gap: 3rem;
+  padding-block: 2.6rem;
+  border-top: 1px solid var(--line);
+  counter-increment: question;
+}
+.questions > ol > li:nth-child(even) {
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+}
+.questions > ol > li:nth-child(even) .text {
+  order: 2;
+}
+.questions h3::before {
+  content: counter(question);
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 3.2rem;
+  line-height: 1;
+  color: var(--accent);
+}
+.questions h3 {
+  font-size: 1.6rem;
+}
+
+.pair,
+.data,
+.report {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3.5rem;
+  align-items: start;
+}
+.pair h2 {
+  font-size: 1.7rem;
+}
+.data ul {
+  padding-left: 1.2rem;
+}
+.report {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: center;
+}
+.report img {
+  max-height: 40rem;
+  width: auto;
+  justify-self: center;
+}
+
+.examples ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+  margin: 2rem 0 1.6rem;
+  list-style: none;
+  counter-reset: example;
+}
+.examples li {
+  padding-top: 1rem;
+  border-top: 2px solid var(--ink);
+  counter-increment: example;
+}
+.examples li::before {
+  content: counter(example);
+  font: 700 2.4rem / 1 var(--face-mark);
+  color: var(--accent);
+}
+.examples h3 {
+  margin-top: 0.5rem;
+}
+
+.run .ways {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem;
+  margin-bottom: 1.4rem;
+}
+.run h3 {
+  font: 600 0.95rem var(--face-ui);
+  color: var(--ink-soft);
+}
+.honest dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+.honest dt {
+  margin-bottom: 0.4rem;
+  font: 700 1.25rem var(--face-mark);
+}
+.foot {
+  width: var(--page);
+  margin: 6rem auto 0;
+  padding: 1.5rem 0 3rem;
+  border-top: 2px solid var(--ink);
+  font: 0.9rem var(--face-ui);
+  color: var(--ink-soft);
+}
+.foot a {
+  margin-right: 1.4rem;
+}
+.foot p + p {
+  margin-top: 0.4rem;
+}
+
+/* ------------------------------------------------------------------------------- pages of documentation */
+.doc-frame {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr) 13rem;
+  gap: 3.5rem;
+  width: var(--page);
+  margin-inline: auto;
+  padding-top: 2.5rem;
+}
+.doc-nav,
+.on-this-page {
+  position: sticky;
+  top: 1.5rem;
+  align-self: start;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  font: 0.92rem / 1.4 var(--face-ui);
+}
+.doc-nav h2,
+.on-this-page h2 {
+  margin: 1.4rem 0 0.4rem;
+  font: 600 0.8rem var(--face-ui);
+  color: var(--ink-soft);
+}
+.doc-nav section:first-child h2,
+.on-this-page h2 {
+  margin-top: 0;
+}
+.doc-nav ul,
+.on-this-page ul {
+  list-style: none;
+}
+.doc-nav a,
+.on-this-page a {
+  display: block;
+  padding: 0.22rem 0 0.22rem 0.7rem;
+  border-left: 2px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+.doc-nav a:hover,
+.on-this-page a:hover {
+  border-left-color: var(--ink);
+}
+.doc-nav a[aria-current="page"] {
+  border-left-color: var(--accent);
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+.on-this-page {
+  font-size: 0.85rem;
+}
+
+.prose {
+  min-width: 0;
+  padding-bottom: 5rem;
+}
+.prose > * {
+  max-width: var(--measure);
+}
+.prose h1 {
+  font-size: clamp(2.2rem, 1.6rem + 2.4vw, 3.3rem);
+  margin-bottom: 1.4rem;
+}
+.prose h2 {
+  margin: 3rem 0 0.9rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--ink);
+  font-size: 1.65rem;
+}
+.prose h3 {
+  margin: 2rem 0 0.6rem;
+  font-size: 1.25rem;
+}
+.prose p,
+.prose ul,
+.prose ol,
+.prose pre,
+.prose blockquote {
+  margin-top: 0.9rem;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.4rem;
+}
+.prose li + li {
+  margin-top: 0.3rem;
+}
+.prose :not(pre) > code {
+  padding: 0.1em 0.3em;
+  background: var(--ground);
+}
+/* tables, pictures and code may be wider than the text */
+.prose > .table,
+.prose > figure,
+.prose > pre {
+  max-width: none;
+}
+.prose .table {
+  margin-top: 1.2rem;
+  overflow-x: auto;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 2px solid var(--ink);
+  font: 0.92rem / 1.45 var(--face-ui);
+}
+.prose th,
+.prose td {
+  padding: 0.5rem 0.8rem 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.prose thead th {
+  border-bottom: 1px solid var(--ink);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+.prose thead th:empty {
+  display: none;
+}
+.prose figure {
+  margin-top: 1.6rem;
+}
+.prose figure img {
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px -28px rgb(23 33 43 / 45%);
+}
+.prose figcaption {
+  margin-top: 0.6rem;
+  font: 0.85rem var(--face-ui);
+  color: var(--ink-soft);
+}
+.prose .edit {
+  margin-top: 4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font: 0.85rem var(--face-ui);
+}
+
+/* ----------------------------------------------------------------------------------- narrow screens */
+@media (max-width: 68rem) {
+  .doc-frame {
+    grid-template-columns: 14rem minmax(0, 1fr);
+  }
+  .on-this-page {
+    display: none;
+  }
+  .chain ol {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    row-gap: 1.8rem;
+  }
+  .chain .link:nth-child(5)::before,
+  .chain .link:nth-child(5)::after {
+    display: none;
+  }
+}
+@media (max-width: 48rem) {
+  :root {
+    font-size: 16px;
+  }
+  .doc-frame,
+  .questions > ol > li,
+  .pair,
+  .data,
+  .report,
+  .run .ways,
+  .examples ol,
+  .honest dl {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.8rem;
+  }
+  .questions > ol > li:nth-child(even) .text {
+    order: 0;
+  }
+  .doc-nav {
+    position: static;
+    max-height: none;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .chain ol {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1.4rem;
+  }
+  /* stacked, the chain runs downwards */
+  .chain .link + .link::before {
+    top: auto;
+    right: auto;
+    bottom: 100%;
+    left: 1.2rem;
+    width: 0;
+    height: 1.4rem;
+    border-top: 0;
+    border-left: 1.5px solid var(--ink);
+  }
+  .chain .link + .link::after,
+  .chain .link:nth-child(5)::after {
+    display: block;
+    top: auto;
+    right: auto;
+    bottom: 100%;
+    left: 1.2rem;
+    border: 5px solid transparent;
+    border-top-color: var(--ink);
+    transform: translate(-4.3px, 5px);
+  }
+  .chain .link:nth-child(5)::before {
+    display: block;
+  }
+}

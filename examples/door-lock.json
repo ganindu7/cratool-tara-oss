@@ -1,0 +1,2315 @@
+{
+  "format": "open-tara/1.0",
+  "id": "example-door-lock",
+  "seq": 0,
+  "meta": {
+    "title": "Example TARA: a smart door lock",
+    "product": "Smart door lock",
+    "organisation": null,
+    "documentNumber": "EX-TARA-010",
+    "revision": "1.0",
+    "status": "draft",
+    "example": true,
+    "storageLocation": "Training material",
+    "distribution": "Anyone learning the method",
+    "createdAt": "2026-11-20T09:00:00.000Z",
+    "updatedAt": "2026-11-20T09:00:00.000Z",
+    "releasedAt": null,
+    "basedOn": null,
+    "revisionReason": null
+  },
+  "method": {
+    "source": "Open TARA method 1.0",
+    "sources": [
+      {
+        "part": "Structure: impact in four categories at four levels, attack feasibility at four levels, risk value 1 to 5",
+        "source": "The requirements of ISO/SAE 21434:2021, clause 15. Only the structure is taken; no text of the standard is used.",
+        "terms": "A structure, not text"
+      },
+      {
+        "part": "Attack feasibility: the five factors, their points and the bands",
+        "source": "Common Methodology for Information Technology Security Evaluation, CEM:2022 (November 2022), Annex B.6, Tables B.2 and B.3. Common Criteria portal, commoncriteriaportal.org",
+        "terms": "The legal notice of CEM:2022 supports reuse of the text by any user, including modification and reuse of parts. The descriptions here are written anew."
+      },
+      {
+        "part": "Risk matrix",
+        "source": "A. Lautenbach, M. Almgren, T. Olovsson: Proposing HEAVENS 2.0, an automotive risk assessment model. ACM Computer Science in Cars Symposium (CSCS '21), 2021, Table 8. doi:10.1145/3488904.3493378",
+        "terms": "The sixteen values are used and cited; no text of the paper is used."
+      },
+      {
+        "part": "Impact criteria, descriptions of factors, threat categories and treatments",
+        "source": "Written for this method.",
+        "terms": "Free to use and change with the tool."
+      }
+    ],
+    "impact_levels": [
+      {
+        "level": 3,
+        "name": "Severe"
+      },
+      {
+        "level": 2,
+        "name": "Major"
+      },
+      {
+        "level": 1,
+        "name": "Moderate"
+      },
+      {
+        "level": 0,
+        "name": "Negligible"
+      }
+    ],
+    "impact_categories": [
+      {
+        "key": "safety",
+        "label": "Safety",
+        "heading": "Harm to people: users, bystanders, anyone who relies on the product",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "S3 Severe: life is in danger",
+            "criteria": "Someone may die or be injured so badly that survival is uncertain."
+          },
+          {
+            "level": 2,
+            "label": "S2 Major: serious injury",
+            "criteria": "Someone may be seriously injured and need hospital treatment; survival is expected."
+          },
+          {
+            "level": 1,
+            "label": "S1 Moderate: minor injury",
+            "criteria": "Someone may be slightly injured: first aid or one visit to a doctor is enough."
+          },
+          {
+            "level": 0,
+            "label": "S0 Negligible: nobody is hurt",
+            "criteria": "Nobody is injured."
+          }
+        ]
+      },
+      {
+        "key": "financial",
+        "label": "Financial",
+        "heading": "Loss of money, for whoever bears it: the owner or user, the operator, or the maker",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "F3 Severe: a loss that may not be survived",
+            "criteria": "The loss may be more than the affected party can bear: a business may fail, or a person may not be able to make the loss good."
+          },
+          {
+            "level": 2,
+            "label": "F2 Major: a heavy loss that can be borne",
+            "criteria": "The loss is heavy and felt for a long time, but the affected party gets over it. For example a recall, a lost contract, or large claims."
+          },
+          {
+            "level": 1,
+            "label": "F1 Moderate: a loss within ordinary means",
+            "criteria": "The loss is noticed and is covered from ordinary means. For example repairs, the replacement of some units, or extra support work."
+          },
+          {
+            "level": 0,
+            "label": "F0 Negligible: no loss that matters",
+            "criteria": "There is no loss, or one too small to matter."
+          }
+        ]
+      },
+      {
+        "key": "operational",
+        "label": "Operational",
+        "heading": "What the product is for, and whether it still does it",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "O3 Severe: the main function is lost or wrong, widely or lastingly",
+            "criteria": "A main function is lost or does the wrong thing, on many units or for a long time, or cannot be restored without replacing the product."
+          },
+          {
+            "level": 2,
+            "label": "O2 Major: a main function is lost for a time",
+            "criteria": "A main function is lost or badly degraded on some units or for a limited time; the work the product does stops until it is repaired or restored."
+          },
+          {
+            "level": 1,
+            "label": "O1 Moderate: a lesser function is lost",
+            "criteria": "A function that is not essential is lost, or the product is slower or less convenient. It still does what it is for."
+          },
+          {
+            "level": 0,
+            "label": "O0 Negligible: no effect that is noticed",
+            "criteria": "What the product does is not affected, or not so that a user would notice."
+          }
+        ]
+      },
+      {
+        "key": "privacy",
+        "label": "Privacy",
+        "heading": "The people whose data the product holds or passes on",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "P3 Severe: sensitive data of identified people, with lasting harm",
+            "criteria": "Sensitive personal data of people who can be identified is disclosed or changed, and the harm to them cannot be undone. Sensitive data is, for example, data about health, where someone has been, passwords, or payment data."
+          },
+          {
+            "level": 2,
+            "label": "P2 Major: data of identified people, with serious consequences",
+            "criteria": "Personal data that identifies people is disclosed or changed, with serious consequences for them that can be limited afterwards."
+          },
+          {
+            "level": 1,
+            "label": "P1 Moderate: data that identifies people only with effort",
+            "criteria": "Personal data is disclosed or changed that can be tied to a person only with effort, or the consequences for the people concerned are an inconvenience."
+          },
+          {
+            "level": 0,
+            "label": "P0 Negligible: no personal data that matters",
+            "criteria": "No personal data is involved, or it cannot be tied to anyone."
+          }
+        ]
+      }
+    ],
+    "feasibility_factors": [
+      {
+        "key": "elapsed_time",
+        "label": "Elapsed time",
+        "description": "The time an attacker needs to find the weakness and to carry the attack out, all steps of the path together.",
+        "options": [
+          {
+            "key": "lt_1_day",
+            "label": "Up to one day",
+            "points": 0
+          },
+          {
+            "key": "lt_1_week",
+            "label": "Up to one week",
+            "points": 1
+          },
+          {
+            "key": "lt_2_weeks",
+            "label": "Up to two weeks",
+            "points": 2
+          },
+          {
+            "key": "lt_1_month",
+            "label": "Up to one month",
+            "points": 4
+          },
+          {
+            "key": "lt_2_months",
+            "label": "Up to two months",
+            "points": 7
+          },
+          {
+            "key": "lt_3_months",
+            "label": "Up to three months",
+            "points": 10
+          },
+          {
+            "key": "lt_4_months",
+            "label": "Up to four months",
+            "points": 13
+          },
+          {
+            "key": "lt_5_months",
+            "label": "Up to five months",
+            "points": 15
+          },
+          {
+            "key": "lt_6_months",
+            "label": "Up to six months",
+            "points": 17
+          },
+          {
+            "key": "gt_6_months",
+            "label": "More than six months",
+            "points": 19
+          }
+        ]
+      },
+      {
+        "key": "expertise",
+        "label": "Expertise",
+        "description": "What the attacker has to know and be able to do.",
+        "options": [
+          {
+            "key": "layman",
+            "label": "Layman",
+            "points": 0,
+            "description": "No particular knowledge or skill. The attacker follows instructions that someone else has published."
+          },
+          {
+            "key": "proficient",
+            "label": "Proficient",
+            "points": 3,
+            "description": "Familiar with how products of this kind are secured and with the usual attacks on them. Several proficient people working together still count as proficient."
+          },
+          {
+            "key": "expert",
+            "label": "Expert",
+            "points": 6,
+            "description": "Knows the algorithms, protocols, hardware or techniques concerned well enough to devise a new attack or new tools."
+          },
+          {
+            "key": "multiple_experts",
+            "label": "Multiple experts",
+            "points": 8,
+            "description": "Experts of different fields are needed, each for a distinct step of the attack."
+          }
+        ]
+      },
+      {
+        "key": "knowledge",
+        "label": "Knowledge of the product",
+        "description": "How hard it is to get the information about the product that the attack needs.",
+        "options": [
+          {
+            "key": "public",
+            "label": "Public",
+            "points": 0,
+            "description": "The information is published or can be found by anyone, for example on the internet or in the manual."
+          },
+          {
+            "key": "restricted",
+            "label": "Restricted",
+            "points": 3,
+            "description": "The information is kept by the maker and given to others only under an agreement, for example to suppliers or service partners."
+          },
+          {
+            "key": "sensitive",
+            "label": "Sensitive",
+            "points": 7,
+            "description": "The information is shared only between certain teams of the maker, and access to it is controlled."
+          },
+          {
+            "key": "critical",
+            "label": "Critical",
+            "points": 11,
+            "description": "The information is known to a few named people only and is kept under strict control."
+          }
+        ]
+      },
+      {
+        "key": "window_of_opportunity",
+        "label": "Window of opportunity",
+        "description": "How much access to the product the attack needs: for how long, to how many units, and how hard that access is to get.",
+        "options": [
+          {
+            "key": "unlimited",
+            "label": "Unnecessary or unlimited",
+            "points": 0,
+            "description": "The attack needs no access to the product, or the access it needs is there at any time for as long as wanted, for example over the internet."
+          },
+          {
+            "key": "easy",
+            "label": "Easy",
+            "points": 1,
+            "description": "Access is needed for a short time, to one or a few units, and is simple to get."
+          },
+          {
+            "key": "moderate",
+            "label": "Moderate",
+            "points": 4,
+            "description": "Access is needed for longer or to several units, or is to be had only at certain places or times."
+          },
+          {
+            "key": "difficult",
+            "label": "Difficult",
+            "points": 10,
+            "description": "Access is needed for a long time or to many units, or is hard to get, for example to an opened device in a guarded place."
+          }
+        ]
+      },
+      {
+        "key": "equipment",
+        "label": "Equipment",
+        "description": "The hardware and software the attack needs.",
+        "options": [
+          {
+            "key": "standard",
+            "label": "Standard",
+            "points": 0,
+            "description": "What an attacker has at hand or gets without effort: a laptop, common tools, freely available software."
+          },
+          {
+            "key": "specialised",
+            "label": "Specialised",
+            "points": 4,
+            "description": "Not at hand, but bought without difficulty or written with moderate effort: for example a bus or protocol analyser, a debug probe, or scripts made for this attack."
+          },
+          {
+            "key": "bespoke",
+            "label": "Bespoke",
+            "points": 7,
+            "description": "Made for the purpose, or so costly or controlled that it is hard to obtain. Clearly different sets of specialised equipment for distinct steps also count as bespoke."
+          },
+          {
+            "key": "multiple_bespoke",
+            "label": "Multiple bespoke",
+            "points": 9,
+            "description": "Different bespoke equipment is needed for distinct steps of the attack."
+          }
+        ]
+      }
+    ],
+    "feasibility_bands": [
+      {
+        "key": "high",
+        "label": "High",
+        "min": 0,
+        "max": 13,
+        "potential": "Basic or enhanced-basic attack potential is enough"
+      },
+      {
+        "key": "medium",
+        "label": "Medium",
+        "min": 14,
+        "max": 19,
+        "potential": "Moderate attack potential is needed"
+      },
+      {
+        "key": "low",
+        "label": "Low",
+        "min": 20,
+        "max": 24,
+        "potential": "High attack potential is needed"
+      },
+      {
+        "key": "very_low",
+        "label": "Very low",
+        "min": 25,
+        "potential": "More than high attack potential is needed"
+      }
+    ],
+    "risk_matrix": {
+      "0": {
+        "very_low": 1,
+        "low": 1,
+        "medium": 2,
+        "high": 2
+      },
+      "1": {
+        "very_low": 1,
+        "low": 2,
+        "medium": 3,
+        "high": 4
+      },
+      "2": {
+        "very_low": 2,
+        "low": 3,
+        "medium": 4,
+        "high": 5
+      },
+      "3": {
+        "very_low": 3,
+        "low": 4,
+        "medium": 5,
+        "high": 5
+      }
+    },
+    "threat_categories": [
+      {
+        "key": "spoofing",
+        "label": "Spoofing",
+        "description": "Someone or something passes as another: a person, a device, a server or a message source."
+      },
+      {
+        "key": "tampering",
+        "label": "Tampering",
+        "description": "Data, software or settings are changed by someone who should not be able to."
+      },
+      {
+        "key": "repudiation",
+        "label": "Repudiation",
+        "description": "Someone can deny having done something, because nothing proves it."
+      },
+      {
+        "key": "information_disclosure",
+        "label": "Information disclosure",
+        "description": "Information reaches someone who should not have it."
+      },
+      {
+        "key": "denial_of_service",
+        "label": "Denial of service",
+        "description": "A function or a service is made unavailable to those who need it."
+      },
+      {
+        "key": "elevation_of_privilege",
+        "label": "Elevation of privilege",
+        "description": "Someone gains rights they were not given."
+      },
+      {
+        "key": "general",
+        "label": "General",
+        "description": "A threat that fits none of the other categories."
+      }
+    ],
+    "treatments": [
+      {
+        "key": "retain",
+        "label": "Retain",
+        "description": "The risk is accepted as it is, because it is low enough or for a reason that is written down and approved."
+      },
+      {
+        "key": "reduce",
+        "label": "Reduce",
+        "description": "Controls are added that make the attack harder or its consequences smaller."
+      },
+      {
+        "key": "share",
+        "label": "Share",
+        "description": "The risk is carried together with another party, for example by contract or insurance. It does not go away."
+      },
+      {
+        "key": "avoid",
+        "label": "Avoid",
+        "description": "What gives rise to the risk is removed: the function, the interface or the data is taken out."
+      }
+    ]
+  },
+  "scope": {
+    "configuration_id": {
+      "decision": "CFG-LOCK-L3-EU-2.1",
+      "evidence": "LK-DOC-01 section 1"
+    },
+    "scoring_method": {
+      "decision": "The Open TARA method, version 1.0: impact 0 to 3 in four categories, attack feasibility by attack potential (Common Criteria), risk value 1 to 5.",
+      "evidence": "LK-DOC-02"
+    },
+    "variant_boundary": {
+      "decision": "Smart door lock L3 for the European market, with lock software 2.1 and app 4.0. The keypad accessory and the L2, which has no Wi-Fi, are not covered.",
+      "evidence": "LK-DOC-01 section 1"
+    },
+    "intended_use": {
+      "decision": "Locking the front door of a home. Opened with a phone at the door, remotely by the owner, or with the mechanical key.",
+      "evidence": "LK-DOC-01 section 2"
+    },
+    "architecture_trust_boundaries": {
+      "decision": "One trust boundary: the lock's housing. Phones, the cloud service, the home network and the service tool are outside it.",
+      "evidence": "LK-DOC-01 section 3"
+    },
+    "lifecycle_support": {
+      "decision": "Security updates for seven years from the day the last L3 is sold.",
+      "evidence": "LK-DOC-07 section 2"
+    },
+    "product_market_context": {
+      "decision": "A consumer product, fitted by the owner or an installer. A smart home product with a security function: an important product of class I under Annex III of the CRA. This is a worked example: the product is invented.",
+      "evidence": "LK-DOC-01 section 2; LK-DOC-03"
+    },
+    "assumptions_exclusions": {
+      "decision": "The door, its frame and the key cylinder are assessed under the standards for mechanical locks, not here. The owner's phone and home router are assessed by their makers. The maker's cloud service has an assessment of its own (LK-DOC-08); this TARA covers what the lock accepts from it.",
+      "evidence": "LK-DOC-01 section 4"
+    },
+    "reassessment_triggers": {
+      "decision": "A new software release, a change of the radio module, a reported vulnerability in this or a comparable lock, and in any case every year.",
+      "evidence": "LK-DOC-07 section 3"
+    },
+    "cra_applicability": {
+      "decision": "in_scope",
+      "evidence": "LK-DOC-03: a product with digital elements that connects to a network, placed on the Union market"
+    },
+    "iso21434_applicability": {
+      "decision": "in_scope",
+      "evidence": "LK-DOC-04: the standard is written for road vehicles; its method is used here by the company's choice"
+    },
+    "r155_applicability": {
+      "decision": "out_of_scope",
+      "evidence": "LK-DOC-01 section 2: not a vehicle"
+    },
+    "scope_review": {
+      "decision": "Approved",
+      "evidence": null
+    },
+    "cra_annex_i_part_i_1": {
+      "decision": "The risk assessment is this TARA. Its controls are in the product and in the release procedure.",
+      "evidence": "LK-DOC-05, LK-DOC-06"
+    },
+    "cra_annex_i_part_ii": {
+      "decision": "Vulnerability handling follows the maker's procedure.",
+      "evidence": "LK-DOC-07"
+    },
+    "cra_annex_vii": {
+      "decision": "The technical documentation holds this assessment, the security concept and the test reports.",
+      "evidence": "LK-DOC-01, LK-DOC-05, LK-TEST-01, LK-TEST-02"
+    },
+    "iso_work_products": {
+      "decision": "Item definition, TARA, cybersecurity goals and the concept are kept.",
+      "evidence": "LK-DOC-01, LK-DOC-05"
+    },
+    "vehicle_supplier_evidence": {
+      "decision": null,
+      "evidence": null
+    },
+    "release_review": {
+      "decision": "Approved",
+      "evidence": null
+    }
+  },
+  "items": [
+    {
+      "id": "IT01",
+      "configurationRef": "CFG-LOCK-L3-EU-2.1",
+      "name": "Smart door lock L3",
+      "boundaryFunctions": "The lock on the door with its radio, controller, bolt motor, key store and record of entries. The functions are to open the door for a valid digital key, at the door or remotely, to give and withdraw guest keys, to record entries, and to keep its own software up to date.",
+      "architectureInterfaces": "Three ways in: Bluetooth from phones nearby, the connection to the maker's cloud through the home Wi-Fi, and a service port on the inside face. See the diagram and LK-DOC-01 section 3.",
+      "environmentUse": "The front door of a home. Used by the owner, the household, guests with a key for some days, and tradesmen. Reachable by radio from the street. Fitted by the owner or an installer; eventually removed, sold on or thrown away."
+    }
+  ],
+  "elements": [
+    {
+      "id": "EX01",
+      "itemId": "IT01",
+      "kind": "external_interactor",
+      "name": "Phone app",
+      "description": "The app of the owner, of household members and of guests. Opens the door over Bluetooth when near, and through the cloud from anywhere.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 0,
+      "y": 60,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "EX02",
+      "itemId": "IT01",
+      "kind": "external_interactor",
+      "name": "Maker's cloud service",
+      "description": "Accounts, guest keys, remote unlocking and software updates. Reaches the lock through the home Wi-Fi.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 0,
+      "y": 250,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "EX03",
+      "itemId": "IT01",
+      "kind": "external_interactor",
+      "name": "Installer's service tool",
+      "description": "A tool plugged into the port on the inside face of the lock, used when it is fitted.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 0,
+      "y": 440,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "TB01",
+      "itemId": "IT01",
+      "kind": "trust_boundary",
+      "name": "The lock",
+      "description": "Everything inside the housing on the door. What arrives by radio or through the port is not trusted until it is checked.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 300,
+      "y": 30,
+      "w": 760,
+      "h": 500
+    },
+    {
+      "id": "C01",
+      "itemId": "IT01",
+      "kind": "component",
+      "name": "Bluetooth and Wi-Fi radio",
+      "description": "Receives messages from phones nearby and from the cloud.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB01",
+      "x": 350,
+      "y": 90,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "C02",
+      "itemId": "IT01",
+      "kind": "component",
+      "name": "Lock controller",
+      "description": "Decides whether a message may open the door, drives the bolt, keeps the record.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB01",
+      "x": 600,
+      "y": 260,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "C03",
+      "itemId": "IT01",
+      "kind": "component",
+      "name": "Bolt motor",
+      "description": "Moves the bolt. A key cylinder beside it opens the door without any electronics.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB01",
+      "x": 850,
+      "y": 60,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "ST01",
+      "itemId": "IT01",
+      "kind": "data_store",
+      "name": "Key store",
+      "description": "The digital keys of the owner, the household and the guests, with what each may do and until when.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB01",
+      "x": 850,
+      "y": 250,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "ST02",
+      "itemId": "IT01",
+      "kind": "data_store",
+      "name": "Record of entries",
+      "description": "Who opened the door and when, for the last 90 days.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB01",
+      "x": 850,
+      "y": 420,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF01",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Unlock over Bluetooth",
+      "description": "A phone near the door asks to open it; the lock answers.",
+      "sourceId": "EX01",
+      "targetId": "C01",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF02",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Remote commands, keys and updates",
+      "description": "Unlock from anywhere, new and withdrawn guest keys, new software; and back: the record and the battery level.",
+      "sourceId": "EX02",
+      "targetId": "C01",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF03",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Received messages",
+      "description": "Everything the radio receives, passed on to be checked.",
+      "sourceId": "C01",
+      "targetId": "C02",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF04",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Service commands",
+      "description": "Commands of the service tool: test the bolt, add the first key.",
+      "sourceId": "EX03",
+      "targetId": "C02",
+      "direction": "forward",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF05",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Open and close",
+      "description": "The command that moves the bolt.",
+      "sourceId": "C02",
+      "targetId": "C03",
+      "direction": "forward",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF06",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Keys read and stored",
+      "description": "Read at every request to open; written when a key is given or withdrawn.",
+      "sourceId": "C02",
+      "targetId": "ST01",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF07",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Entries written",
+      "description": "One entry for every opening and every refusal.",
+      "sourceId": "C02",
+      "targetId": "ST02",
+      "direction": "forward",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    }
+  ],
+  "assets": [
+    {
+      "id": "A01",
+      "name": "The decision to open the door",
+      "itemId": "IT01",
+      "elementIds": [
+        "C02",
+        "DF01",
+        "DF02"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A02",
+      "name": "Lock software",
+      "itemId": "IT01",
+      "elementIds": [
+        "C02"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A03",
+      "name": "Record of who came and went",
+      "itemId": "IT01",
+      "elementIds": [
+        "ST02",
+        "DF02"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A04",
+      "name": "A lock that works when the owner comes home",
+      "itemId": "IT01",
+      "elementIds": [
+        "C02",
+        "C03"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A05",
+      "name": "The lock's radio announcement",
+      "itemId": "IT01",
+      "elementIds": [
+        "C01"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    }
+  ],
+  "damages": [
+    {
+      "id": "DS-0001",
+      "assetId": "A01",
+      "confidentiality": false,
+      "integrity": true,
+      "availability": false,
+      "description": "The door opens for someone who has no right to enter.",
+      "ratings": {
+        "safety": 2,
+        "financial": 2,
+        "operational": 3,
+        "privacy": 1
+      },
+      "impactRationale": "Severe. The one thing the product is for, it then does wrongly. A burglary while someone is at home can end in serious injury; the financial loss is that of a burglary, and an insurer may refuse it where there is no sign of forced entry."
+    },
+    {
+      "id": "DS-0002",
+      "assetId": "A02",
+      "confidentiality": false,
+      "integrity": true,
+      "availability": false,
+      "description": "Software the maker did not release runs in many locks.",
+      "ratings": {
+        "safety": 2,
+        "financial": 3,
+        "operational": 3,
+        "privacy": 2
+      },
+      "impactRationale": "Severe. Every door with this lock can then be opened, and the maker faces a recall it may not survive."
+    },
+    {
+      "id": "DS-0003",
+      "assetId": "A03",
+      "confidentiality": true,
+      "integrity": false,
+      "availability": false,
+      "description": "A stranger reads when the people of the house come and go.",
+      "ratings": {
+        "safety": 1,
+        "financial": 1,
+        "operational": 0,
+        "privacy": 2
+      },
+      "impactRationale": "Major for privacy: the record shows when the home is empty and who lives there. It helps a burglar and a stalker alike."
+    },
+    {
+      "id": "DS-0004",
+      "assetId": "A04",
+      "confidentiality": false,
+      "integrity": false,
+      "availability": true,
+      "description": "The lock no longer answers, and the owner stands in front of a closed door.",
+      "ratings": {
+        "safety": 0,
+        "financial": 1,
+        "operational": 1,
+        "privacy": 0
+      },
+      "impactRationale": "Moderate. The key cylinder still opens the door, so nobody is locked out for good. What is lost is the convenience the product was bought for, and a service call."
+    },
+    {
+      "id": "DS-0005",
+      "assetId": "A05",
+      "confidentiality": true,
+      "integrity": false,
+      "availability": false,
+      "description": "Someone walking past learns that this door has a lock of this make.",
+      "ratings": {
+        "safety": 0,
+        "financial": 0,
+        "operational": 0,
+        "privacy": 0
+      },
+      "impactRationale": "Negligible. The lock can be seen on the door anyway, and the announcement names no person."
+    }
+  ],
+  "threats": [
+    {
+      "id": "TS001",
+      "category": "spoofing",
+      "description": "An unlock message that was recorded at the door is sent again later.",
+      "damageIds": [
+        "DS-0001"
+      ]
+    },
+    {
+      "id": "TS002",
+      "category": "elevation_of_privilege",
+      "description": "A guest whose access has ended still opens the door.",
+      "damageIds": [
+        "DS-0001"
+      ]
+    },
+    {
+      "id": "TS003",
+      "category": "spoofing",
+      "description": "Someone signs in to the owner's account at the maker's cloud and uses it.",
+      "damageIds": [
+        "DS-0001",
+        "DS-0003"
+      ]
+    },
+    {
+      "id": "TS004",
+      "category": "tampering",
+      "description": "The locks are given software that does not come from the maker.",
+      "damageIds": [
+        "DS-0002"
+      ]
+    },
+    {
+      "id": "TS005",
+      "category": "denial_of_service",
+      "description": "The lock's battery is drained from the street.",
+      "damageIds": [
+        "DS-0004"
+      ]
+    },
+    {
+      "id": "TS006",
+      "category": "elevation_of_privilege",
+      "description": "The installer's port is used to add a key.",
+      "damageIds": [
+        "DS-0001"
+      ]
+    },
+    {
+      "id": "TS007",
+      "category": "information_disclosure",
+      "description": "The lock's radio announcement is picked up by anyone in range.",
+      "damageIds": [
+        "DS-0005"
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "id": "AP001",
+      "threatIds": [
+        "TS001"
+      ],
+      "elementIds": [
+        "EX01",
+        "DF01",
+        "C01",
+        "DF03",
+        "C02"
+      ],
+      "description": "Stand near the door with a Bluetooth recorder while the owner comes home, record the unlock message, and send it again when the house is empty. As first built, the same message opens the door every time.",
+      "factors": {
+        "elapsed_time": "lt_1_week",
+        "expertise": "proficient",
+        "knowledge": "public",
+        "window_of_opportunity": "moderate",
+        "equipment": "specialised"
+      },
+      "feasibilityBasis": "The recorder costs little and the method is published for other locks. The attacker has to be near the door at the right moment once. 1+3+0+4+4 = 12: high.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP002",
+      "threatIds": [
+        "TS002"
+      ],
+      "elementIds": [
+        "EX01",
+        "DF01",
+        "C01",
+        "DF03",
+        "C02",
+        "DF06",
+        "ST01"
+      ],
+      "description": "Keep using a guest key after the owner has withdrawn it. As first built, a withdrawal reaches the lock only through the cloud; while the home Wi-Fi is down, or switched off at the router by the guest, the old key still works.",
+      "factors": {
+        "elapsed_time": "lt_1_day",
+        "expertise": "layman",
+        "knowledge": "public",
+        "window_of_opportunity": "easy",
+        "equipment": "standard"
+      },
+      "feasibilityBasis": "The guest needs nothing but the phone they already have. 0+0+0+1+0 = 1: high.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP003",
+      "threatIds": [
+        "TS003"
+      ],
+      "elementIds": [
+        "EX02",
+        "DF02",
+        "C01",
+        "DF03",
+        "C02"
+      ],
+      "description": "Try the owner's e-mail address with passwords from published leaks, sign in, read the record, and unlock the door remotely. As first built, a password is all the account asks for.",
+      "factors": {
+        "elapsed_time": "lt_1_day",
+        "expertise": "layman",
+        "knowledge": "public",
+        "window_of_opportunity": "unlimited",
+        "equipment": "standard"
+      },
+      "feasibilityBasis": "Needs no access to the lock, no skill and no equipment: lists of leaked passwords and the tools to try them are freely available. 0+0+0+0+0 = 0: high.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP004",
+      "threatIds": [
+        "TS004"
+      ],
+      "elementIds": [
+        "EX02",
+        "DF02",
+        "C01",
+        "DF03",
+        "C02"
+      ],
+      "description": "Obtain the key with which the maker signs updates, sign altered software, and have the cloud offer it to the locks.",
+      "factors": {
+        "elapsed_time": "lt_3_months",
+        "expertise": "multiple_experts",
+        "knowledge": "critical",
+        "window_of_opportunity": "moderate",
+        "equipment": "specialised"
+      },
+      "feasibilityBasis": "The lock has checked the signature of updates from the first version. The attack therefore needs the signing key, which is inside the maker, and people who can write lock software. 10+8+11+4+4 = 37: very low.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP005",
+      "threatIds": [
+        "TS005"
+      ],
+      "elementIds": [
+        "EX01",
+        "DF01",
+        "C01"
+      ],
+      "description": "From the pavement, send the lock connection requests without pause. Each one wakes the radio and the controller, and the batteries are empty in days.",
+      "factors": {
+        "elapsed_time": "lt_1_week",
+        "expertise": "proficient",
+        "knowledge": "public",
+        "window_of_opportunity": "easy",
+        "equipment": "standard"
+      },
+      "feasibilityBasis": "A phone and a freely available app are enough, and the attacker only has to be in radio range. 1+3+0+1+0 = 5: high.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP006",
+      "threatIds": [
+        "TS006"
+      ],
+      "elementIds": [
+        "EX03",
+        "DF04",
+        "C02",
+        "DF06",
+        "ST01"
+      ],
+      "description": "Inside the house, plug a service tool into the port on the inside face and add a new key. As first built, the port stays active for the life of the lock.",
+      "factors": {
+        "elapsed_time": "lt_1_day",
+        "expertise": "proficient",
+        "knowledge": "restricted",
+        "window_of_opportunity": "difficult",
+        "equipment": "specialised"
+      },
+      "feasibilityBasis": "The attacker must already be inside, alone with the door for some minutes: a tradesman or a visitor. The tool is sold to installers only, and its commands are in their manual. 0+3+3+10+4 = 20: low.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP007",
+      "threatIds": [
+        "TS007"
+      ],
+      "elementIds": [
+        "C01"
+      ],
+      "description": "Walk past with a phone and read the names of the Bluetooth devices in range.",
+      "factors": {
+        "elapsed_time": "lt_1_day",
+        "expertise": "layman",
+        "knowledge": "public",
+        "window_of_opportunity": "unlimited",
+        "equipment": "standard"
+      },
+      "feasibilityBasis": "Any phone shows it. 0+0+0+0+0 = 0: high.",
+      "disposition": "included"
+    }
+  ],
+  "risks": [
+    {
+      "id": "R001",
+      "threatId": "TS001",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-001"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 5: the worst damage, and easy. Reduced: a recorded message is worthless, because every opening is asked for with a new number.",
+      "owner": "Product security manager, access products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 3,
+      "residualFeasibility": "very_low",
+      "residualBasis": "Opening the door now needs the key itself, which does not leave the owner's phone. LK-TEST-01 case 1."
+    },
+    {
+      "id": "R002",
+      "threatId": "TS002",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-002"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 5. Reduced: a guest key ends on its last day whatever the guest does to the Wi-Fi.",
+      "owner": "Product security manager, access products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 3,
+      "residualFeasibility": "low",
+      "residualBasis": "Within the days a key was given for, a guest can still open the door after a withdrawal that has not yet reached the lock; a household phone passing the door delivers it. LK-TEST-01 case 2."
+    },
+    {
+      "id": "R003",
+      "threatId": "TS003",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-003",
+        "CTL-004"
+      ],
+      "proposedControlIds": [
+        "CTL-005"
+      ],
+      "rationale": "Value 5, and the easiest attack of all: no access, no skill, no equipment. Reduced by a second factor and by telling the owner. It stays at 4: an owner can still be talked into confirming. Proposed for the next release: remote unlocking off until the owner switches it on at the lock.",
+      "owner": "Product security manager, access products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 3,
+      "residualFeasibility": "low",
+      "residualBasis": "Needs the password and a confirmation on a registered phone; tricking an owner into confirming remains possible. LK-TEST-01 cases 3 and 4."
+    },
+    {
+      "id": "R004",
+      "threatId": "TS004",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-006"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 3: the worst damage of all, and very hard, because updates were signed from the first version. Reduced all the same by keeping the signing key apart. The value stays 3: the control does not make the attack harder than very hard, it keeps it there.",
+      "owner": "Product security manager, access products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 3,
+      "residualFeasibility": "very_low",
+      "residualBasis": "Needs the signing key and two people of the maker acting together. LK-TEST-02."
+    },
+    {
+      "id": "R005",
+      "threatId": "TS005",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-007"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 4: moderate damage, but easy. Reduced: the lock stops answering a sender that only pesters it.",
+      "owner": "Product security manager, access products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 1,
+      "residualFeasibility": "low",
+      "residualBasis": "Draining the battery now needs many senders or many weeks, and the household is warned first. LK-TEST-01 case 6."
+    },
+    {
+      "id": "R006",
+      "threatId": "TS006",
+      "treatment": "avoid",
+      "existingControlIds": [],
+      "proposedControlIds": [],
+      "rationale": "Value 4. Avoided: the service port is switched off for good when the first owner's key is stored, and locks leave the factory without the connector fitted. The function this threat needs no longer exists (LK-DOC-05 section 7).",
+      "owner": "Product security manager, access products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": null,
+      "residualFeasibility": null,
+      "residualBasis": "Exposure removed. LK-TEST-01 case 7: service commands sent to 20 locks with an owner's key stored, none answered; production sample checked for the missing connector."
+    },
+    {
+      "id": "R007",
+      "threatId": "TS007",
+      "treatment": "retain",
+      "existingControlIds": [],
+      "proposedControlIds": [],
+      "rationale": "Value 2: as easy as an attack gets, and harmless. Retained: the lock has to announce itself to be found by its owner's phone, and the announcement says nothing the door does not show.",
+      "owner": "Product security manager, access products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 0,
+      "residualFeasibility": "high",
+      "residualBasis": "Unchanged: the risk is accepted as it is."
+    }
+  ],
+  "controls": [
+    {
+      "id": "CTL-001",
+      "name": "A fresh question for every opening",
+      "description": "The lock sends a new random number with every request; the phone's answer is valid for that number only, and for a few seconds.",
+      "type": "technical",
+      "craTags": [
+        "d",
+        "e"
+      ],
+      "coveredPathIds": [
+        "AP001"
+      ],
+      "elementIds": [
+        "C02"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-002",
+      "name": "Keys end by themselves",
+      "description": "Every guest key carries its last day, and the lock checks it against its own clock. A withdrawal also reaches the lock over Bluetooth from any household phone that comes near.",
+      "type": "technical",
+      "craTags": [
+        "d"
+      ],
+      "coveredPathIds": [
+        "AP002"
+      ],
+      "elementIds": [
+        "C02",
+        "ST01"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-003",
+      "name": "A second factor for remote use",
+      "description": "Signing in on a new phone, and every remote unlocking, needs a confirmation on a phone already registered.",
+      "type": "technical",
+      "craTags": [
+        "d"
+      ],
+      "coveredPathIds": [
+        "AP003"
+      ],
+      "elementIds": [
+        "C02"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-004",
+      "name": "The owner is told",
+      "description": "Every remote unlocking and every new sign-in is announced at once on all phones of the household.",
+      "type": "technical",
+      "craTags": [
+        "l"
+      ],
+      "coveredPathIds": [
+        "AP003"
+      ],
+      "elementIds": [
+        "C02"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-005",
+      "name": "Remote unlocking is off until asked for",
+      "description": "A new lock opens only for a phone at the door. Remote unlocking is switched on by the owner, at the lock.",
+      "type": "technical",
+      "craTags": [
+        "b",
+        "j"
+      ],
+      "coveredPathIds": [
+        "AP003"
+      ],
+      "elementIds": [
+        "C02"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-006",
+      "name": "The signing key is kept apart",
+      "description": "The key that signs updates is held in a hardware module. A release needs two named people, and each release is recorded.",
+      "type": "organisational",
+      "craTags": [
+        "c",
+        "f"
+      ],
+      "coveredPathIds": [
+        "AP004"
+      ],
+      "elementIds": [
+        "C02"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-007",
+      "name": "The radio stops listening to a pest",
+      "description": "After ten requests without a valid key from one sender, the lock ignores that sender for ten minutes. At one fifth of the battery the app warns the household.",
+      "type": "technical",
+      "craTags": [
+        "h"
+      ],
+      "coveredPathIds": [
+        "AP005"
+      ],
+      "elementIds": [
+        "C01"
+      ],
+      "workLink": null
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-001",
+      "riskId": "R001",
+      "controlId": "CTL-001",
+      "configurationId": "CFG-LOCK-L3-EU-2.1",
+      "state": "verified",
+      "effect": "A recorded unlock message does not open the door a second time.",
+      "implementationRef": "LK-DOC-05 section 2: opening over Bluetooth",
+      "verificationRef": "LK-TEST-01 case 1: 200 recorded messages sent again, none accepted",
+      "result": "pass",
+      "verifiedCraTags": [
+        "d",
+        "e"
+      ]
+    },
+    {
+      "id": "EV-002",
+      "riskId": "R002",
+      "controlId": "CTL-002",
+      "configurationId": "CFG-LOCK-L3-EU-2.1",
+      "state": "verified",
+      "effect": "A guest key does not work after its last day, with or without Wi-Fi.",
+      "implementationRef": "LK-DOC-05 section 3: guest keys",
+      "verificationRef": "LK-TEST-01 case 2: expired and withdrawn keys tried with the Wi-Fi off, all refused",
+      "result": "pass",
+      "verifiedCraTags": [
+        "d"
+      ]
+    },
+    {
+      "id": "EV-003",
+      "riskId": "R003",
+      "controlId": "CTL-003",
+      "configurationId": "CFG-LOCK-L3-EU-2.1",
+      "state": "verified",
+      "effect": "A password alone neither signs in on a new phone nor unlocks remotely.",
+      "implementationRef": "LK-DOC-05 section 4: accounts",
+      "verificationRef": "LK-TEST-01 case 3: sign-in and remote unlocking with the password only, refused",
+      "result": "pass",
+      "verifiedCraTags": [
+        "d"
+      ]
+    },
+    {
+      "id": "EV-004",
+      "riskId": "R003",
+      "controlId": "CTL-004",
+      "configurationId": "CFG-LOCK-L3-EU-2.1",
+      "state": "verified",
+      "effect": "A remote unlocking or a new sign-in is shown on every household phone within a minute.",
+      "implementationRef": "LK-DOC-05 section 4: accounts",
+      "verificationRef": "LK-TEST-01 case 4: notices timed on three phones",
+      "result": "pass",
+      "verifiedCraTags": [
+        "l"
+      ]
+    },
+    {
+      "id": "EV-005",
+      "riskId": "R004",
+      "controlId": "CTL-006",
+      "configurationId": "CFG-LOCK-L3-EU-2.1",
+      "state": "verified",
+      "effect": "No update is signed without two named people, and the key cannot be copied out of its module.",
+      "implementationRef": "LK-DOC-06: release procedure",
+      "verificationRef": "LK-TEST-02: audit of the last four releases against the procedure",
+      "result": "pass",
+      "verifiedCraTags": [
+        "c",
+        "f"
+      ]
+    },
+    {
+      "id": "EV-006",
+      "riskId": "R005",
+      "controlId": "CTL-007",
+      "configurationId": "CFG-LOCK-L3-EU-2.1",
+      "state": "verified",
+      "effect": "Requests without a valid key no longer empty the battery.",
+      "implementationRef": "LK-DOC-05 section 6: radio",
+      "verificationRef": "LK-TEST-01 case 6: lock under constant requests for 14 days, battery at four fifths",
+      "result": "pass",
+      "verifiedCraTags": [
+        "h"
+      ]
+    }
+  ],
+  "goalClaims": [
+    {
+      "id": "CG01",
+      "kind": "goal",
+      "statement": "The door opens only for a valid key that is used by its holder, now.",
+      "riskIds": [
+        "R001",
+        "R002"
+      ]
+    },
+    {
+      "id": "CG02",
+      "kind": "goal",
+      "statement": "Nobody but the household can use the household's account.",
+      "riskIds": [
+        "R003"
+      ]
+    },
+    {
+      "id": "CG03",
+      "kind": "goal",
+      "statement": "Only software released by the maker runs in the lock.",
+      "riskIds": [
+        "R004"
+      ]
+    },
+    {
+      "id": "CG04",
+      "kind": "goal",
+      "statement": "The lock cannot be put out of use from outside the door.",
+      "riskIds": [
+        "R005"
+      ]
+    },
+    {
+      "id": "CC01",
+      "kind": "claim",
+      "statement": "The service port cannot be used in a lock that has an owner: it is switched off when the first key is stored, and the connector is not fitted in production (LK-DOC-05 section 7).",
+      "riskIds": [
+        "R006"
+      ]
+    },
+    {
+      "id": "CC02",
+      "kind": "claim",
+      "statement": "That a lock of this make is present may be learned by anyone in radio range. Accepted by the product security manager; the announcement names no person and the manual says that the lock is visible to nearby phones (LK-DOC-01 section 4).",
+      "riskIds": [
+        "R007"
+      ]
+    }
+  ],
+  "craDecisions": [
+    {
+      "id": "CRA-a",
+      "requirementKey": "a",
+      "applicability": "applies",
+      "justification": "Sold with no known exploitable vulnerability: the risks of this assessment are reduced by tested controls, one is avoided by removing the port, and one is accepted in writing.",
+      "implementationRef": "LK-DOC-05: security concept",
+      "verificationRef": "LK-TEST-01: all cases passed"
+    },
+    {
+      "id": "CRA-b",
+      "requirementKey": "b",
+      "applicability": "applies",
+      "justification": "Sold in a secure state: no key stored, no account linked, remote unlocking off. A reset returns it to that state.",
+      "implementationRef": "LK-DOC-05 section 1: delivery state",
+      "verificationRef": "LK-TEST-01 case 8: new and reset locks checked"
+    },
+    {
+      "id": "CRA-c",
+      "requirementKey": "c",
+      "applicability": "applies",
+      "justification": "The software can be updated, and security updates are installed automatically unless the owner switches that off.",
+      "implementationRef": "LK-DOC-05 section 5: updates",
+      "verificationRef": "LK-TEST-01 case 5: update installed, refused when altered"
+    },
+    {
+      "id": "CRA-d",
+      "requirementKey": "d",
+      "applicability": "applies",
+      "justification": "The door opens only for a valid key; the account needs a second factor.",
+      "implementationRef": "LK-DOC-05 sections 2 to 4",
+      "verificationRef": "LK-TEST-01 cases 1 to 3"
+    },
+    {
+      "id": "CRA-e",
+      "requirementKey": "e",
+      "applicability": "applies",
+      "justification": "Keys are stored encrypted in the lock and never leave a phone; all messages are encrypted.",
+      "implementationRef": "LK-DOC-05 sections 2 and 3",
+      "verificationRef": "LK-TEST-01 case 9: memory and traffic examined"
+    },
+    {
+      "id": "CRA-f",
+      "requirementKey": "f",
+      "applicability": "applies",
+      "justification": "Updates are checked for the maker's signature; keys and the record are protected against change.",
+      "implementationRef": "LK-DOC-05 section 5",
+      "verificationRef": "LK-TEST-01 case 5"
+    },
+    {
+      "id": "CRA-g",
+      "requirementKey": "g",
+      "applicability": "applies",
+      "justification": "The lock keeps 90 days of entries and nothing else about the household; the cloud keeps what the owner chose to share.",
+      "implementationRef": "LK-DOC-05 section 8: data",
+      "verificationRef": "LK-TEST-01 case 10: stored data listed"
+    },
+    {
+      "id": "CRA-h",
+      "requirementKey": "h",
+      "applicability": "applies",
+      "justification": "The key cylinder always opens the door; the radio cannot be used to wear the lock out.",
+      "implementationRef": "LK-DOC-05 section 6",
+      "verificationRef": "LK-TEST-01 case 6"
+    },
+    {
+      "id": "CRA-i",
+      "requirementKey": "i",
+      "applicability": "applies",
+      "justification": "The lock sends little and does not disturb other devices on the home network.",
+      "implementationRef": "LK-DOC-05 section 6",
+      "verificationRef": "LK-TEST-01 case 11: traffic observed for a week"
+    },
+    {
+      "id": "CRA-j",
+      "requirementKey": "j",
+      "applicability": "applies",
+      "justification": "Three ways in: Bluetooth, the cloud connection, the service port. The port is switched off for good at first use, and remote unlocking is off until asked for.",
+      "implementationRef": "LK-DOC-05 sections 2, 4 and 7",
+      "verificationRef": "LK-TEST-01 cases 7 and 12: scan, nothing else open"
+    },
+    {
+      "id": "CRA-k",
+      "requirementKey": "k",
+      "applicability": "applies",
+      "justification": "Whatever the electronics do, the key cylinder opens the door, and a lock without power stays closed.",
+      "implementationRef": "LK-DOC-05 section 6",
+      "verificationRef": "LK-TEST-01 case 13: power removed in every bolt position"
+    },
+    {
+      "id": "CRA-l",
+      "requirementKey": "l",
+      "applicability": "applies",
+      "justification": "Every opening and every refusal is recorded; remote openings and new sign-ins are announced to the household.",
+      "implementationRef": "LK-DOC-05 section 4",
+      "verificationRef": "LK-TEST-01 case 4"
+    },
+    {
+      "id": "CRA-m",
+      "requirementKey": "m",
+      "applicability": "applies",
+      "justification": "Holding the inside button for ten seconds erases all keys, the record and the Wi-Fi details; the account can be deleted in the app.",
+      "implementationRef": "LK-DOC-05 section 8",
+      "verificationRef": "LK-TEST-01 case 8"
+    },
+    {
+      "id": "CRA-II-1",
+      "requirementKey": "II(1)",
+      "applicability": "applies",
+      "justification": "The software components of the lock and the app are listed, and vulnerabilities in them are recorded.",
+      "implementationRef": "LK-DOC-07 section 1: component list",
+      "verificationRef": "LK-TEST-02: list compared with release 2.1"
+    },
+    {
+      "id": "CRA-II-2",
+      "requirementKey": "II(2)",
+      "applicability": "applies",
+      "justification": "Vulnerabilities are corrected without delay by a signed update.",
+      "implementationRef": "LK-DOC-07 section 2",
+      "verificationRef": "LK-TEST-02"
+    },
+    {
+      "id": "CRA-II-3",
+      "requirementKey": "II(3)",
+      "applicability": "applies",
+      "justification": "The lock's security is tested before each release and at least yearly, by a party outside the development team.",
+      "implementationRef": "LK-DOC-07 section 3",
+      "verificationRef": "LK-TEST-01"
+    },
+    {
+      "id": "CRA-II-4",
+      "requirementKey": "II(4)",
+      "applicability": "applies",
+      "justification": "When an update is out, the app tells the owner what was corrected.",
+      "implementationRef": "LK-DOC-07 section 4",
+      "verificationRef": "LK-DOC-07 annex: sample notice"
+    },
+    {
+      "id": "CRA-II-5",
+      "requirementKey": "II(5)",
+      "applicability": "applies",
+      "justification": "A policy for coordinated disclosure of vulnerabilities is in force.",
+      "implementationRef": "LK-DOC-07 section 5",
+      "verificationRef": "LK-DOC-07 section 5, reviewed"
+    },
+    {
+      "id": "CRA-II-6",
+      "requirementKey": "II(6)",
+      "applicability": "applies",
+      "justification": "Anyone can report a vulnerability to an address printed in the manual and published on the website.",
+      "implementationRef": "LK-DOC-07 section 6",
+      "verificationRef": "LK-DOC-07 section 6, address tested"
+    },
+    {
+      "id": "CRA-II-7",
+      "requirementKey": "II(7)",
+      "applicability": "applies",
+      "justification": "Updates are distributed signed, through the maker's cloud.",
+      "implementationRef": "LK-DOC-05 section 5",
+      "verificationRef": "LK-TEST-01 case 5"
+    },
+    {
+      "id": "CRA-II-8",
+      "requirementKey": "II(8)",
+      "applicability": "applies",
+      "justification": "Security updates are free and come with a note in the app.",
+      "implementationRef": "LK-DOC-07 section 8",
+      "verificationRef": "LK-DOC-07 annex: sample notice"
+    }
+  ],
+  "references": [
+    {
+      "id": "LK-DOC-00",
+      "title": "How to read this example",
+      "revision": "1.0",
+      "date": "2026-11-21",
+      "location": "Pasted text, in this register",
+      "content": "This is a worked example of an ordinary connected product: a smart door lock. The lock is invented, but each threat is of a kind that has been found in real locks. Read the kettle example first if the steps are new to you.\n\nWhat makes it realistic\nThe attack paths describe the lock as first built, before the assessment: an unlock message that could be recorded and sent again, guest keys that were withdrawn only through the cloud, an account protected by a password alone, a service port that stayed active. The controls are what the assessment then asked for. That is how a TARA is used in practice: it is done on the design, and it changes the design.\n\nWhat to look for\n\nWhere the easy attacks are. Open the Diagram under Architecture. Only one of the seven attack paths needs the lock in someone's hands; four work from the street or from anywhere. R003 sums to zero: the attacker needs no access, no skill and no equipment, only a leaked password. For a connected product the account is usually the weakest door.\n\nThe worst damage is not the highest risk. R004, altered software in every lock, is the worst thing that can happen and has the value 3, because updates were signed from the start. R001, R002 and R003 share one damage and reach 5, because they are easy.\n\nBefore and after. Under Risk treatment: R001 falls from 5 to 3 and R005 from 4 to 2. R002 and R003 only fall to 4, and their rationale says honestly why: a withdrawal still has to reach the lock, and an owner can still be talked into confirming. R004 stays at 3. A TARA in which every risk ends at 1 has usually not been thought through.\n\nA proposed control. R003 has two controls in the product and a third that is proposed for the next release: remote unlocking off until the owner asks for it. Proposed controls do not count towards the remaining risk; they show what is planned.\n\nAvoid. R006 is not reduced but removed: the service port is switched off for good once the lock has an owner, and the connector is not fitted. An avoided risk has no remaining value; its evidence is that the function is gone.\n\nRetain. R007 is easy and harmless, value 2, and is accepted with a claim that says who accepted it.\n\nWhat is left out, and where it is handled. Read \"Assumptions and exclusions\" under Scope: the mechanical lock, the phone, the router and the cloud service are each assessed elsewhere, and the sentence says where. A TARA that claims to cover everything covers nothing well.\n\nCRA requirements. All 21 apply. Requirement (b) and (j) are worth reading: \"secure by default\" and \"limited attack surface\" are answered by concrete decisions, remote unlocking off and the port removed, each with a test.\n\nThings to try\nOpen AP003 and add a second factor in your head: which of the five ratings changes? Then look at the residual rating of R003 and see whether you agree.\nChange R006 from Avoid to Retain and see what the checks ask for.\nUnder Architecture, open the Diagram, lay the gaps over it, and then lay AP001 over it to follow the attack across the trust boundary.\nOpen the Report and read section \"Open points\": there are none, and the report says what that rests on."
+    },
+    {
+      "id": "LK-DOC-01",
+      "title": "Smart door lock L3: item definition and architecture (invented, for training)",
+      "revision": "B",
+      "date": "2026-10-01",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "LK-DOC-02",
+      "title": "Open TARA method, impact and feasibility scales",
+      "revision": "1.0",
+      "date": "2026-01-15",
+      "location": "The method built into this tool",
+      "content": null
+    },
+    {
+      "id": "LK-DOC-03",
+      "title": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+      "revision": "OJ L, 20.11.2024",
+      "date": "2024-11-20",
+      "location": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj",
+      "content": null
+    },
+    {
+      "id": "LK-DOC-04",
+      "title": "ISO/SAE 21434:2021, Road vehicles: cybersecurity engineering",
+      "revision": "2021",
+      "date": "2021-08-31",
+      "location": "Licensed standard, not included",
+      "content": null
+    },
+    {
+      "id": "LK-DOC-05",
+      "title": "Smart door lock L3: cybersecurity concept (invented, for training)",
+      "revision": "B",
+      "date": "2026-11-01",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "LK-DOC-06",
+      "title": "Software release and signing procedure (invented, for training)",
+      "revision": "A",
+      "date": "2026-06-01",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "LK-DOC-07",
+      "title": "Vulnerability handling and update procedure (invented, for training)",
+      "revision": "A",
+      "date": "2026-09-15",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "LK-DOC-08",
+      "title": "Cloud service: security assessment summary (invented, for training)",
+      "revision": "A",
+      "date": "2026-08-20",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "LK-TEST-01",
+      "title": "Smart door lock L3: cybersecurity test report (invented, for training)",
+      "revision": "2",
+      "date": "2026-11-10",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "LK-TEST-02",
+      "title": "Audit of releases against the signing procedure (invented, for training)",
+      "revision": "1",
+      "date": "2026-10-20",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "LK-REV-01",
+      "title": "Minutes of the TARA review, 18 November 2026 (invented, for training)",
+      "revision": "1",
+      "date": "2026-11-18",
+      "location": "Training material, not a real document",
+      "content": null
+    }
+  ],
+  "reviews": [
+    {
+      "kind": "scope",
+      "subjectId": null,
+      "reference": "LK-REV-01",
+      "fingerprint": "4115b170760077789e023dd687d21f898e692461cb3ed84eedc9d9f0dbc98be4",
+      "revision": 1,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "release",
+      "subjectId": null,
+      "reference": "LK-REV-01",
+      "fingerprint": "d6e94a5d25d3b906adcffb7fbba447cf9823538b0a2977404bda7f31b47f6117",
+      "revision": 2,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP001",
+      "reference": "LK-REV-01",
+      "fingerprint": "5b515f458b90d4145220121ea9996fb303b8283cdb212b12de07376e82416395",
+      "revision": 3,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP002",
+      "reference": "LK-REV-01",
+      "fingerprint": "6145506e109fe07606269037792e80d3974fd72f6807dd1b4c11910eb9533820",
+      "revision": 4,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP003",
+      "reference": "LK-REV-01",
+      "fingerprint": "5e26de07e3be2fd89eb20b0e6a01fb5330c0d976cef4813666c8d062a3f1e81a",
+      "revision": 5,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP004",
+      "reference": "LK-REV-01",
+      "fingerprint": "5f76d90e5779413012fff9070cad7c766e99794059f2379131ff9316cec7f3e9",
+      "revision": 6,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP005",
+      "reference": "LK-REV-01",
+      "fingerprint": "0894ae92dcfb30b2dcf9d4cfcdeec649ecb56c71a4af4f8b3ba0fed365447904",
+      "revision": 7,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP006",
+      "reference": "LK-REV-01",
+      "fingerprint": "262a1d88a4cdf580f5c9112e6a5627d8e8539cc3642f6d3feb93bd35ddb6da9a",
+      "revision": 8,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP007",
+      "reference": "LK-REV-01",
+      "fingerprint": "23d6f9012f167d5be019da6f0899e0e7d869d23d6c2131ca14745e73168b5b07",
+      "revision": 9,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R001",
+      "reference": "LK-REV-01",
+      "fingerprint": "55847b566859f71a2748b05a33da0db55b7719c5dda29ba20b9c52a9c66e77bb",
+      "revision": 10,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R002",
+      "reference": "LK-REV-01",
+      "fingerprint": "06877732adebc632600df51e0c47efdb141b5125f9db1da4bac9010d8f2652f5",
+      "revision": 11,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R003",
+      "reference": "LK-REV-01",
+      "fingerprint": "83b7c20814ae9eb18e71af97db12a1a7d9d5c58ca98d0b354263ea088db23f72",
+      "revision": 12,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R004",
+      "reference": "LK-REV-01",
+      "fingerprint": "6ba8f41824fd143c9362d8c7d60e1c5a31bffaf105f396787e43d5c9fc6e5c29",
+      "revision": 13,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R005",
+      "reference": "LK-REV-01",
+      "fingerprint": "5d41019faae0e6273459bd6db2727070642708c6d39646dfdd1757a372a1eb44",
+      "revision": 14,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R006",
+      "reference": "LK-REV-01",
+      "fingerprint": "b4a27f175a4d0ef37d492bc266b4027e8cdd292dff0482f6dd3d1458b02a551a",
+      "revision": 15,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R007",
+      "reference": "LK-REV-01",
+      "fingerprint": "e0456ec84141caf9b521ed3c63e3a486ef59dafd9e33c6908b9090fa9c99a32b",
+      "revision": 16,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG01",
+      "reference": "LK-REV-01",
+      "fingerprint": "ea0f3d367db6d580e4c20f61f2c4159f188e60ef4d7091e385ee467d7a1d81a1",
+      "revision": 17,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG02",
+      "reference": "LK-REV-01",
+      "fingerprint": "d1cb3fb12caa25ee40ea839d0820727a6824acb8bb7bf575d14fd37aeb53841e",
+      "revision": 18,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG03",
+      "reference": "LK-REV-01",
+      "fingerprint": "a1558cf22de24558d1f78892cd7ebfa11ca9ada58743dce2fe66aa0d411ab53d",
+      "revision": 19,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG04",
+      "reference": "LK-REV-01",
+      "fingerprint": "1b782b58f5ceded54099965f0b0d9430ddc5acfd83c0f3d3a341c3c0441f64a4",
+      "revision": 20,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CC01",
+      "reference": "LK-REV-01",
+      "fingerprint": "8161ec68c89a9754ed5466db61406c62ab98eafa4cab832a1823582833fbf487",
+      "revision": 21,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CC02",
+      "reference": "LK-REV-01",
+      "fingerprint": "45a1c401495eba5c00525af0afb5fe8b96a3fa318e4ba1c58da851249532c7d4",
+      "revision": 22,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-001",
+      "reference": "LK-REV-01",
+      "fingerprint": "77ff12a05e99c67f657553e78e7a1e67d074ca327aeb17dc16541792a1dd0f15",
+      "revision": 23,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-002",
+      "reference": "LK-REV-01",
+      "fingerprint": "845c2bbf01d0c5e61c4bd77230e86803c2ccb7e3e64147834b9ea93a3b038bdb",
+      "revision": 24,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-003",
+      "reference": "LK-REV-01",
+      "fingerprint": "ef1cf984e060d968af0b367929b2a2760d21f66f8fbc02083de46e07b0a8d01b",
+      "revision": 25,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-004",
+      "reference": "LK-REV-01",
+      "fingerprint": "fe9204d35f6a709d701031c8373a71f8bb6a0d81ea04b22f3e3bfbde20956b88",
+      "revision": 26,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-005",
+      "reference": "LK-REV-01",
+      "fingerprint": "78a234c0ed534cbbecaf905f98e6589841bb3cdf6dc11d83eda096ac7cf9560e",
+      "revision": 27,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-006",
+      "reference": "LK-REV-01",
+      "fingerprint": "98439b38c21e2b28ee3d0ef8ac5be9331b1a5a4a11155730867bf5749c4042dc",
+      "revision": 28,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R001",
+      "reference": "LK-REV-01",
+      "fingerprint": "c2afc68f9f75db3ed24d1d1f8e929c0999155d807942e32662b6d98c2bb5a22e",
+      "revision": 29,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R002",
+      "reference": "LK-REV-01",
+      "fingerprint": "51ec4aa38fd2a59da2d402a09be47c43069c44f34ff7c6c20971d294ffac4369",
+      "revision": 30,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R003",
+      "reference": "LK-REV-01",
+      "fingerprint": "16af550d23eb5dc72ccab7e4e7b38f8df173dfbabd4b0dc8ecc4264ae00f1e25",
+      "revision": 31,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R004",
+      "reference": "LK-REV-01",
+      "fingerprint": "9c2dcbbb7ab04cd34703cbe40dfda32d2a25e3216449e8bbdee068023a25b865",
+      "revision": 32,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R005",
+      "reference": "LK-REV-01",
+      "fingerprint": "10b3161c6d1e45947ea737506cfbb18cc9406e12a960225e86210878df45d6f4",
+      "revision": 33,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R006",
+      "reference": "LK-REV-01",
+      "fingerprint": "bd040b57d197260c27480ae36434de809f5445d3acb5d45c9a4403a53ce67e76",
+      "revision": 34,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R007",
+      "reference": "LK-REV-01",
+      "fingerprint": "5c52193fbc1803bf89d23663d9643b655f57a4b07ea4e648ff09ce70bdaa6189",
+      "revision": 35,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-a",
+      "reference": "LK-REV-01",
+      "fingerprint": "2c3278b6bd5fb654c764d4f96c89380b726ef22befb40091d06bf9f231818249",
+      "revision": 36,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-b",
+      "reference": "LK-REV-01",
+      "fingerprint": "7949bb45aee4cf76e96d3a0fec87d6fcc62e2684cd6e36da58bd717e58b1d9d0",
+      "revision": 37,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-c",
+      "reference": "LK-REV-01",
+      "fingerprint": "fad3cc8bb52116538e3087f336b17d8d786f887ad23d3f016fda0a8c692f2a12",
+      "revision": 38,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-d",
+      "reference": "LK-REV-01",
+      "fingerprint": "a5deaa66feb533830e738dc3ebff253b45666c44aba8311caec3576b9396bcc6",
+      "revision": 39,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-e",
+      "reference": "LK-REV-01",
+      "fingerprint": "64bf0ce05bb1214f4bed62fa21d1390fa316acbe86c0619234aff8b2dd0cedad",
+      "revision": 40,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-f",
+      "reference": "LK-REV-01",
+      "fingerprint": "5aed1d75e2ff9768f0eab6baf0be8894bdb9e33b0090a885489256c258cb2c97",
+      "revision": 41,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-g",
+      "reference": "LK-REV-01",
+      "fingerprint": "6305f80babe527a54c5ffd8b48603cf265d4acd2393ffc8b164ee7513d48a129",
+      "revision": 42,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-h",
+      "reference": "LK-REV-01",
+      "fingerprint": "c01fcfc65d5521764bbfc98ae3f07e1c347b314b898c5b3facdc3160ba0974f7",
+      "revision": 43,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-i",
+      "reference": "LK-REV-01",
+      "fingerprint": "10d4ce2e3d1da58add823707d79aa65b4d5ba8b21373efc83ee3c2edd41795c2",
+      "revision": 44,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-j",
+      "reference": "LK-REV-01",
+      "fingerprint": "9620f7f51a3684b2921644bd720c6c274bf8ad0583744d2d7b56f802fc728255",
+      "revision": 45,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-k",
+      "reference": "LK-REV-01",
+      "fingerprint": "a64b2d9253003c4613113d2a1b7839b37ee74440968d9931be1e503f41522501",
+      "revision": 46,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-l",
+      "reference": "LK-REV-01",
+      "fingerprint": "94d69020d8bea39e6a6497fc68d32b0f56a4aaa1783fc3f921d93446d995ad92",
+      "revision": 47,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-m",
+      "reference": "LK-REV-01",
+      "fingerprint": "76d23aa732991f00feb4a77a543102cc487dab0f63c68dff5d31d56c6be5bb6c",
+      "revision": 48,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-1",
+      "reference": "LK-REV-01",
+      "fingerprint": "aabb0ca3b3cd9f99e6994cfa2de1cac4f4706a52b290cc93ea8a3127cdad6606",
+      "revision": 49,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-2",
+      "reference": "LK-REV-01",
+      "fingerprint": "b95a4bfb23d19530fa931e0d5e81cdcc73a3299eba8a7fa5ba1cb16c71a3e95f",
+      "revision": 50,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-3",
+      "reference": "LK-REV-01",
+      "fingerprint": "cab91bcbb5769b58140fc0f7aff4b6ab0a37a4bf58ceced2624b20500f4e4713",
+      "revision": 51,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-4",
+      "reference": "LK-REV-01",
+      "fingerprint": "b276446509de7a17ee751881c7ad3ed418758b725c299cf5e109ba03db16a68d",
+      "revision": 52,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-5",
+      "reference": "LK-REV-01",
+      "fingerprint": "35787ea1c5378ce448e2efdc30939c1634d88aa6c4b0ed88da602d2684f95b89",
+      "revision": 53,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-6",
+      "reference": "LK-REV-01",
+      "fingerprint": "f5b07bb5984d685c8666bf716e2a0237f5181b2c46e0a6ccdd840a083b8a30a4",
+      "revision": 54,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-7",
+      "reference": "LK-REV-01",
+      "fingerprint": "2cc47ca126f2e45c99d05542e6c0d61ffc768843a2ec7c720f17802330459312",
+      "revision": 55,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-8",
+      "reference": "LK-REV-01",
+      "fingerprint": "f068de2790c27dd603ba92d1e48f1531b6a5618710ff450d90a5af5f0f3825df",
+      "revision": 56,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    }
+  ],
+  "reviewCount": 56,
+  "signoffs": [],
+  "changeLog": [
+    {
+      "version": "1.0",
+      "date": "2026-11-20",
+      "author": "Training material",
+      "description": "First issue of the training example.",
+      "approvedBy": null
+    }
+  ],
+  "counters": {
+    "EX": 3,
+    "TB": 1,
+    "C": 3,
+    "ST": 2,
+    "DF": 7,
+    "A": 5,
+    "DS-": 5,
+    "TS": 7,
+    "AP": 7,
+    "CTL-": 7,
+    "EV-": 6,
+    "CG": 4,
+    "CC": 2
+  }
+}

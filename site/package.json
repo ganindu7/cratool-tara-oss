@@ -1,0 +1,14 @@
+{
+  "name": "@tara/site",
+  "version": "0.1.0",
+  "description": "The project website: a start page, and the documentation in docs/ turned into pages.",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.ts"
+  },
+  "devDependencies": {
+    "marked": "^18.3.0"
+  }
+}

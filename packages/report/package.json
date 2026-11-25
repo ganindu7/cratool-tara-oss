@@ -1,0 +1,14 @@
+{
+  "name": "@tara/report",
+  "version": "0.1.0",
+  "description": "The report of a TARA: its content built from the rule engine's results, and that content as one self-contained web page.",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@tara/core": "*"
+  }
+}

@@ -1,0 +1,17 @@
+# What never goes into an image: your data, what is installed or built locally, and what the tool does not need to run.
+data/
+node_modules/
+**/node_modules/
+**/dist/
+.git/
+.github/
+docs/
+site/build.ts
+site/src/
+site/dist/
+tools/
+*.md
+!THIRD_PARTY_LICENSES.md
+.env
+.env.*
+.DS_Store

@@ -1,0 +1,46 @@
+{
+  "name": "tara-workbench",
+  "version": "0.1.0",
+  "description": "Open-source threat analysis and risk assessment (TARA) for products with digital elements: the method of ISO/SAE 21434 with the essential requirements of the EU Cyber Resilience Act.",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "homepage": "https://ganindu7.github.io/cratool-tara-oss/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganindu7/cratool-tara-oss.git"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "site"
+  ],
+  "scripts": {
+    "start": "npm run build && node apps/server/src/main.ts",
+    "dev": "node tools/dev.ts",
+    "dev:server": "node --watch apps/server/src/main.ts",
+    "dev:web": "npm run dev --workspace @tara/web",
+    "build": "npm run build --workspace @tara/web",
+    "examples": "node tools/load-examples.ts",
+    "test": "node --test \"packages/*/test/*.test.ts\" \"apps/*/test/*.test.ts\"",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p apps/web/tsconfig.json",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "licenses": "node tools/licenses.ts",
+    "licenses:check": "node tools/licenses.ts --check",
+    "docs:checks": "node tools/checks-catalogue.ts",
+    "sbom": "npm sbom --sbom-format cyclonedx --omit dev > sbom.cdx.json",
+    "site": "npm run build --workspace @tara/site",
+    "site:screenshots": "node tools/screenshots.ts",
+    "check": "npm run typecheck && npm run lint && npm test && npm run licenses:check && node tools/checks-catalogue.ts --check",
+    "check:browser": "node tools/browser-check.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.9",
+    "@types/node": "^26.6.10",
+    "typescript": "^7.0.2"
+  }
+}

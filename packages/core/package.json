@@ -1,0 +1,11 @@
+{
+  "name": "@tara/core",
+  "version": "0.1.0",
+  "description": "The TARA document model, the only way to change it, and the rule engine. Pure TypeScript: no files, no network, no dependencies.",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

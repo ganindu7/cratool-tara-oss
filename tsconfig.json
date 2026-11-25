@@ -1,0 +1,23 @@
+{
+  // Type checking only: nothing is compiled. Node runs the TypeScript sources directly (type stripping),
+  // so the code uses erasable syntax only: no enums, no namespaces, no constructor parameter properties.
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "noEmit": true
+  },
+  "include": ["packages/*/src", "packages/*/test", "apps/server/src", "apps/server/test", "tools", "site/*.ts"]
+}

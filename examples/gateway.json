@@ -1,0 +1,2456 @@
+{
+  "format": "open-tara/1.0",
+  "id": "example-gateway",
+  "seq": 0,
+  "meta": {
+    "title": "Example TARA: a remote service gateway for a machine",
+    "product": "Remote service gateway",
+    "organisation": null,
+    "documentNumber": "EX-TARA-011",
+    "revision": "1.0",
+    "status": "draft",
+    "example": true,
+    "storageLocation": "Training material",
+    "distribution": "Anyone learning the method",
+    "createdAt": "2026-11-20T09:00:00.000Z",
+    "updatedAt": "2026-11-20T09:00:00.000Z",
+    "releasedAt": null,
+    "basedOn": null,
+    "revisionReason": null
+  },
+  "method": {
+    "source": "Open TARA method 1.0",
+    "sources": [
+      {
+        "part": "Structure: impact in four categories at four levels, attack feasibility at four levels, risk value 1 to 5",
+        "source": "The requirements of ISO/SAE 21434:2021, clause 15. Only the structure is taken; no text of the standard is used.",
+        "terms": "A structure, not text"
+      },
+      {
+        "part": "Attack feasibility: the five factors, their points and the bands",
+        "source": "Common Methodology for Information Technology Security Evaluation, CEM:2022 (November 2022), Annex B.6, Tables B.2 and B.3. Common Criteria portal, commoncriteriaportal.org",
+        "terms": "The legal notice of CEM:2022 supports reuse of the text by any user, including modification and reuse of parts. The descriptions here are written anew."
+      },
+      {
+        "part": "Risk matrix",
+        "source": "A. Lautenbach, M. Almgren, T. Olovsson: Proposing HEAVENS 2.0, an automotive risk assessment model. ACM Computer Science in Cars Symposium (CSCS '21), 2021, Table 8. doi:10.1145/3488904.3493378",
+        "terms": "The sixteen values are used and cited; no text of the paper is used."
+      },
+      {
+        "part": "Impact criteria, descriptions of factors, threat categories and treatments",
+        "source": "Written for this method.",
+        "terms": "Free to use and change with the tool."
+      }
+    ],
+    "impact_levels": [
+      {
+        "level": 3,
+        "name": "Severe"
+      },
+      {
+        "level": 2,
+        "name": "Major"
+      },
+      {
+        "level": 1,
+        "name": "Moderate"
+      },
+      {
+        "level": 0,
+        "name": "Negligible"
+      }
+    ],
+    "impact_categories": [
+      {
+        "key": "safety",
+        "label": "Safety",
+        "heading": "Harm to people: users, bystanders, anyone who relies on the product",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "S3 Severe: life is in danger",
+            "criteria": "Someone may die or be injured so badly that survival is uncertain."
+          },
+          {
+            "level": 2,
+            "label": "S2 Major: serious injury",
+            "criteria": "Someone may be seriously injured and need hospital treatment; survival is expected."
+          },
+          {
+            "level": 1,
+            "label": "S1 Moderate: minor injury",
+            "criteria": "Someone may be slightly injured: first aid or one visit to a doctor is enough."
+          },
+          {
+            "level": 0,
+            "label": "S0 Negligible: nobody is hurt",
+            "criteria": "Nobody is injured."
+          }
+        ]
+      },
+      {
+        "key": "financial",
+        "label": "Financial",
+        "heading": "Loss of money, for whoever bears it: the owner or user, the operator, or the maker",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "F3 Severe: a loss that may not be survived",
+            "criteria": "The loss may be more than the affected party can bear: a business may fail, or a person may not be able to make the loss good."
+          },
+          {
+            "level": 2,
+            "label": "F2 Major: a heavy loss that can be borne",
+            "criteria": "The loss is heavy and felt for a long time, but the affected party gets over it. For example a recall, a lost contract, or large claims."
+          },
+          {
+            "level": 1,
+            "label": "F1 Moderate: a loss within ordinary means",
+            "criteria": "The loss is noticed and is covered from ordinary means. For example repairs, the replacement of some units, or extra support work."
+          },
+          {
+            "level": 0,
+            "label": "F0 Negligible: no loss that matters",
+            "criteria": "There is no loss, or one too small to matter."
+          }
+        ]
+      },
+      {
+        "key": "operational",
+        "label": "Operational",
+        "heading": "What the product is for, and whether it still does it",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "O3 Severe: the main function is lost or wrong, widely or lastingly",
+            "criteria": "A main function is lost or does the wrong thing, on many units or for a long time, or cannot be restored without replacing the product."
+          },
+          {
+            "level": 2,
+            "label": "O2 Major: a main function is lost for a time",
+            "criteria": "A main function is lost or badly degraded on some units or for a limited time; the work the product does stops until it is repaired or restored."
+          },
+          {
+            "level": 1,
+            "label": "O1 Moderate: a lesser function is lost",
+            "criteria": "A function that is not essential is lost, or the product is slower or less convenient. It still does what it is for."
+          },
+          {
+            "level": 0,
+            "label": "O0 Negligible: no effect that is noticed",
+            "criteria": "What the product does is not affected, or not so that a user would notice."
+          }
+        ]
+      },
+      {
+        "key": "privacy",
+        "label": "Privacy",
+        "heading": "The people whose data the product holds or passes on",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "P3 Severe: sensitive data of identified people, with lasting harm",
+            "criteria": "Sensitive personal data of people who can be identified is disclosed or changed, and the harm to them cannot be undone. Sensitive data is, for example, data about health, where someone has been, passwords, or payment data."
+          },
+          {
+            "level": 2,
+            "label": "P2 Major: data of identified people, with serious consequences",
+            "criteria": "Personal data that identifies people is disclosed or changed, with serious consequences for them that can be limited afterwards."
+          },
+          {
+            "level": 1,
+            "label": "P1 Moderate: data that identifies people only with effort",
+            "criteria": "Personal data is disclosed or changed that can be tied to a person only with effort, or the consequences for the people concerned are an inconvenience."
+          },
+          {
+            "level": 0,
+            "label": "P0 Negligible: no personal data that matters",
+            "criteria": "No personal data is involved, or it cannot be tied to anyone."
+          }
+        ]
+      }
+    ],
+    "feasibility_factors": [
+      {
+        "key": "elapsed_time",
+        "label": "Elapsed time",
+        "description": "The time an attacker needs to find the weakness and to carry the attack out, all steps of the path together.",
+        "options": [
+          {
+            "key": "lt_1_day",
+            "label": "Up to one day",
+            "points": 0
+          },
+          {
+            "key": "lt_1_week",
+            "label": "Up to one week",
+            "points": 1
+          },
+          {
+            "key": "lt_2_weeks",
+            "label": "Up to two weeks",
+            "points": 2
+          },
+          {
+            "key": "lt_1_month",
+            "label": "Up to one month",
+            "points": 4
+          },
+          {
+            "key": "lt_2_months",
+            "label": "Up to two months",
+            "points": 7
+          },
+          {
+            "key": "lt_3_months",
+            "label": "Up to three months",
+            "points": 10
+          },
+          {
+            "key": "lt_4_months",
+            "label": "Up to four months",
+            "points": 13
+          },
+          {
+            "key": "lt_5_months",
+            "label": "Up to five months",
+            "points": 15
+          },
+          {
+            "key": "lt_6_months",
+            "label": "Up to six months",
+            "points": 17
+          },
+          {
+            "key": "gt_6_months",
+            "label": "More than six months",
+            "points": 19
+          }
+        ]
+      },
+      {
+        "key": "expertise",
+        "label": "Expertise",
+        "description": "What the attacker has to know and be able to do.",
+        "options": [
+          {
+            "key": "layman",
+            "label": "Layman",
+            "points": 0,
+            "description": "No particular knowledge or skill. The attacker follows instructions that someone else has published."
+          },
+          {
+            "key": "proficient",
+            "label": "Proficient",
+            "points": 3,
+            "description": "Familiar with how products of this kind are secured and with the usual attacks on them. Several proficient people working together still count as proficient."
+          },
+          {
+            "key": "expert",
+            "label": "Expert",
+            "points": 6,
+            "description": "Knows the algorithms, protocols, hardware or techniques concerned well enough to devise a new attack or new tools."
+          },
+          {
+            "key": "multiple_experts",
+            "label": "Multiple experts",
+            "points": 8,
+            "description": "Experts of different fields are needed, each for a distinct step of the attack."
+          }
+        ]
+      },
+      {
+        "key": "knowledge",
+        "label": "Knowledge of the product",
+        "description": "How hard it is to get the information about the product that the attack needs.",
+        "options": [
+          {
+            "key": "public",
+            "label": "Public",
+            "points": 0,
+            "description": "The information is published or can be found by anyone, for example on the internet or in the manual."
+          },
+          {
+            "key": "restricted",
+            "label": "Restricted",
+            "points": 3,
+            "description": "The information is kept by the maker and given to others only under an agreement, for example to suppliers or service partners."
+          },
+          {
+            "key": "sensitive",
+            "label": "Sensitive",
+            "points": 7,
+            "description": "The information is shared only between certain teams of the maker, and access to it is controlled."
+          },
+          {
+            "key": "critical",
+            "label": "Critical",
+            "points": 11,
+            "description": "The information is known to a few named people only and is kept under strict control."
+          }
+        ]
+      },
+      {
+        "key": "window_of_opportunity",
+        "label": "Window of opportunity",
+        "description": "How much access to the product the attack needs: for how long, to how many units, and how hard that access is to get.",
+        "options": [
+          {
+            "key": "unlimited",
+            "label": "Unnecessary or unlimited",
+            "points": 0,
+            "description": "The attack needs no access to the product, or the access it needs is there at any time for as long as wanted, for example over the internet."
+          },
+          {
+            "key": "easy",
+            "label": "Easy",
+            "points": 1,
+            "description": "Access is needed for a short time, to one or a few units, and is simple to get."
+          },
+          {
+            "key": "moderate",
+            "label": "Moderate",
+            "points": 4,
+            "description": "Access is needed for longer or to several units, or is to be had only at certain places or times."
+          },
+          {
+            "key": "difficult",
+            "label": "Difficult",
+            "points": 10,
+            "description": "Access is needed for a long time or to many units, or is hard to get, for example to an opened device in a guarded place."
+          }
+        ]
+      },
+      {
+        "key": "equipment",
+        "label": "Equipment",
+        "description": "The hardware and software the attack needs.",
+        "options": [
+          {
+            "key": "standard",
+            "label": "Standard",
+            "points": 0,
+            "description": "What an attacker has at hand or gets without effort: a laptop, common tools, freely available software."
+          },
+          {
+            "key": "specialised",
+            "label": "Specialised",
+            "points": 4,
+            "description": "Not at hand, but bought without difficulty or written with moderate effort: for example a bus or protocol analyser, a debug probe, or scripts made for this attack."
+          },
+          {
+            "key": "bespoke",
+            "label": "Bespoke",
+            "points": 7,
+            "description": "Made for the purpose, or so costly or controlled that it is hard to obtain. Clearly different sets of specialised equipment for distinct steps also count as bespoke."
+          },
+          {
+            "key": "multiple_bespoke",
+            "label": "Multiple bespoke",
+            "points": 9,
+            "description": "Different bespoke equipment is needed for distinct steps of the attack."
+          }
+        ]
+      }
+    ],
+    "feasibility_bands": [
+      {
+        "key": "high",
+        "label": "High",
+        "min": 0,
+        "max": 13,
+        "potential": "Basic or enhanced-basic attack potential is enough"
+      },
+      {
+        "key": "medium",
+        "label": "Medium",
+        "min": 14,
+        "max": 19,
+        "potential": "Moderate attack potential is needed"
+      },
+      {
+        "key": "low",
+        "label": "Low",
+        "min": 20,
+        "max": 24,
+        "potential": "High attack potential is needed"
+      },
+      {
+        "key": "very_low",
+        "label": "Very low",
+        "min": 25,
+        "potential": "More than high attack potential is needed"
+      }
+    ],
+    "risk_matrix": {
+      "0": {
+        "very_low": 1,
+        "low": 1,
+        "medium": 2,
+        "high": 2
+      },
+      "1": {
+        "very_low": 1,
+        "low": 2,
+        "medium": 3,
+        "high": 4
+      },
+      "2": {
+        "very_low": 2,
+        "low": 3,
+        "medium": 4,
+        "high": 5
+      },
+      "3": {
+        "very_low": 3,
+        "low": 4,
+        "medium": 5,
+        "high": 5
+      }
+    },
+    "threat_categories": [
+      {
+        "key": "spoofing",
+        "label": "Spoofing",
+        "description": "Someone or something passes as another: a person, a device, a server or a message source."
+      },
+      {
+        "key": "tampering",
+        "label": "Tampering",
+        "description": "Data, software or settings are changed by someone who should not be able to."
+      },
+      {
+        "key": "repudiation",
+        "label": "Repudiation",
+        "description": "Someone can deny having done something, because nothing proves it."
+      },
+      {
+        "key": "information_disclosure",
+        "label": "Information disclosure",
+        "description": "Information reaches someone who should not have it."
+      },
+      {
+        "key": "denial_of_service",
+        "label": "Denial of service",
+        "description": "A function or a service is made unavailable to those who need it."
+      },
+      {
+        "key": "elevation_of_privilege",
+        "label": "Elevation of privilege",
+        "description": "Someone gains rights they were not given."
+      },
+      {
+        "key": "general",
+        "label": "General",
+        "description": "A threat that fits none of the other categories."
+      }
+    ],
+    "treatments": [
+      {
+        "key": "retain",
+        "label": "Retain",
+        "description": "The risk is accepted as it is, because it is low enough or for a reason that is written down and approved."
+      },
+      {
+        "key": "reduce",
+        "label": "Reduce",
+        "description": "Controls are added that make the attack harder or its consequences smaller."
+      },
+      {
+        "key": "share",
+        "label": "Share",
+        "description": "The risk is carried together with another party, for example by contract or insurance. It does not go away."
+      },
+      {
+        "key": "avoid",
+        "label": "Avoid",
+        "description": "What gives rise to the risk is removed: the function, the interface or the data is taken out."
+      }
+    ]
+  },
+  "scope": {
+    "configuration_id": {
+      "decision": "CFG-RSG-400-EU-3.2",
+      "evidence": "GW-DOC-01 section 1"
+    },
+    "scoring_method": {
+      "decision": "The Open TARA method, version 1.0: impact 0 to 3 in four categories, attack feasibility by attack potential (Common Criteria), risk value 1 to 5.",
+      "evidence": "GW-DOC-02"
+    },
+    "variant_boundary": {
+      "decision": "Remote service gateway RSG-400 with software 3.2, as fitted into machines for the European market. The older RSG-200, which is no longer sold, is not covered.",
+      "evidence": "GW-DOC-01 section 1"
+    },
+    "intended_use": {
+      "decision": "Fitted into the control cabinet of a machine by its builder. Lets the builder's service technicians read the machine and, during a session allowed at the machine, change its program and settings. Sends agreed production figures.",
+      "evidence": "GW-DOC-01 section 2"
+    },
+    "architecture_trust_boundaries": {
+      "decision": "Two trust boundaries: the gateway, and the machine's own control behind it. The portal, the mobile network, the plant network and a technician's laptop are outside both.",
+      "evidence": "GW-DOC-01 section 3"
+    },
+    "lifecycle_support": {
+      "decision": "Security updates for ten years from the day the last RSG-400 is sold, which is what machine builders ask for.",
+      "evidence": "GW-DOC-07 section 2"
+    },
+    "product_market_context": {
+      "decision": "Sold to machine builders, not to consumers. It has the function of a virtual private network and contains a modem for connection to the internet: an important product of class I under Annex III of the CRA. This is a worked example: the product is invented.",
+      "evidence": "GW-DOC-01 section 2; GW-DOC-03"
+    },
+    "assumptions_exclusions": {
+      "decision": "The machine's safety functions are assessed under the rules for machinery by the machine builder; they do not pass through the gateway, and this TARA relies on that and says so. The service portal has an assessment of its own (GW-DOC-08); this TARA covers what the gateway accepts from it. The plant network belongs to the operator: what the operator must do is in the installation manual, and the risk that depends on it is shared (R004).",
+      "evidence": "GW-DOC-01 section 4"
+    },
+    "reassessment_triggers": {
+      "decision": "A new software release, a change of the modem or the protected chip, a reported vulnerability in this or a comparable gateway, and in any case every year.",
+      "evidence": "GW-DOC-07 section 3"
+    },
+    "cra_applicability": {
+      "decision": "in_scope",
+      "evidence": "GW-DOC-03: a product with digital elements that connects to a network, placed on the Union market"
+    },
+    "iso21434_applicability": {
+      "decision": "in_scope",
+      "evidence": "GW-DOC-04: the standard is written for road vehicles; its method is used here by the company's choice"
+    },
+    "r155_applicability": {
+      "decision": "out_of_scope",
+      "evidence": "GW-DOC-01 section 2: not a vehicle"
+    },
+    "scope_review": {
+      "decision": "Approved",
+      "evidence": null
+    },
+    "cra_annex_i_part_i_1": {
+      "decision": "The risk assessment is this TARA. Its controls are in the product, in the release procedure and in the installation manual.",
+      "evidence": "GW-DOC-05, GW-DOC-06, GW-DOC-09"
+    },
+    "cra_annex_i_part_ii": {
+      "decision": "Vulnerability handling follows the maker's procedure.",
+      "evidence": "GW-DOC-07"
+    },
+    "cra_annex_vii": {
+      "decision": "The technical documentation holds this assessment, the security concept, the installation manual and the test reports.",
+      "evidence": "GW-DOC-01, GW-DOC-05, GW-DOC-09, GW-TEST-01, GW-TEST-02"
+    },
+    "iso_work_products": {
+      "decision": "Item definition, TARA, cybersecurity goals and the concept are kept.",
+      "evidence": "GW-DOC-01, GW-DOC-05"
+    },
+    "vehicle_supplier_evidence": {
+      "decision": null,
+      "evidence": null
+    },
+    "release_review": {
+      "decision": "Approved",
+      "evidence": null
+    }
+  },
+  "items": [
+    {
+      "id": "IT01",
+      "configurationRef": "CFG-RSG-400-EU-3.2",
+      "name": "Remote service gateway RSG-400",
+      "boundaryFunctions": "The gateway in the machine's cabinet with its modem, software and store of credentials. The functions are to connect the machine to the maker's service portal, to let an authorised technician read the machine and, in a session allowed at the machine, change it, to send agreed production figures, and to keep its own software up to date.",
+      "architectureInterfaces": "Three ways in: the tunnel to the portal over the mobile network, the port to the operator's plant network, and a service socket for a technician's laptop. One way on: to the machine controller. See the diagram and GW-DOC-01 section 3.",
+      "environmentUse": "A control cabinet in a factory. Fitted by the machine builder, run for fifteen years or more, in a plant whose network belongs to someone else. Reached by service technicians from afar and on visits. Sold on with the machine, and eventually scrapped."
+    }
+  ],
+  "elements": [
+    {
+      "id": "EX01",
+      "itemId": "IT01",
+      "kind": "external_interactor",
+      "name": "Maker's service portal",
+      "description": "Where the maker's technicians sign in and open a session to a customer's machine. Also receives the production figures the gateway sends.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 0,
+      "y": 70,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "EX02",
+      "itemId": "IT01",
+      "kind": "external_interactor",
+      "name": "Technician's laptop",
+      "description": "Plugged into the gateway's service socket during a visit to the plant.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 0,
+      "y": 260,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "EX03",
+      "itemId": "IT01",
+      "kind": "external_interactor",
+      "name": "Plant network",
+      "description": "The network of the customer's plant, to which the gateway's second port is connected so that the operator's own systems can read the machine.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 0,
+      "y": 450,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "TB01",
+      "itemId": "IT01",
+      "kind": "trust_boundary",
+      "name": "The gateway",
+      "description": "The box in the machine's cabinet. What arrives over the mobile network, the plant network or the service socket is not trusted until it is checked.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 300,
+      "y": 30,
+      "w": 330,
+      "h": 520
+    },
+    {
+      "id": "C01",
+      "itemId": "IT01",
+      "kind": "component",
+      "name": "Mobile modem",
+      "description": "Connects the gateway to the maker's portal over the mobile network.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB01",
+      "x": 350,
+      "y": 100,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "C02",
+      "itemId": "IT01",
+      "kind": "component",
+      "name": "Gateway software",
+      "description": "Checks who is asking, opens and ends sessions, and passes on what a session may do.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB01",
+      "x": 350,
+      "y": 270,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "ST01",
+      "itemId": "IT01",
+      "kind": "data_store",
+      "name": "Credentials and settings",
+      "description": "The keys with which the gateway proves itself to the portal, the passwords of its own pages, and its settings.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB01",
+      "x": 350,
+      "y": 440,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "TB02",
+      "itemId": "IT01",
+      "kind": "trust_boundary",
+      "name": "The machine",
+      "description": "The machine's own control. It trusts what the gateway passes on: which is why the gateway decides what gets through.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 700,
+      "y": 30,
+      "w": 330,
+      "h": 520
+    },
+    {
+      "id": "C03",
+      "itemId": "IT01",
+      "kind": "component",
+      "name": "Machine controller",
+      "description": "Runs the machine. Its program and settings decide speeds, pressures and limits.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB02",
+      "x": 750,
+      "y": 180,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "C04",
+      "itemId": "IT01",
+      "kind": "component",
+      "name": "Operator panel",
+      "description": "Where the operator runs the machine, with a key switch for service.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB02",
+      "x": 750,
+      "y": 400,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF01",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Service tunnel",
+      "description": "Sessions of technicians, software updates; and back: production figures and the state of the machine.",
+      "sourceId": "EX01",
+      "targetId": "C01",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF02",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Received traffic",
+      "description": "Everything that arrives over the mobile network.",
+      "sourceId": "C01",
+      "targetId": "C02",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF03",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Credentials read and stored",
+      "description": "Read at every connection and every sign-in.",
+      "sourceId": "C02",
+      "targetId": "ST01",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF04",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Local service access",
+      "description": "The gateway's own pages and a session to the machine, from the service socket.",
+      "sourceId": "EX02",
+      "targetId": "C02",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF05",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Plant network port",
+      "description": "The operator's systems read the state of the machine; the gateway's own pages can be opened from here.",
+      "sourceId": "EX03",
+      "targetId": "C02",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF06",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Reads and changes",
+      "description": "Values read from the controller, and during a session: changes to its program and settings.",
+      "sourceId": "C02",
+      "targetId": "C03",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF07",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Operation",
+      "description": "Commands of the operator, and what the machine shows.",
+      "sourceId": "C04",
+      "targetId": "C03",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    }
+  ],
+  "assets": [
+    {
+      "id": "A01",
+      "name": "Machine program and settings",
+      "itemId": "IT01",
+      "elementIds": [
+        "C03",
+        "DF06"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A02",
+      "name": "Remote service session",
+      "itemId": "IT01",
+      "elementIds": [
+        "C02",
+        "DF01"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A03",
+      "name": "Gateway credentials",
+      "itemId": "IT01",
+      "elementIds": [
+        "ST01"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A04",
+      "name": "Production figures",
+      "itemId": "IT01",
+      "elementIds": [
+        "DF01"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A05",
+      "name": "Gateway software",
+      "itemId": "IT01",
+      "elementIds": [
+        "C02"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    }
+  ],
+  "damages": [
+    {
+      "id": "DS-0001",
+      "assetId": "A01",
+      "confidentiality": false,
+      "integrity": true,
+      "availability": false,
+      "description": "Settings of the machine are changed from afar while people are working at it.",
+      "ratings": {
+        "safety": 3,
+        "financial": 2,
+        "operational": 3,
+        "privacy": 0
+      },
+      "impactRationale": "Severe. A changed speed, pressure or limit can injure the operator or someone doing maintenance. The machine's safety functions are separate and still act, but they are designed for faults, not for settings changed on purpose."
+    },
+    {
+      "id": "DS-0002",
+      "assetId": "A01",
+      "confidentiality": false,
+      "integrity": false,
+      "availability": true,
+      "description": "The machine is stopped or made unusable, and the plant loses a shift or more.",
+      "ratings": {
+        "safety": 0,
+        "financial": 2,
+        "operational": 2,
+        "privacy": 0
+      },
+      "impactRationale": "Major. Nobody is hurt. The operator loses production and holds the maker liable; the machine works again once its settings are restored from the backup."
+    },
+    {
+      "id": "DS-0003",
+      "assetId": "A02",
+      "confidentiality": false,
+      "integrity": true,
+      "availability": false,
+      "description": "The gateway is used as a way into the operator's plant network.",
+      "ratings": {
+        "safety": 0,
+        "financial": 3,
+        "operational": 2,
+        "privacy": 1
+      },
+      "impactRationale": "Severe. From the plant network other machines and the plant's systems can be reached. The damage to the operator can be far greater than the machine is worth, and the maker's name is on the box through which it came."
+    },
+    {
+      "id": "DS-0004",
+      "assetId": "A03",
+      "confidentiality": true,
+      "integrity": false,
+      "availability": false,
+      "description": "A credential that is the same in every gateway becomes known.",
+      "ratings": {
+        "safety": 3,
+        "financial": 3,
+        "operational": 3,
+        "privacy": 0
+      },
+      "impactRationale": "Severe. Whoever has it can pose as any gateway, or as the portal to any gateway: every machine of every customer is then exposed at once, and all gateways must be recalled."
+    },
+    {
+      "id": "DS-0005",
+      "assetId": "A04",
+      "confidentiality": true,
+      "integrity": false,
+      "availability": false,
+      "description": "A stranger reads how much a customer's machine produces.",
+      "ratings": {
+        "safety": 0,
+        "financial": 1,
+        "operational": 0,
+        "privacy": 0
+      },
+      "impactRationale": "Moderate. The figures tell a competitor something about the operator's output. They hold nothing about a person."
+    },
+    {
+      "id": "DS-0006",
+      "assetId": "A05",
+      "confidentiality": false,
+      "integrity": true,
+      "availability": false,
+      "description": "Software the maker did not release runs in many gateways.",
+      "ratings": {
+        "safety": 3,
+        "financial": 3,
+        "operational": 3,
+        "privacy": 1
+      },
+      "impactRationale": "Severe. Every machine with a gateway can then be changed, and every plant network entered."
+    },
+    {
+      "id": "DS-0007",
+      "assetId": "A02",
+      "confidentiality": false,
+      "integrity": false,
+      "availability": true,
+      "description": "The gateway cannot be reached when the service department is needed.",
+      "ratings": {
+        "safety": 0,
+        "financial": 1,
+        "operational": 1,
+        "privacy": 0
+      },
+      "impactRationale": "Moderate. The machine runs without the gateway. A fault is then dealt with by a visit, a day or two later than it could have been."
+    }
+  ],
+  "threats": [
+    {
+      "id": "TS001",
+      "category": "spoofing",
+      "description": "Someone on the plant network signs in to the gateway with the password it was delivered with.",
+      "damageIds": [
+        "DS-0001",
+        "DS-0002"
+      ]
+    },
+    {
+      "id": "TS002",
+      "category": "information_disclosure",
+      "description": "The credential that all gateways share is read out of one of them.",
+      "damageIds": [
+        "DS-0004"
+      ]
+    },
+    {
+      "id": "TS003",
+      "category": "spoofing",
+      "description": "A technician's portal account is taken over and used to open a session to a customer's machine.",
+      "damageIds": [
+        "DS-0001",
+        "DS-0003"
+      ]
+    },
+    {
+      "id": "TS004",
+      "category": "elevation_of_privilege",
+      "description": "A session to the machine is used to reach other devices of the plant.",
+      "damageIds": [
+        "DS-0003"
+      ]
+    },
+    {
+      "id": "TS005",
+      "category": "information_disclosure",
+      "description": "Production figures are read on their way to the portal.",
+      "damageIds": [
+        "DS-0005"
+      ]
+    },
+    {
+      "id": "TS006",
+      "category": "tampering",
+      "description": "The gateways are given software that does not come from the maker.",
+      "damageIds": [
+        "DS-0006"
+      ]
+    },
+    {
+      "id": "TS007",
+      "category": "denial_of_service",
+      "description": "The gateway's mobile connection is kept busy or used up from the internet.",
+      "damageIds": [
+        "DS-0007"
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "id": "AP001",
+      "threatIds": [
+        "TS001"
+      ],
+      "elementIds": [
+        "EX03",
+        "DF05",
+        "C02",
+        "DF06",
+        "C03"
+      ],
+      "description": "From any computer on the plant network, open the gateway's page, sign in with the password printed in the manual, and change settings of the machine. As first built, every gateway is delivered with the same password and does not ask for it to be changed.",
+      "factors": {
+        "elapsed_time": "lt_1_day",
+        "expertise": "layman",
+        "knowledge": "public",
+        "window_of_opportunity": "moderate",
+        "equipment": "standard"
+      },
+      "feasibilityBasis": "The manual is on the maker's website. The only hurdle is a place on the plant network, which an employee, a contractor or an infected office computer has. 0+0+0+4+0 = 4: high.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP002",
+      "threatIds": [
+        "TS002"
+      ],
+      "elementIds": [
+        "ST01"
+      ],
+      "description": "Buy a used gateway, open it, read its memory, and find the key with which every gateway proves itself to the portal. As first built, that key is the same in all of them.",
+      "factors": {
+        "elapsed_time": "lt_1_month",
+        "expertise": "expert",
+        "knowledge": "restricted",
+        "window_of_opportunity": "unlimited",
+        "equipment": "specialised"
+      },
+      "feasibilityBasis": "Used gateways are sold when machines are scrapped, and one on the bench can be studied for as long as it takes. Finding the key takes someone who knows such devices. 4+6+3+0+4 = 17: medium.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP003",
+      "threatIds": [
+        "TS003"
+      ],
+      "elementIds": [
+        "EX01",
+        "DF01",
+        "C01",
+        "DF02",
+        "C02",
+        "DF06",
+        "C03"
+      ],
+      "description": "Send a technician a message that looks like the portal's, collect the password, sign in, and open a session to a machine. As first built, the password is enough and a session starts without anyone at the machine knowing.",
+      "factors": {
+        "elapsed_time": "lt_1_week",
+        "expertise": "proficient",
+        "knowledge": "public",
+        "window_of_opportunity": "unlimited",
+        "equipment": "standard"
+      },
+      "feasibilityBasis": "Technicians' names are on a business network site, and such messages are a craft that is taught. No access to any gateway is needed. 1+3+0+0+0 = 4: high.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP004",
+      "threatIds": [
+        "TS004"
+      ],
+      "elementIds": [
+        "EX01",
+        "DF01",
+        "C01",
+        "DF02",
+        "C02",
+        "DF05",
+        "EX03"
+      ],
+      "description": "In a session, address not the machine controller but other devices on the plant network. As first built, the gateway passes on whatever a session sends, to wherever it is sent.",
+      "factors": {
+        "elapsed_time": "lt_1_day",
+        "expertise": "proficient",
+        "knowledge": "restricted",
+        "window_of_opportunity": "easy",
+        "equipment": "standard"
+      },
+      "feasibilityBasis": "Whoever has a session, rightly or not, needs only the usual network tools and some knowledge of how plants are laid out. 0+3+3+1+0 = 7: high.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP005",
+      "threatIds": [
+        "TS005"
+      ],
+      "elementIds": [
+        "DF01"
+      ],
+      "description": "Take a place in the mobile operator's network between gateway and portal and decrypt the tunnel.",
+      "factors": {
+        "elapsed_time": "lt_3_months",
+        "expertise": "expert",
+        "knowledge": "restricted",
+        "window_of_opportunity": "difficult",
+        "equipment": "specialised"
+      },
+      "feasibilityBasis": "The tunnel has been encrypted from the first version. Reading it needs a place inside a mobile operator's network and a flaw in the encryption that is not known today. 10+6+3+10+4 = 33: very low.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP006",
+      "threatIds": [
+        "TS006"
+      ],
+      "elementIds": [
+        "EX01",
+        "DF01",
+        "C01",
+        "DF02",
+        "C02"
+      ],
+      "description": "Obtain the key with which the maker signs gateway software, sign altered software, and have the portal distribute it.",
+      "factors": {
+        "elapsed_time": "lt_3_months",
+        "expertise": "multiple_experts",
+        "knowledge": "critical",
+        "window_of_opportunity": "moderate",
+        "equipment": "specialised"
+      },
+      "feasibilityBasis": "The gateway has checked the signature of updates from the first version. 10+8+11+4+4 = 37: very low.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP007",
+      "threatIds": [
+        "TS007"
+      ],
+      "elementIds": [
+        "C01"
+      ],
+      "description": "Find the gateway's address on the internet and send it traffic without pause, until the month's data volume of its SIM card is used up. As first built, the SIM has a public address.",
+      "factors": {
+        "elapsed_time": "lt_1_week",
+        "expertise": "proficient",
+        "knowledge": "public",
+        "window_of_opportunity": "unlimited",
+        "equipment": "standard"
+      },
+      "feasibilityBasis": "Search services list devices of this kind by address, and sending traffic needs no skill worth the name. 1+3+0+0+0 = 4: high.",
+      "disposition": "included"
+    }
+  ],
+  "risks": [
+    {
+      "id": "R001",
+      "threatId": "TS001",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-001",
+        "CTL-002"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 5: people can be hurt, and it is easy for anyone on the plant network. Reduced twice: no shared password, and no change to the machine without the key switch at the panel being turned.",
+      "owner": "Product security officer, service products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 3,
+      "residualFeasibility": "very_low",
+      "residualBasis": "Needs this gateway's own password and someone turning the key switch at the machine. GW-TEST-01 cases 1 and 2."
+    },
+    {
+      "id": "R002",
+      "threatId": "TS002",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-003"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 5. Reduced: there is no longer a secret that all gateways share, and a gateway's own key cannot be read out. The control does two things at once: the attack is harder, and what it could win is one machine, not all of them.",
+      "owner": "Product security officer, service products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 3,
+      "residualFeasibility": "very_low",
+      "residualBasis": "A key cannot be read from the chip with the equipment of an accredited laboratory; if one were, it would open one gateway. GW-TEST-01 case 3."
+    },
+    {
+      "id": "R003",
+      "threatId": "TS003",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-004",
+        "CTL-002"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 5, and the attack needs no access to any machine. Reduced by a second factor and by the key switch. It stays at 4: an operator who is telephoned by a convincing 'technician' may turn the key. The remaining risk is a matter of people, and the service procedure says how a visit is announced.",
+      "owner": "Product security officer, service products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 3,
+      "residualFeasibility": "low",
+      "residualBasis": "Needs a technician's password and token, and an operator who turns the key switch for a session nobody announced. GW-TEST-01 cases 2 and 4."
+    },
+    {
+      "id": "R004",
+      "threatId": "TS004",
+      "treatment": "share",
+      "existingControlIds": [
+        "CTL-005",
+        "CTL-006"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 5. Shared: the maker makes sure that a session reaches the machine only. That the gateway's plant port sits in a zone of its own is the operator's part, required by the installation manual and confirmed at commissioning. The maker cannot treat this risk alone, because the plant network is not the maker's.",
+      "owner": "Product security officer, service products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 3,
+      "residualFeasibility": "very_low",
+      "residualBasis": "A session reaches nothing but the controller; the rest depends on the operator's zone. GW-TEST-01 case 5, GW-DOC-09 annex."
+    },
+    {
+      "id": "R005",
+      "threatId": "TS005",
+      "treatment": "retain",
+      "existingControlIds": [],
+      "proposedControlIds": [],
+      "rationale": "Value 1, the lowest there is: moderate damage, and out of almost anyone's reach, because the tunnel is encrypted. Retained: nothing is added.",
+      "owner": "Product security officer, service products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 1,
+      "residualFeasibility": "very_low",
+      "residualBasis": "Unchanged: the risk is accepted as it is."
+    },
+    {
+      "id": "R006",
+      "threatId": "TS006",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-007"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 3: the worst damage of all, and very hard, because updates were signed from the first version. Reduced all the same by keeping the signing key apart. The value stays 3.",
+      "owner": "Product security officer, service products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 3,
+      "residualFeasibility": "very_low",
+      "residualBasis": "Needs the signing key and two people of the maker acting together. GW-TEST-02."
+    },
+    {
+      "id": "R007",
+      "threatId": "TS007",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-008"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 4: moderate damage, but easy. Reduced: a gateway that has no address on the internet cannot be found or flooded from it.",
+      "owner": "Product security officer, service products",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 1,
+      "residualFeasibility": "very_low",
+      "residualBasis": "Needs access to the mobile operator's private network. GW-TEST-01 case 6."
+    }
+  ],
+  "controls": [
+    {
+      "id": "CTL-001",
+      "name": "A password of its own, changed at first use",
+      "description": "Every gateway is delivered with a password of its own, printed on a label inside the cabinet, and asks for a new one at the first sign-in.",
+      "type": "technical",
+      "craTags": [
+        "b",
+        "d"
+      ],
+      "coveredPathIds": [
+        "AP001"
+      ],
+      "elementIds": [
+        "C02",
+        "ST01"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-002",
+      "name": "Changes are allowed at the machine",
+      "description": "The controller accepts changes through the gateway only while the service key switch at the operator panel is turned. Turning it starts a session of at most four hours, and the panel shows that a session is open.",
+      "type": "technical",
+      "craTags": [
+        "d",
+        "k"
+      ],
+      "coveredPathIds": [
+        "AP001",
+        "AP003"
+      ],
+      "elementIds": [
+        "C04",
+        "C03"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-003",
+      "name": "A key of its own in every gateway",
+      "description": "Each gateway makes its own key in a protected chip at the factory and gets a certificate for it. No two gateways share a secret, and the key cannot be read out.",
+      "type": "technical",
+      "craTags": [
+        "d",
+        "e"
+      ],
+      "coveredPathIds": [
+        "AP002"
+      ],
+      "elementIds": [
+        "ST01"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-004",
+      "name": "A second factor at the portal",
+      "description": "A technician signs in with a password and a hardware token. The gateway accepts a session only if the portal's request states, signed, that both were used.",
+      "type": "technical",
+      "craTags": [
+        "d"
+      ],
+      "coveredPathIds": [
+        "AP003"
+      ],
+      "elementIds": [
+        "C02"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-005",
+      "name": "Only the machine can be reached",
+      "description": "A session can address the machine controller on the ports its service needs, and nothing else. Everything else is dropped and recorded.",
+      "type": "technical",
+      "craTags": [
+        "j",
+        "l"
+      ],
+      "coveredPathIds": [
+        "AP004"
+      ],
+      "elementIds": [
+        "C02"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-006",
+      "name": "A network zone for the machine, by agreement",
+      "description": "The operator connects the gateway's plant port to a zone that holds this machine only. The installation manual requires it and the operator confirms it at commissioning.",
+      "type": "organisational",
+      "craTags": [],
+      "coveredPathIds": [
+        "AP004"
+      ],
+      "elementIds": [
+        "C02"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-007",
+      "name": "The signing key is kept apart",
+      "description": "The key that signs gateway software is held in a hardware module. A release needs two named people, and each release is recorded.",
+      "type": "organisational",
+      "craTags": [
+        "c",
+        "f"
+      ],
+      "coveredPathIds": [
+        "AP006"
+      ],
+      "elementIds": [
+        "C02"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-008",
+      "name": "No address on the internet",
+      "description": "The SIM cards belong to a private network of the mobile operator. A gateway has no public address and can only be reached from the portal.",
+      "type": "technical",
+      "craTags": [
+        "h",
+        "j"
+      ],
+      "coveredPathIds": [
+        "AP007"
+      ],
+      "elementIds": [
+        "C01"
+      ],
+      "workLink": null
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-001",
+      "riskId": "R001",
+      "controlId": "CTL-001",
+      "configurationId": "CFG-RSG-400-EU-3.2",
+      "state": "verified",
+      "effect": "No two gateways have the same password, and a gateway cannot be used before its password is changed.",
+      "implementationRef": "GW-DOC-05 section 2: sign-in at the gateway",
+      "verificationRef": "GW-TEST-01 case 1: 30 gateways from three production lots compared; first sign-in tested",
+      "result": "pass",
+      "verifiedCraTags": [
+        "b",
+        "d"
+      ]
+    },
+    {
+      "id": "EV-002",
+      "riskId": "R001",
+      "controlId": "CTL-002",
+      "configurationId": "CFG-RSG-400-EU-3.2",
+      "state": "verified",
+      "effect": "A change sent without the key switch turned is refused by the controller, whoever sends it.",
+      "implementationRef": "GW-DOC-05 section 3: service sessions",
+      "verificationRef": "GW-TEST-01 case 2: 100 changes sent from the plant port and from a portal session with the switch off, none carried out",
+      "result": "pass",
+      "verifiedCraTags": [
+        "d",
+        "k"
+      ]
+    },
+    {
+      "id": "EV-003",
+      "riskId": "R002",
+      "controlId": "CTL-003",
+      "configurationId": "CFG-RSG-400-EU-3.2",
+      "state": "verified",
+      "effect": "A key read out of one gateway, if that were possible, would open no other.",
+      "implementationRef": "GW-DOC-05 section 4: identity of a gateway",
+      "verificationRef": "GW-TEST-01 case 3: certificates of 30 gateways compared; attempt to read a key from the chip, failed",
+      "result": "pass",
+      "verifiedCraTags": [
+        "d",
+        "e"
+      ]
+    },
+    {
+      "id": "EV-004",
+      "riskId": "R003",
+      "controlId": "CTL-004",
+      "configurationId": "CFG-RSG-400-EU-3.2",
+      "state": "verified",
+      "effect": "A password alone opens no session.",
+      "implementationRef": "GW-DOC-05 section 3: service sessions",
+      "verificationRef": "GW-TEST-01 case 4: session requested with a password only, refused by portal and by gateway",
+      "result": "pass",
+      "verifiedCraTags": [
+        "d"
+      ]
+    },
+    {
+      "id": "EV-005",
+      "riskId": "R003",
+      "controlId": "CTL-002",
+      "configurationId": "CFG-RSG-400-EU-3.2",
+      "state": "verified",
+      "effect": "A change sent without the key switch turned is refused by the controller, whoever sends it.",
+      "implementationRef": "GW-DOC-05 section 3: service sessions",
+      "verificationRef": "GW-TEST-01 case 2: 100 changes sent from the plant port and from a portal session with the switch off, none carried out",
+      "result": "pass",
+      "verifiedCraTags": [
+        "d",
+        "k"
+      ]
+    },
+    {
+      "id": "EV-006",
+      "riskId": "R004",
+      "controlId": "CTL-005",
+      "configurationId": "CFG-RSG-400-EU-3.2",
+      "state": "verified",
+      "effect": "A session reaches the machine controller and nothing else.",
+      "implementationRef": "GW-DOC-05 section 5: what a session may reach",
+      "verificationRef": "GW-TEST-01 case 5: every address of a test plant network tried from a session, only the controller answered",
+      "result": "pass",
+      "verifiedCraTags": [
+        "j",
+        "l"
+      ]
+    },
+    {
+      "id": "EV-007",
+      "riskId": "R004",
+      "controlId": "CTL-006",
+      "configurationId": "CFG-RSG-400-EU-3.2",
+      "state": "verified",
+      "effect": "The gateway's plant port is in a zone with this machine only.",
+      "implementationRef": "GW-DOC-09: installation manual, section 4",
+      "verificationRef": "GW-DOC-09 annex: commissioning record signed by the operator",
+      "result": "pass",
+      "verifiedCraTags": []
+    },
+    {
+      "id": "EV-008",
+      "riskId": "R006",
+      "controlId": "CTL-007",
+      "configurationId": "CFG-RSG-400-EU-3.2",
+      "state": "verified",
+      "effect": "No software is signed without two named people, and the key cannot be copied out of its module.",
+      "implementationRef": "GW-DOC-06: release procedure",
+      "verificationRef": "GW-TEST-02: audit of the last four releases against the procedure",
+      "result": "pass",
+      "verifiedCraTags": [
+        "c",
+        "f"
+      ]
+    },
+    {
+      "id": "EV-009",
+      "riskId": "R007",
+      "controlId": "CTL-008",
+      "configurationId": "CFG-RSG-400-EU-3.2",
+      "state": "verified",
+      "effect": "The gateway cannot be addressed from the internet.",
+      "implementationRef": "GW-DOC-05 section 6: mobile connection",
+      "verificationRef": "GW-TEST-01 case 6: gateway sought from the internet for 14 days, not found",
+      "result": "pass",
+      "verifiedCraTags": [
+        "h",
+        "j"
+      ]
+    }
+  ],
+  "goalClaims": [
+    {
+      "id": "CG01",
+      "kind": "goal",
+      "statement": "The machine can be changed from afar only by a technician the maker has authorised, during a session that someone at the machine has allowed.",
+      "riskIds": [
+        "R001",
+        "R003"
+      ]
+    },
+    {
+      "id": "CG02",
+      "kind": "goal",
+      "statement": "No gateway holds a secret that opens another.",
+      "riskIds": [
+        "R002"
+      ]
+    },
+    {
+      "id": "CG03",
+      "kind": "goal",
+      "statement": "Only software released by the maker runs in the gateway.",
+      "riskIds": [
+        "R006"
+      ]
+    },
+    {
+      "id": "CG04",
+      "kind": "goal",
+      "statement": "The gateway can be reached from the maker's portal and from nowhere else on the internet.",
+      "riskIds": [
+        "R007"
+      ]
+    },
+    {
+      "id": "CC01",
+      "kind": "claim",
+      "statement": "The operator of the plant is responsible for the network zone the gateway's plant port is connected to. The installation manual requires a zone that holds this machine only, and the operator confirms it in the commissioning record (GW-DOC-09 section 4 and annex).",
+      "riskIds": [
+        "R004"
+      ]
+    },
+    {
+      "id": "CC02",
+      "kind": "claim",
+      "statement": "That production figures might be read from the encrypted tunnel is accepted by the product security officer. The figures name no person, and the contract with the operator says what is sent (GW-DOC-01 section 4).",
+      "riskIds": [
+        "R005"
+      ]
+    }
+  ],
+  "craDecisions": [
+    {
+      "id": "CRA-a",
+      "requirementKey": "a",
+      "applicability": "applies",
+      "justification": "Sold with no known exploitable vulnerability: five risks are reduced by tested controls, one is shared with the operator in writing, and one is accepted in writing.",
+      "implementationRef": "GW-DOC-05: security concept",
+      "verificationRef": "GW-TEST-01: all cases passed"
+    },
+    {
+      "id": "CRA-b",
+      "requirementKey": "b",
+      "applicability": "applies",
+      "justification": "Sold in a secure state: a password of its own that must be changed, no session possible without the key switch, plant port closed until it is set up. A reset returns it to that state.",
+      "implementationRef": "GW-DOC-05 section 1: delivery state",
+      "verificationRef": "GW-TEST-01 case 7: new and reset gateways checked"
+    },
+    {
+      "id": "CRA-c",
+      "requirementKey": "c",
+      "applicability": "applies",
+      "justification": "The software can be updated from the portal. Security updates are installed automatically at a time the operator has agreed, because a machine may not be interrupted at will.",
+      "implementationRef": "GW-DOC-05 section 7: updates",
+      "verificationRef": "GW-TEST-01 case 8: update installed, refused when altered"
+    },
+    {
+      "id": "CRA-d",
+      "requirementKey": "d",
+      "applicability": "applies",
+      "justification": "Technicians sign in with two factors; the gateway proves itself with a key of its own; changes need the key switch.",
+      "implementationRef": "GW-DOC-05 sections 2 to 4",
+      "verificationRef": "GW-TEST-01 cases 1 to 4"
+    },
+    {
+      "id": "CRA-e",
+      "requirementKey": "e",
+      "applicability": "applies",
+      "justification": "The tunnel is encrypted; keys are kept in a protected chip; passwords are stored as salted hashes.",
+      "implementationRef": "GW-DOC-05 sections 4 and 6",
+      "verificationRef": "GW-TEST-01 cases 3 and 9: memory and traffic examined"
+    },
+    {
+      "id": "CRA-f",
+      "requirementKey": "f",
+      "applicability": "applies",
+      "justification": "Updates are checked for the maker's signature; settings can be changed only by a signed-in person and every change is recorded.",
+      "implementationRef": "GW-DOC-05 section 7",
+      "verificationRef": "GW-TEST-01 case 8"
+    },
+    {
+      "id": "CRA-g",
+      "requirementKey": "g",
+      "applicability": "applies",
+      "justification": "The gateway sends the figures agreed in the contract and nothing else; it keeps the record of sessions for a year.",
+      "implementationRef": "GW-DOC-05 section 8: data",
+      "verificationRef": "GW-TEST-01 case 10: what is sent, compared with the contract"
+    },
+    {
+      "id": "CRA-h",
+      "requirementKey": "h",
+      "applicability": "applies",
+      "justification": "The machine runs without the gateway. The gateway has no address on the internet and limits what any one sender may ask of it.",
+      "implementationRef": "GW-DOC-05 section 6",
+      "verificationRef": "GW-TEST-01 case 6"
+    },
+    {
+      "id": "CRA-i",
+      "requirementKey": "i",
+      "applicability": "applies",
+      "justification": "The gateway sends nothing to the plant network of its own accord and keeps within the data volume agreed.",
+      "implementationRef": "GW-DOC-05 section 6",
+      "verificationRef": "GW-TEST-01 case 11: traffic on both ports observed for a week"
+    },
+    {
+      "id": "CRA-j",
+      "requirementKey": "j",
+      "applicability": "applies",
+      "justification": "Three ways in: the mobile tunnel, the plant port, the service socket. Each offers only what it needs; a session reaches the machine controller only.",
+      "implementationRef": "GW-DOC-05 section 5",
+      "verificationRef": "GW-TEST-01 cases 5 and 12: scan of all three, nothing else open"
+    },
+    {
+      "id": "CRA-k",
+      "requirementKey": "k",
+      "applicability": "applies",
+      "justification": "Whatever reaches the gateway, the controller accepts no change without the key switch, and the machine's safety functions do not pass through the gateway.",
+      "implementationRef": "GW-DOC-05 section 3",
+      "verificationRef": "GW-TEST-01 case 2"
+    },
+    {
+      "id": "CRA-l",
+      "requirementKey": "l",
+      "applicability": "applies",
+      "justification": "Every sign-in, session, refused request and change is recorded with its time and person, and the operator can read the record at the panel.",
+      "implementationRef": "GW-DOC-05 section 8",
+      "verificationRef": "GW-TEST-01 case 13: record compared with a week of test sessions"
+    },
+    {
+      "id": "CRA-m",
+      "requirementKey": "m",
+      "applicability": "applies",
+      "justification": "A reset at the gateway erases passwords, settings and the record of sessions; the certificate is withdrawn at the portal when a gateway is taken out of service.",
+      "implementationRef": "GW-DOC-05 section 8",
+      "verificationRef": "GW-TEST-01 case 7"
+    },
+    {
+      "id": "CRA-II-1",
+      "requirementKey": "II(1)",
+      "applicability": "applies",
+      "justification": "The software components of the gateway are listed in a machine-readable bill of materials, and vulnerabilities in them are recorded.",
+      "implementationRef": "GW-DOC-07 section 1: component list",
+      "verificationRef": "GW-TEST-02: list compared with release 3.2"
+    },
+    {
+      "id": "CRA-II-2",
+      "requirementKey": "II(2)",
+      "applicability": "applies",
+      "justification": "Vulnerabilities are corrected without delay by a signed update.",
+      "implementationRef": "GW-DOC-07 section 2",
+      "verificationRef": "GW-TEST-02"
+    },
+    {
+      "id": "CRA-II-3",
+      "requirementKey": "II(3)",
+      "applicability": "applies",
+      "justification": "The gateway's security is tested before each release and at least yearly, by a party outside the development team.",
+      "implementationRef": "GW-DOC-07 section 3",
+      "verificationRef": "GW-TEST-01"
+    },
+    {
+      "id": "CRA-II-4",
+      "requirementKey": "II(4)",
+      "applicability": "applies",
+      "justification": "When an update is out, the machine builder and the operators are told what was corrected.",
+      "implementationRef": "GW-DOC-07 section 4",
+      "verificationRef": "GW-DOC-07 annex: sample advisory"
+    },
+    {
+      "id": "CRA-II-5",
+      "requirementKey": "II(5)",
+      "applicability": "applies",
+      "justification": "A policy for coordinated disclosure of vulnerabilities is in force.",
+      "implementationRef": "GW-DOC-07 section 5",
+      "verificationRef": "GW-DOC-07 section 5, reviewed"
+    },
+    {
+      "id": "CRA-II-6",
+      "requirementKey": "II(6)",
+      "applicability": "applies",
+      "justification": "Anyone can report a vulnerability to an address printed in the manual and published on the website.",
+      "implementationRef": "GW-DOC-07 section 6",
+      "verificationRef": "GW-DOC-07 section 6, address tested"
+    },
+    {
+      "id": "CRA-II-7",
+      "requirementKey": "II(7)",
+      "applicability": "applies",
+      "justification": "Updates are distributed signed, through the portal.",
+      "implementationRef": "GW-DOC-05 section 7",
+      "verificationRef": "GW-TEST-01 case 8"
+    },
+    {
+      "id": "CRA-II-8",
+      "requirementKey": "II(8)",
+      "applicability": "applies",
+      "justification": "Security updates are free and come with an advisory.",
+      "implementationRef": "GW-DOC-07 section 8",
+      "verificationRef": "GW-DOC-07 annex: sample advisory"
+    }
+  ],
+  "references": [
+    {
+      "id": "GW-DOC-00",
+      "title": "How to read this example",
+      "revision": "1.0",
+      "date": "2026-11-21",
+      "location": "Pasted text, in this register",
+      "content": "This is a worked example from industry: a remote service gateway, the box a machine builder fits into a machine so that its service department can read and adjust it from afar. The gateway is invented, but each threat is of a kind that has been reported for such products. Read the kettle first if the steps are new to you, and the door lock if you have not seen a full product yet.\n\nWhat makes it realistic\nThe attack paths describe the gateway as first built: one password for all gateways, one key shared by all of them, sessions that started without anyone at the machine knowing, a session that could reach the whole plant network, and an address on the internet. The controls are what the assessment asked for. Nothing here is exotic; this is what such an assessment usually finds.\n\nWhat to look for\n\nTwo trust boundaries. Open the Diagram under Architecture. The gateway has a frame, and the machine behind it has another. The machine's controller trusts what the gateway passes on, so the gateway is where it is decided what gets through. Lay AP001 and AP003 over the diagram: both end at the machine controller, one from the plant network, one from the portal.\n\nSafety. DS-0001 is rated 3 for safety: settings changed while people work at the machine. Read its rationale, and then \"Assumptions and exclusions\" under Scope: the machine's safety functions are assessed elsewhere, and this TARA says that it relies on them and why they are not enough against a change made on purpose.\n\nOne secret for all. R002 is the mistake that turns a problem with one device into a problem with all of them. Its control does two things: the attack gets harder, and what could be won shrinks from every machine to one.\n\nA control that is a key switch. CTL-002 is not software: the controller accepts changes only while a key at the operator panel is turned. It answers two risks, and it is the one control that still holds if the portal, the gateway's passwords and its software have all failed.\n\nA risk that is shared. R004 cannot be treated by the maker alone, because the plant network belongs to the operator. The maker does its part (a session reaches the machine only), the installation manual says what the operator must do, and the commissioning record shows that it was done. The claim names who is responsible. This is how a manufacturer deals honestly with what lies outside its product.\n\nControls that are not technical. Two of the eight controls are an agreement or a procedure: the network zone, and the two-person release of software. They need evidence like any other: a signed record, an audit.\n\nBefore and after. Four risks start at 5. Afterwards they are 3, 3, 4 and 3. R003 stays at 4, and its rationale says why: an operator can be telephoned and talked into turning the key. What remains is a matter of people, and the answer is a procedure, not more technology.\n\nLow for two reasons. R006 is the worst damage and has the value 3, because it is very hard. R005 has the value 1, the lowest there is, and is simply accepted.\n\nThings to try\nUnder Controls, set CTL-002, the key switch, back to Built, and see what the checks ask for on R001 and R003, and how the remaining risk would have to be rated without it.\nChange R004 from Share to Reduce: which control would you now have to stand behind alone?\nUnder Architecture, open the Diagram and lay the controls over it: see where the eight controls act, and that two of them act at the machine, not in the gateway.\nOpen the Report, section \"Where this document answers the CRA\", to see how an assessment like this goes into the technical documentation."
+    },
+    {
+      "id": "GW-DOC-01",
+      "title": "Remote service gateway RSG-400: item definition and architecture (invented, for training)",
+      "revision": "C",
+      "date": "2026-10-01",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "GW-DOC-02",
+      "title": "Open TARA method, impact and feasibility scales",
+      "revision": "1.0",
+      "date": "2026-01-15",
+      "location": "The method built into this tool",
+      "content": null
+    },
+    {
+      "id": "GW-DOC-03",
+      "title": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+      "revision": "OJ L, 20.11.2024",
+      "date": "2024-11-20",
+      "location": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj",
+      "content": null
+    },
+    {
+      "id": "GW-DOC-04",
+      "title": "ISO/SAE 21434:2021, Road vehicles: cybersecurity engineering",
+      "revision": "2021",
+      "date": "2021-08-31",
+      "location": "Licensed standard, not included",
+      "content": null
+    },
+    {
+      "id": "GW-DOC-05",
+      "title": "Remote service gateway RSG-400: cybersecurity concept (invented, for training)",
+      "revision": "C",
+      "date": "2026-11-01",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "GW-DOC-06",
+      "title": "Software release and signing procedure (invented, for training)",
+      "revision": "A",
+      "date": "2026-06-01",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "GW-DOC-07",
+      "title": "Vulnerability handling and update procedure (invented, for training)",
+      "revision": "A",
+      "date": "2026-09-15",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "GW-DOC-08",
+      "title": "Service portal: security assessment summary (invented, for training)",
+      "revision": "A",
+      "date": "2026-08-20",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "GW-DOC-09",
+      "title": "Installation manual with commissioning record (invented, for training)",
+      "revision": "B",
+      "date": "2026-10-15",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "GW-TEST-01",
+      "title": "Remote service gateway RSG-400: cybersecurity test report (invented, for training)",
+      "revision": "2",
+      "date": "2026-11-10",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "GW-TEST-02",
+      "title": "Audit of releases against the signing procedure (invented, for training)",
+      "revision": "1",
+      "date": "2026-10-20",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "GW-REV-01",
+      "title": "Minutes of the TARA review, 18 November 2026 (invented, for training)",
+      "revision": "1",
+      "date": "2026-11-18",
+      "location": "Training material, not a real document",
+      "content": null
+    }
+  ],
+  "reviews": [
+    {
+      "kind": "scope",
+      "subjectId": null,
+      "reference": "GW-REV-01",
+      "fingerprint": "018c3b3880ff77a0289128a6848d790a4024723327b3d65be65ac38f80d1f88c",
+      "revision": 1,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "release",
+      "subjectId": null,
+      "reference": "GW-REV-01",
+      "fingerprint": "a4b398f480ea53e0b2ee34610a58a819b0ba078dc1f9f6e7558f64183fbef245",
+      "revision": 2,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP001",
+      "reference": "GW-REV-01",
+      "fingerprint": "a82c01195bb3333bfd37bf39a55cc0a2039b6d4ae8b3f4d982303c96d4783b77",
+      "revision": 3,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP002",
+      "reference": "GW-REV-01",
+      "fingerprint": "f12c1c876fb78b856aa70f9075c0fba3c50c6a5cb95ac25f8d88c41a0630aeda",
+      "revision": 4,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP003",
+      "reference": "GW-REV-01",
+      "fingerprint": "a7718710700b9bbb01c76f85e3ad415a02af79a50b7f580c015b46375910b83b",
+      "revision": 5,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP004",
+      "reference": "GW-REV-01",
+      "fingerprint": "0034ca9aa1a74a20a3423fa9565aa6a5c6c840c0300f89f21719ee917b3a9fcd",
+      "revision": 6,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP005",
+      "reference": "GW-REV-01",
+      "fingerprint": "a46ee27674e9d00eb670be3f83e4f5ce31e8ea3270423fa4b105f37feb4a2491",
+      "revision": 7,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP006",
+      "reference": "GW-REV-01",
+      "fingerprint": "cc9cc3d86d8e0ed4d582802189905e58420fd51056118d518ee68849f4752ff2",
+      "revision": 8,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP007",
+      "reference": "GW-REV-01",
+      "fingerprint": "a0d779754d51525410183b09f39250d53c7f7a30a34b61a8dd9cd25ecb8d25a2",
+      "revision": 9,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R001",
+      "reference": "GW-REV-01",
+      "fingerprint": "4e5073720b564645e7ce1287ef64edd98ebb414b87dd60587901b9103ce66752",
+      "revision": 10,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R002",
+      "reference": "GW-REV-01",
+      "fingerprint": "dc43e532353e6d4bc71bb30405d3f1b6e0a2bf1fad636e64c45fcc587eb36635",
+      "revision": 11,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R003",
+      "reference": "GW-REV-01",
+      "fingerprint": "492a8a16caf6c663295dd34de0cfff0c4f088bd19bf2a807bc44bfc900089d74",
+      "revision": 12,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R004",
+      "reference": "GW-REV-01",
+      "fingerprint": "8390a6c67523400880bcfda97f437e5783a01d3a3f0877bb7944b41bea1777eb",
+      "revision": 13,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R005",
+      "reference": "GW-REV-01",
+      "fingerprint": "5e38015f86bb5213e092a1d86f8374214f55b4516e762c88d3c5bb549c0641f5",
+      "revision": 14,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R006",
+      "reference": "GW-REV-01",
+      "fingerprint": "4eab4783b62d524b2b744c839d8e7b1819f12e1b866b8dfd9281cbf0d125208f",
+      "revision": 15,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R007",
+      "reference": "GW-REV-01",
+      "fingerprint": "13f2f9fce913e703e7fb7be4178509ff16bb25c1ef4c2c6654b4b68dd11efde5",
+      "revision": 16,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG01",
+      "reference": "GW-REV-01",
+      "fingerprint": "bb4904bd83de5ff87ad1b3fbf9bf15bd12ee836fce14456c0580434dc5a1da0f",
+      "revision": 17,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG02",
+      "reference": "GW-REV-01",
+      "fingerprint": "147f6999d3a3100100e388b8fc28bfc94d20e7de9421f7dc5ae6b1a5ed664cb3",
+      "revision": 18,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG03",
+      "reference": "GW-REV-01",
+      "fingerprint": "6ce19c82b8b23b057ed4c56cddf16c2b7fa1a8fc08493050d4e98cba9ec37378",
+      "revision": 19,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG04",
+      "reference": "GW-REV-01",
+      "fingerprint": "8550520ce2a23325eb824bcf8129b294b250d4501be65114fdc2f1d727ab8561",
+      "revision": 20,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CC01",
+      "reference": "GW-REV-01",
+      "fingerprint": "ea761e02d858ab8ab62b9a6f24d68ecc384de03224149392ae0bb34e911f3a16",
+      "revision": 21,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CC02",
+      "reference": "GW-REV-01",
+      "fingerprint": "28081a4dddf055c64dc9d548f6f6929c88a72a17dc2be068570f834120b519da",
+      "revision": 22,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-001",
+      "reference": "GW-REV-01",
+      "fingerprint": "17c504ca7c3e630815f9f47a77b5a9f5cb9a7cfe8787d54f92133bc1acd130c1",
+      "revision": 23,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-002",
+      "reference": "GW-REV-01",
+      "fingerprint": "ee276d57ff0180ca64ef54e179a43d81aa185c78e67b2d01569977e1a7a223b0",
+      "revision": 24,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-003",
+      "reference": "GW-REV-01",
+      "fingerprint": "caf9e7405597f8ac7dfbc16949e29c62fe7b7fe671405463487c46a6996e5e7e",
+      "revision": 25,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-004",
+      "reference": "GW-REV-01",
+      "fingerprint": "5d9b7354db936ff2d7458b165efa8dd68e5ce23a85a5e2e48c8b3c5aac87fada",
+      "revision": 26,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-005",
+      "reference": "GW-REV-01",
+      "fingerprint": "01a33fd3203115d45d334645a6d582a12f5e374f94d908e178abfa51cac52069",
+      "revision": 27,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-006",
+      "reference": "GW-REV-01",
+      "fingerprint": "49618e78e51a52cc34f8eb3ff59a350d6af21e58a643b204e4ce695a4bdf8820",
+      "revision": 28,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-007",
+      "reference": "GW-REV-01",
+      "fingerprint": "5fd875268cc8bd502f87fa79ce53d83180c6095f5fd4417e637cef05bd66a2a5",
+      "revision": 29,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-008",
+      "reference": "GW-REV-01",
+      "fingerprint": "e577cd2972e8bf7dff88ec30ced2206e0ac69558bd6beb90f15efb238031b915",
+      "revision": 30,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-009",
+      "reference": "GW-REV-01",
+      "fingerprint": "89cbca33b0140e5cf8058829cd41ea15c5728863eb89d72b38d19238a2e6c058",
+      "revision": 31,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R001",
+      "reference": "GW-REV-01",
+      "fingerprint": "20f5ad40af91d37b56582bbe61ea7b03cf7450c671cb99a6a66f79c3fcd789a8",
+      "revision": 32,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R002",
+      "reference": "GW-REV-01",
+      "fingerprint": "ce77f832d9f65d9429420b85911f6eeab96f6ef5f267612869000df135307fcd",
+      "revision": 33,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R003",
+      "reference": "GW-REV-01",
+      "fingerprint": "2b3a317e9cedbbac2830cc283141e67fb486247c83b62985deaaaa9230f8d481",
+      "revision": 34,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R004",
+      "reference": "GW-REV-01",
+      "fingerprint": "92b73ac7132993b3c9145182998a48aa1e5d1c09aa3a585b1b6cc3cea46838b7",
+      "revision": 35,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R005",
+      "reference": "GW-REV-01",
+      "fingerprint": "0825341b39055cc7b7f35ef2179e4abe501d6ec05c7256ecebe9a0a490e7331e",
+      "revision": 36,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R006",
+      "reference": "GW-REV-01",
+      "fingerprint": "b7b75c9f3becc79fc531968db081ca11c2537f1f4b6eb6c0eef94e7b4c20268b",
+      "revision": 37,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R007",
+      "reference": "GW-REV-01",
+      "fingerprint": "e6355391a82e7d61a5e31070a1c0ea2248e5e02f8067181198a8cf3772144164",
+      "revision": 38,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-a",
+      "reference": "GW-REV-01",
+      "fingerprint": "f52190f5ea20312afb6486fb9dd9edbb77c5a741a4a4094cd635e3dd00260550",
+      "revision": 39,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-b",
+      "reference": "GW-REV-01",
+      "fingerprint": "fd815230dc4c29a7d0d65b61d8ec63c68790658e52846e4f4a2e6580d36fa684",
+      "revision": 40,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-c",
+      "reference": "GW-REV-01",
+      "fingerprint": "71bfa84ab055512ac778c9ac6cec91b234809c0009b7223b65a7448bd428b368",
+      "revision": 41,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-d",
+      "reference": "GW-REV-01",
+      "fingerprint": "5b2110bc80c73494fe4053ecc6c3747bd1ed58cdf3a89776e8775bdc973e93c8",
+      "revision": 42,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-e",
+      "reference": "GW-REV-01",
+      "fingerprint": "fc854df83d1b4206804ecf576ab4a55e0e8144c063efe945294e4913160e5977",
+      "revision": 43,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-f",
+      "reference": "GW-REV-01",
+      "fingerprint": "efdd4298b1d213227f6569796b5eff3f07522e863d94261be85a6306fc0f73fe",
+      "revision": 44,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-g",
+      "reference": "GW-REV-01",
+      "fingerprint": "c2b0eacc168608dc97d86e3fb7dcd82b1dae5c74d2c37ce384944848667a2f04",
+      "revision": 45,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-h",
+      "reference": "GW-REV-01",
+      "fingerprint": "eda936b5b8a37a28e51f0de0a65e0c4b1af309e13ce5904c575cb0b189f0a53b",
+      "revision": 46,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-i",
+      "reference": "GW-REV-01",
+      "fingerprint": "945cc0421bbf02b26c202068c6b81437c578ca9334b6689e34c78a6824636c94",
+      "revision": 47,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-j",
+      "reference": "GW-REV-01",
+      "fingerprint": "d9a8ff71ee54c1b3549563740c548c1e822a19cb93808f4d8f6c67700d7dd822",
+      "revision": 48,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-k",
+      "reference": "GW-REV-01",
+      "fingerprint": "29324460d2c05fcbfb527965ea562e5fca2499141b6778243647ed4670aa1212",
+      "revision": 49,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-l",
+      "reference": "GW-REV-01",
+      "fingerprint": "4fe197ab5c2cb8aee7cfc3d6542085bff4683d94eab6fa6e46b71eeb08273fd4",
+      "revision": 50,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-m",
+      "reference": "GW-REV-01",
+      "fingerprint": "75fbbf3c4de1840d42dcc326e06bff76e925e567d73025f7b4380524c8a1bee0",
+      "revision": 51,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-1",
+      "reference": "GW-REV-01",
+      "fingerprint": "471ba32dfc0336012834e718efd1f182cfbc3ea7268f3f9aeb7ea1e14267aaed",
+      "revision": 52,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-2",
+      "reference": "GW-REV-01",
+      "fingerprint": "db744e42215152e39cff1d3bc21f3b8c1c9d898cde7b539c957845beb013d6e3",
+      "revision": 53,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-3",
+      "reference": "GW-REV-01",
+      "fingerprint": "9ff642be2520058eacd2c0e49120227b67bb8adca82ef745634c3c611534428f",
+      "revision": 54,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-4",
+      "reference": "GW-REV-01",
+      "fingerprint": "0bd9a1e2264e501aa0f14ac6095ee0534357e9be41e9a9ef3a05272cc550b896",
+      "revision": 55,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-5",
+      "reference": "GW-REV-01",
+      "fingerprint": "ded86cac1b33e94742a6d40c8612c98fe3b0efd50f5582efd65504052cd5c759",
+      "revision": 56,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-6",
+      "reference": "GW-REV-01",
+      "fingerprint": "21ab0dea8f3325d09a726d651577fa89d9a9f262bde5c68b3040c1b0d8ccaa7d",
+      "revision": 57,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-7",
+      "reference": "GW-REV-01",
+      "fingerprint": "10783d34da242e2b6ffeb1407ca7c2437a7010386ac82f9082f17e7a9f8e834d",
+      "revision": 58,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-8",
+      "reference": "GW-REV-01",
+      "fingerprint": "209b140de313ddbf00d16f0300a12e2a88d87716b8dd1e59048a451ac16292fa",
+      "revision": 59,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    }
+  ],
+  "reviewCount": 59,
+  "signoffs": [],
+  "changeLog": [
+    {
+      "version": "1.0",
+      "date": "2026-11-20",
+      "author": "Training material",
+      "description": "First issue of the training example.",
+      "approvedBy": null
+    }
+  ],
+  "counters": {
+    "EX": 3,
+    "TB": 2,
+    "C": 4,
+    "ST": 1,
+    "DF": 7,
+    "A": 5,
+    "DS-": 7,
+    "TS": 7,
+    "AP": 7,
+    "CTL-": 8,
+    "EV-": 9,
+    "CG": 4,
+    "CC": 2
+  }
+}

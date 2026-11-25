@@ -1,0 +1,27 @@
+# TARA workbench on this machine, with one command:
+#
+#   mkdir data                 once: the folder is made by you, so that it belongs to you
+#   docker compose up          then open http://localhost:8787
+#
+# Your TARAs are kept in ./data, next to this file, as plain files you can read, back up and move.
+# To stop: Ctrl-C, or `docker compose down`. The data stays.
+#
+# As set up here the tool is reachable from this machine only. To share it with a team, read
+# docs/deployment.md first: the tool has no sign-in of its own and belongs behind something that has one.
+
+services:
+  tara:
+    build: .
+    image: tara-workbench
+    ports:
+      # Only this machine can reach the tool. "8787:8787" would open it to the network.
+      - "127.0.0.1:8787:8787"
+    environment:
+      # The names the tool may be reached by. Requests under any other name are refused.
+      TARA_ALLOWED_HOSTS: localhost,127.0.0.1
+    volumes:
+      - ./data:/data
+    # The tool runs as user 1000, not as root, and ./data must belong to that user. On Linux, if `id -u`
+    # gives another number, say here which user it is to run as:
+    # user: "1000:1000"
+    restart: unless-stopped

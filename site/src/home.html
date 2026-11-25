@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TARA workbench: open-source threat analysis and risk assessment</title>
+<meta name="description" content="An open-source tool for threat analysis and risk assessment of products with digital elements: the method of ISO/SAE 21434, with the essential requirements of the EU Cyber Resilience Act. It runs on your machine, and your data stays there.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body class="home">
+
+<header class="masthead">
+  <a class="brand" href="index.html">TARA<span>workbench</span></a>
+  <nav aria-label="Site">
+    <a href="docs/getting-started.html">Get started</a>
+    <a href="docs/index.html">Documentation</a>
+    <a href="{{repository}}">GitHub</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <h1>From what is worth protecting to what you did about it.</h1>
+  <p class="lede">TARA workbench is an open-source tool for the threat analysis and risk assessment of a product with digital elements. It follows the method of ISO/SAE 21434 and covers the essential requirements of the EU Cyber Resilience Act, from the first description of the product to a signed report. It runs on your own machine, and your data stays there.</p>
+  <p class="actions">
+    <a class="button primary" href="docs/getting-started.html">Get started</a>
+    <a class="button" href="docs/examples.html">Read an example</a>
+  </p>
+
+  <!-- One risk of the kettle example, with its real content: the chain a TARA exists to build. -->
+  <figure class="chain" aria-label="One risk of the kettle example, traced from the asset to the control">
+    <ol>
+      <li class="link">
+        <span class="kind">Asset</span>
+        <span class="id">A03</span>
+        <p>Home Wi-Fi password</p>
+      </li>
+      <li class="link">
+        <span class="kind">Damage scenario</span>
+        <span class="id">DS-0003</span>
+        <p>The password of the owner's home Wi-Fi becomes known to a stranger.</p>
+        <span class="rating">Impact: major</span>
+      </li>
+      <li class="link">
+        <span class="kind">Threat scenario</span>
+        <span class="id">TS003</span>
+        <p>The password is read out of a kettle that was thrown away, returned or sold on.</p>
+      </li>
+      <li class="link">
+        <span class="kind">Attack path</span>
+        <span class="id">AP003</span>
+        <p>Open a discarded kettle, connect to the memory chip and read what is on it.</p>
+        <span class="rating">8 points: feasibility high</span>
+      </li>
+      <li class="link risk">
+        <span class="kind">Risk</span>
+        <span class="id">R003</span>
+        <p><span class="value value-5">5</span> of 5</p>
+        <span class="rating">Major, and easy</span>
+      </li>
+      <li class="link">
+        <span class="kind">Control</span>
+        <span class="id">CTL-003</span>
+        <p>Stored encrypted, erased on reset.</p>
+        <span class="rating">Verified by a test</span>
+      </li>
+      <li class="link risk">
+        <span class="kind">What remains</span>
+        <span class="id">R003</span>
+        <p><span class="value value-2">2</span> of 5</p>
+        <span class="rating">Major, now very hard</span>
+      </li>
+    </ol>
+    <figcaption>One risk of the kettle example that comes with the tool. Every box is a record you enter; the two values are worked out.</figcaption>
+  </figure>
+</section>
+
+<section class="shot">
+  <img src="docs/images/risks.png" alt="The risks step of the kettle example: five risks with their impact, feasibility and value, and one risk open with its review" width="2880" height="1720">
+</section>
+
+<section class="questions">
+  <h2>A TARA answers four questions. The tool is laid out along them.</h2>
+  <ol>
+    <li>
+      <div class="text">
+        <h3>What are we assessing?</h3>
+        <p>The scope, the item, and its architecture, drawn as a data flow diagram: components, outside parties, data stores, the flows between them, and the trust boundaries they cross.</p>
+        <p>Lay an attack path over the drawing to follow it step by step, or lay the gaps over it to see where a risk lands that no control meets.</p>
+      </div>
+      <img src="docs/images/diagram.png" alt="The architecture of the gateway example as a data flow diagram with two trust boundaries, and one attack path laid over it" loading="lazy" width="2880" height="1880">
+    </li>
+    <li>
+      <div class="text">
+        <h3>What could go wrong, and how bad would it be?</h3>
+        <p>Assets, the damage when one is compromised, and the threats that bring it about. Each damage scenario is rated for safety, money, operation and privacy; the highest of the four is its impact.</p>
+        <p>Every record shows one status: the next thing it needs. You never have to guess what is missing.</p>
+      </div>
+      <img src="docs/images/what-is-left.png" alt="The list of what is still open in an assessment, by step" loading="lazy" width="2880" height="1800">
+    </li>
+    <li>
+      <div class="text">
+        <h3>How easy is it, and so how big is the risk?</h3>
+        <p>An attack path is rated on five factors: time, expertise, knowledge of the product, opportunity and equipment. The points add up to a feasibility, and impact and feasibility give a risk value from 1 to 5.</p>
+        <p>The value is never typed in. Change an input and everything that rests on it follows, including the reviews that covered the old value.</p>
+      </div>
+      <img src="docs/images/attack-path.png" alt="An attack path with its five factors, its points and its feasibility" loading="lazy" width="2880" height="1960">
+    </li>
+    <li>
+      <div class="text">
+        <h3>What do we do about it, and how do we know it works?</h3>
+        <p>Controls, a decision on each risk, the goal or the claim behind it, and the evidence. A control counts only once it is in the product and a test has shown that it works.</p>
+        <p>Then one decision for each of the 21 essential requirements of CRA Annex I, with what the assessment says about it beside it.</p>
+      </div>
+      <img src="docs/images/treatment.png" alt="The treatment of a risk: its value before, the controls, the reasoning, and the value that remains" loading="lazy" width="2880" height="1960">
+    </li>
+  </ol>
+</section>
+
+<section class="pair">
+  <div class="text">
+    <h2>A review that notices when its subject changes</h2>
+    <p>When you record a review, the tool takes everything that review covered, the record and every input its result rests on, and keeps a fingerprint of it.</p>
+    <p>Change a damage rating, and the review of every risk that rests on it says so and asks to be confirmed again. Nothing that was reviewed can change quietly, and a released assessment cannot change at all.</p>
+    <p><a href="docs/method.html#reviews">How reviews work</a></p>
+  </div>
+  <div class="text">
+    <h2>Every change kept, and any of them undone</h2>
+    <p>Each change is recorded with who made it and what it changed, from what to what. Several people can work in the same assessment; if two change the same field, the second is told instead of overwriting the first.</p>
+    <p><a href="docs/data-format.html#the-history">How the history works</a></p>
+  </div>
+</section>
+
+<section class="data">
+  <div class="text">
+    <h2>Your assessment is a file you can read</h2>
+    <p>There is no database. A TARA is one JSON document in a folder, with the history of its changes beside it. The ID you see on screen is the ID in the file.</p>
+    <ul>
+      <li>To back up, copy the folder.</li>
+      <li>To keep an assessment beside the product's code, commit the file.</li>
+      <li>To read it in ten years, open it with anything.</li>
+    </ul>
+    <p>The tool sends nothing anywhere: no telemetry, no fonts from a network, no update check.</p>
+    <p><a href="docs/data-format.html">The data, in full</a></p>
+  </div>
+  <pre><code>{
+  "id": "TS003",
+  "category": "information_disclosure",
+  "description": "The Wi-Fi password is read out of
+     a kettle that was thrown away, returned or sold on.",
+  "damageIds": ["DS-0003"]
+},
+
+{
+  "id": "R003",
+  "threatId": "TS003",
+  "treatment": "reduce",
+  "existingControlIds": ["CTL-003"],
+  "residualImpact": 2,
+  "residualFeasibility": "very_low"
+}</code></pre>
+</section>
+
+<section class="report">
+  <img src="docs/images/report.png" alt="A page of the report: the risk table, the risk matrix and the controls" loading="lazy" width="2480" height="3000">
+  <div class="text">
+    <h2>The report is there from the first entry</h2>
+    <p>One self-contained web page, laid out for A4: summary, scope, the architecture drawn, every table from assets to evidence, the risk matrix, the decisions on the CRA requirements, and what is still open.</p>
+    <p>It is made from the same results the screens show, so it cannot disagree with them. Until three people have signed, it says "draft" on every page.</p>
+  </div>
+</section>
+
+<section class="examples">
+  <h2>Three assessments to learn from</h2>
+  <p class="lede">Invented products, the real method. Every record is filled in and every check is settled, so you can change something and watch what reacts.</p>
+  <ol>
+    <li>
+      <h3>A kettle you can switch on from your phone</h3>
+      <p>How a risk value comes about. Five risks that land on the five values, each for a different reason. Fifteen minutes, no background needed.</p>
+    </li>
+    <li>
+      <h3>A smart door lock</h3>
+      <p>What the assessment of an ordinary connected product looks like. The easiest attack needs no access to the lock at all.</p>
+    </li>
+    <li>
+      <h3>A remote service gateway for a machine</h3>
+      <p>A product in someone else's plant: two trust boundaries, a risk to people, a risk that is shared, and controls that are procedures.</p>
+    </li>
+  </ol>
+  <p><a href="docs/examples.html">What each example teaches</a></p>
+</section>
+
+<section class="run">
+  <h2>Run it</h2>
+  <div class="ways">
+    <div>
+      <h3>With Docker</h3>
+      <pre><code>git clone {{repository}}.git
+cd cratool-tara-oss
+mkdir data
+docker compose up</code></pre>
+    </div>
+    <div>
+      <h3>With Node.js 22.18 or later</h3>
+      <pre><code>git clone {{repository}}.git
+cd cratool-tara-oss
+npm install
+npm start</code></pre>
+    </div>
+  </div>
+  <p>Then open <code>http://localhost:8787</code>. There is nothing else to set up.</p>
+  <p class="actions"><a class="button primary" href="docs/getting-started.html">Getting started</a></p>
+</section>
+
+<section class="honest">
+  <h2>What it is not</h2>
+  <dl>
+    <div>
+      <dt>Not a compliance guarantee</dt>
+      <dd>The tool keeps an assessment complete, consistent and traceable. Whether it is right is still a matter for people who know the product.</dd>
+    </div>
+    <div>
+      <dt>Not a service with accounts</dt>
+      <dd>It has no sign-in of its own. It is for your machine, or for a team's server behind the sign-in your organisation already has. <a href="docs/security.html">What that means</a></dd>
+    </div>
+    <div>
+      <dt>Not a copy of a standard</dt>
+      <dd>It contains no text of ISO/SAE 21434. The scoring method that comes with it is built from sources that are free to reuse, and names them.</dd>
+    </div>
+  </dl>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p>TARA workbench {{version}}. Open source under the Apache License 2.0.</p>
+  <p><a href="docs/index.html">Documentation</a> <a href="docs/changelog.html">Changelog</a> <a href="{{repository}}">Source</a> <a href="{{repository}}/blob/main/CONTRIBUTING.md">Contribute</a></p>
+</footer>
+
+</body>
+</html>

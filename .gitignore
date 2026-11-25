@@ -1,0 +1,28 @@
+# Your data. Every TARA, its history and its releases live here and nowhere else (docs/data-format.md).
+# It is yours, not the tool's: back it up, but never commit it to this repository.
+/data/
+
+# Dependencies and build output
+node_modules/
+dist/
+/site/dist/
+*.tsbuildinfo
+
+# Local settings and secrets
+.env
+.env.*
+!.env.example
+
+# Generated on demand
+/sbom.cdx.json
+
+# Licensed standards (ISO/SAE 21434 and the like) must never be committed or redistributed.
+/references/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
