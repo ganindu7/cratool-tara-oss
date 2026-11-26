@@ -9,17 +9,24 @@ import { existsSync } from "node:fs";
 
 const sleep = (ms: number) => new Promise((done) => setTimeout(done, ms));
 
-/** Tries something until it works: a program that was just started needs a moment. */
-export async function eventually<T>(attempt: () => Promise<T>): Promise<T> {
-  for (let tries = 0; ; tries++) {
+/**
+ * Tries something until it works: a program that was just started needs a moment. After `seconds` without
+ * success, the last failure is the answer.
+ */
+export async function eventually<T>(attempt: () => Promise<T>, seconds = 10): Promise<T> {
+  const until = Date.now() + seconds * 1000;
+  for (;;) {
     try {
       return await attempt();
     } catch (error) {
-      if (tries > 60) throw error;
+      if (Date.now() > until) throw error;
       await sleep(150);
     }
   }
 }
+
+/** How long Chrome is given to start. On a busy machine, such as one that runs the checks for many, it can take long. */
+const CHROME_STARTS_WITHIN = 60;
 
 /** Where Chrome is, or null. `CHROME` in the environment names it where it is not in a usual place. */
 export function findChrome(): string | null {
@@ -81,7 +88,7 @@ export async function startChrome(options: {
       opened.onerror = fail;
     });
     return opened;
-  });
+  }, CHROME_STARTS_WITHIN);
 
   let lastId = 0;
   const waiting = new Map<number, (message: { result?: Record<string, unknown>; error?: { message?: string } }) => void>();
