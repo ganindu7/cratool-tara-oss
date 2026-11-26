@@ -1,0 +1,718 @@
+/* What every screen is made of: colours, type, buttons, fields, the marks of a status.
+   Structure is carried by rules and space, not by boxes. A 3px bar on the left of a panel says what kind of
+   thing it is: the accent for what is to add, amber for what waits, green for what is settled, ink for a note.
+   One accent colour: the word mark, headings and the main action. What each colour is, is said in tokens.css. */
+
+/* ------------------------------------------------------------------ the page */
+:root {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--paper);
+  color-scheme: light;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+p,
+dl,
+dd {
+  margin: 0;
+}
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+h2 {
+  font-size: 17px;
+  font-weight: 700;
+}
+h3 {
+  font-size: 14px;
+  font-weight: 700;
+}
+a {
+  color: inherit;
+}
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  word-break: break-all;
+}
+[hidden] {
+  display: none !important;
+}
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.muted {
+  color: var(--grey);
+}
+.small {
+  font-size: 13px;
+}
+.lede {
+  max-width: 68ch;
+  margin-top: 0.35rem;
+  color: var(--stone-800);
+}
+.help {
+  display: block;
+  max-width: 60ch;
+  margin-top: 0.2rem;
+  color: var(--grey);
+  font-size: 13px;
+  font-weight: 400;
+}
+.error {
+  color: var(--todo-deep);
+}
+.loading {
+  padding: 4rem;
+}
+.empty {
+  max-width: 50ch;
+  padding: 2.5rem 0;
+  color: var(--grey);
+}
+
+/* ------------------------------------------------------------------ buttons */
+button,
+.button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button,
+.button {
+  display: inline-block;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-control);
+  background: var(--paper);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+button:hover,
+.button:hover {
+  background: var(--shade);
+}
+button.primary,
+.button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--paper);
+}
+button.primary:hover,
+.button.primary:hover {
+  border-color: var(--accent-deep);
+  background: var(--accent-deep);
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+/* a button that reads as a link: for what is done in passing (close, cancel, undo) */
+button.link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: normal;
+}
+button.link.small {
+  font-size: 12px;
+}
+button.danger {
+  border-color: var(--todo-deep);
+  color: var(--todo-deep);
+}
+/* a small button for what is done beside the main thing */
+.quiet,
+a.button.quiet {
+  padding: 0.32rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+}
+.quiet:hover,
+a.button.quiet:hover {
+  border-color: var(--ink);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  align-items: center;
+}
+
+/* a choice between a few ways of showing the same thing: the one in force is filled */
+.ways {
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--ink);
+}
+.ways .way {
+  display: block;
+  padding: 0.3rem 0.7rem;
+  border-right: 1px solid var(--ink);
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ways .way:last-child {
+  border-right: 0;
+}
+.ways .way-on {
+  background: var(--ink);
+  color: var(--paper);
+}
+.ways .way:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+/* the same choice where it changes how a thing is drawn and has no address of its own: buttons, set as one group */
+fieldset.ways {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+.ways button.way {
+  border: 0;
+  border-right: 1px solid var(--ink);
+  border-radius: 0;
+  background: none;
+}
+.ways button.way:last-child {
+  border-right: 0;
+}
+.ways button.way-on,
+.ways button.way-on:hover {
+  background: var(--ink);
+}
+
+/* ------------------------------------------------------------------ fields
+   A label above its field, with help beneath: the one pattern for every form. */
+input,
+select,
+textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.42rem 0.55rem;
+  border: 1px solid var(--field);
+  border-radius: var(--radius-control);
+  background: var(--paper);
+}
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+}
+input[type="file"] {
+  font-size: 13px;
+}
+/* a text of several lines is as high as its text (ui/fields.tsx), so it has no handle to drag and nothing to scroll */
+textarea {
+  display: block;
+  overflow: hidden;
+  line-height: 1.4;
+  resize: none;
+}
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: var(--shade);
+  color: var(--grey);
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+.field {
+  display: grid;
+  gap: 0.25rem;
+}
+.field-label {
+  font-size: 14px;
+  font-weight: 700;
+}
+.field-note {
+  color: var(--grey);
+  font-size: 13px;
+}
+.check {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  cursor: pointer;
+}
+.check input {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  transform: translateY(2px);
+  accent-color: var(--accent);
+}
+.form {
+  display: grid;
+  gap: 0.95rem;
+}
+/* fields that belong together, under their heading */
+.group {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0.7rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.group legend {
+  padding: 0 0.5rem 0 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.group .field-label {
+  font-weight: 400;
+}
+/* links to other records, as a list of tick boxes */
+.links {
+  display: grid;
+  gap: 0.3rem;
+  max-height: 13rem;
+  overflow-y: auto;
+}
+/* links whose order means something: the route of an attack, entry first */
+.links-ordered {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: place;
+}
+.links-ordered li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  border-left: 2px solid var(--ink);
+  background: var(--shade);
+  font-size: 14px;
+  counter-increment: place;
+}
+.links-ordered li::before {
+  content: counter(place) ".";
+  color: var(--grey);
+}
+.links-ordered li > span {
+  flex: 1;
+  min-width: 0;
+}
+.links-ordered button {
+  padding: 0 0.15rem;
+  border: 0;
+  background: none;
+  color: var(--grey);
+  font-size: 16px;
+  line-height: 1;
+}
+.links-ordered button:hover:not(:disabled),
+.links-ordered button:focus-visible {
+  background: none;
+  color: var(--ink);
+}
+
+/* the lever: a track of the states that follow one another, filled up to where the thing stands */
+.lever {
+  display: inline-flex;
+  max-width: 100%;
+  --at: var(--field);
+}
+.lever-step {
+  flex: 0 1 auto;
+  margin: 0 -1px 0 0;
+  padding: 0.35rem 0.8rem 0.45rem;
+  border: 1px solid var(--field);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--grey);
+  font: inherit;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.lever-step:first-child {
+  border-radius: var(--radius-control) 0 0 var(--radius-control);
+}
+.lever-step:last-child {
+  margin-right: 0;
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+}
+.lever-step:hover:not(:disabled):not(.on) {
+  background: var(--shade);
+  color: var(--ink);
+}
+.lever-step:focus-visible {
+  position: relative;
+  z-index: 2;
+}
+.lever-step:disabled {
+  cursor: default;
+}
+.lever-step.passed,
+.lever-step.on {
+  box-shadow: inset 0 -3px 0 var(--at);
+  color: var(--ink);
+}
+.lever-step.on {
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+}
+.lever-at-proposed .on {
+  border-style: dashed;
+  border-color: var(--grey);
+  box-shadow: none;
+}
+.lever-at-planned {
+  --at: var(--amber);
+}
+.lever-at-planned .on {
+  border-color: var(--amber);
+  background: var(--amber-wash);
+  color: var(--amber);
+}
+.lever-at-built {
+  --at: var(--accent);
+}
+.lever-at-built .on {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  color: var(--accent-deep);
+}
+.lever-at-implemented {
+  --at: var(--done);
+}
+.lever-at-implemented .on {
+  border-color: var(--done);
+  background: var(--done-wash);
+  color: var(--done);
+}
+.lever-at-verified {
+  --at: var(--done);
+}
+.lever-at-verified .on {
+  border-color: var(--done);
+  background: var(--done);
+  box-shadow: none;
+  color: var(--paper);
+}
+.lever-at-failed {
+  --at: var(--todo);
+}
+@media (max-width: 520px) {
+  .lever-step {
+    padding: 0.35rem 0.42rem 0.45rem;
+    font-size: 13px;
+  }
+}
+
+/* ------------------------------------------------------------------ panels
+   A panel is marked by the bar on its left. */
+.new-record,
+.review,
+.confirm {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--ink);
+  background: var(--paper);
+}
+.new-record {
+  max-width: 46rem;
+  margin: 0 0 1.4rem;
+  border-left-color: var(--accent);
+  background: var(--shade);
+}
+p.new-record {
+  display: block;
+}
+/* asked before something is taken away for good */
+.confirm {
+  border-color: var(--todo-deep);
+  border-left-color: var(--todo-deep);
+  background: var(--todo-wash);
+}
+.confirm button.danger {
+  border-color: var(--todo);
+  background: var(--todo);
+  color: var(--paper);
+}
+.banner {
+  margin-bottom: 1rem;
+  padding: 0.6rem 0.9rem;
+  border-left: 3px solid var(--ink);
+  background: var(--shade);
+}
+.banner.error {
+  border-color: var(--todo);
+  background: var(--todo-wash);
+}
+.banner button.link {
+  margin-left: 0.6rem;
+}
+
+/* ------------------------------------------------------------------ the marks of a status
+   How a record stands, the value of a risk, and where a control stands in the product: one colour per meaning,
+   the same wherever it shows. */
+.chip {
+  display: inline-block;
+  padding: 0.12rem 0.5rem;
+  border-radius: var(--radius-control);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.chip-done {
+  background: var(--done-wash);
+  color: var(--done);
+}
+.chip-waiting {
+  background: var(--amber-wash);
+  color: var(--amber);
+}
+.chip-todo {
+  background: var(--todo-wash);
+  color: var(--todo-deep);
+}
+.chip-empty {
+  padding-left: 0;
+  color: var(--grey);
+}
+.risk {
+  display: inline-block;
+  min-width: 1.7rem;
+  padding: 0.08rem 0.3rem;
+  border-radius: var(--radius-control);
+  color: var(--paper);
+  font-weight: 700;
+  text-align: center;
+}
+.risk-1 {
+  background: var(--risk-1);
+  color: var(--on-risk-1);
+}
+.risk-2 {
+  background: var(--risk-2);
+  color: var(--on-risk-2);
+}
+.risk-3 {
+  background: var(--risk-3);
+  color: var(--on-risk-3);
+}
+.risk-4 {
+  background: var(--risk-4);
+  color: var(--on-risk-4);
+}
+.risk-5 {
+  background: var(--risk-5);
+  color: var(--on-risk-5);
+}
+.state-chip {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  font-size: 13px;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+.state-proposed {
+  border-color: var(--field);
+  border-style: dashed;
+  background: var(--paper);
+  color: var(--grey);
+}
+.state-planned {
+  border-color: var(--amber);
+  background: var(--amber-wash);
+  color: var(--amber);
+}
+.state-built {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  color: var(--accent-deep);
+}
+.state-implemented {
+  border-color: var(--done);
+  background: var(--done-wash);
+  color: var(--done);
+}
+.state-verified {
+  border-color: var(--done);
+  background: var(--done);
+  color: var(--paper);
+}
+.state-failed {
+  border-color: var(--todo);
+  background: var(--todo);
+  color: var(--paper);
+}
+.state-small {
+  margin-left: auto;
+  padding: 0 0.3rem;
+  font-size: 10px;
+}
+/* what a record needs next, in the method's own words: at the top of its panel and of its card */
+.next {
+  margin: 0.6rem 0 1rem;
+  padding: 0.5rem 0.7rem;
+  font-weight: 700;
+}
+.next span {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+}
+.next-todo {
+  background: var(--todo-wash);
+  color: var(--todo-deep);
+}
+.next-waiting {
+  background: var(--amber-wash);
+  color: var(--amber);
+}
+.next-done {
+  background: var(--done-wash);
+  color: var(--done);
+}
+.next-empty {
+  background: var(--shade);
+  color: var(--grey);
+  font-weight: 400;
+}
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.pill {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------ things that can be pointed at
+   The ID of a record is a link to it wherever it is written; resting on it says what the record is. */
+a.ref {
+  position: relative;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+a.ref:hover,
+a.ref:focus-visible {
+  color: var(--accent-deep);
+  text-decoration-color: currentColor;
+}
+/* an ID in a list is never broken at its hyphen */
+td a.ref {
+  white-space: nowrap;
+}
+a.ref[data-tip]:hover::after,
+a.ref[data-tip]:focus-visible::after {
+  content: attr(data-tip);
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 0.3rem);
+  left: 0;
+  width: max-content;
+  max-width: 22rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-control);
+  background: var(--ink);
+  box-shadow: var(--shadow-tip);
+  color: var(--paper);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: left;
+  white-space: pre-line;
+  pointer-events: none;
+}
+.ref-gone {
+  color: var(--grey);
+  text-decoration: line-through;
+}
+.refs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.5rem;
+}
+/* the lever is a set of buttons, not a box of its own */
+fieldset.lever {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* the rest of a list of links, opened on request where there is little room */
+.links-more {
+  margin-top: 0.15rem;
+}
+.links-more summary {
+  width: fit-content;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  list-style: none;
+  cursor: pointer;
+}
+.links-more summary::-webkit-details-marker {
+  display: none;
+}
+.links-more[open] summary {
+  margin-bottom: 0.3rem;
+}
+/* kept for a screen reader, and not shown: the label of a field whose column already says what it is */
+.unseen {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

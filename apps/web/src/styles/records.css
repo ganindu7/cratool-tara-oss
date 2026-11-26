@@ -1,0 +1,191 @@
+/* A step that lists records: the table, the record that is open beside it, and its review. */
+
+/* ------------------------------------------------------------------ tables */
+.table-wrap {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+th {
+  padding: 0.5rem 0.7rem;
+  border-top: 1.5px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background: var(--shade);
+  font-weight: 700;
+  text-align: left;
+  vertical-align: bottom;
+}
+td {
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+th.grow,
+td.grow {
+  width: 40%;
+}
+td.id {
+  white-space: nowrap;
+}
+td.id a {
+  text-underline-offset: 2px;
+}
+.records tbody tr {
+  cursor: pointer;
+}
+.records tbody tr:hover {
+  background: var(--rail-bg);
+}
+tr.row-selected,
+.records tbody tr.row-selected:hover {
+  background: var(--shade);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+/* a line under a value that says something more about it */
+.cell-note {
+  display: block;
+  color: var(--grey);
+  font-size: 13px;
+}
+td.derived {
+  color: var(--grey);
+  font-size: 14px;
+}
+
+/* ------------------------------------------------------------------ a record open beside its table */
+.records-open {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(21rem, 27rem);
+  gap: 1.75rem;
+  align-items: start;
+}
+.detail {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  padding: 1rem 1.15rem 1.25rem;
+  overflow-y: auto;
+  border: 1px solid var(--ink);
+  border-top: 3px solid var(--accent);
+  background: var(--paper);
+}
+.detail-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.detail-links {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 14px;
+}
+/* what the tool works out from the record: read here, entered nowhere */
+.facts {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+.facts div {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+}
+.facts dt {
+  color: var(--grey);
+}
+/* a part of a record's panel that is not one of its fields: what links to it, taking it away */
+.mentions {
+  display: block;
+  margin-top: 1.4rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+  color: var(--grey);
+  font-size: 14px;
+}
+.delete {
+  margin-top: 1.4rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+  color: var(--grey);
+  font-size: 14px;
+}
+.delete .confirm {
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------------ reviews */
+.review {
+  margin-top: 1.4rem;
+  border-left-color: var(--line);
+}
+.review-current {
+  border-left-color: var(--done);
+}
+.review-stale,
+.review-kept {
+  border-left-color: var(--amber);
+}
+.review-state {
+  color: var(--grey);
+  font-size: 14px;
+}
+.review-current .review-state {
+  color: var(--done);
+}
+.review-stale .review-state,
+.review-kept .review-state {
+  padding: 0.5rem 0.7rem;
+  background: var(--amber-wash);
+  color: var(--amber);
+}
+
+/* ------------------------------------------------------------------ a page with its links beside it
+   The record keeps the width it has as a panel; the links get the rest, because they need the room. */
+.split {
+  display: grid;
+  grid-template-columns: minmax(21rem, 30rem) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+.split > .records {
+  min-width: 0;
+}
+/* beside the drawing there is no room for the record next to its table: the record comes first, the table follows */
+.split .records-open {
+  grid-template-columns: minmax(0, 1fr);
+}
+.split .records-open > .detail {
+  position: static;
+  order: -1;
+  max-height: none;
+}
+
+@media (max-width: 78rem) {
+  .records-open {
+    grid-template-columns: minmax(0, 1fr) minmax(19rem, 23rem);
+    gap: 1.25rem;
+  }
+  .split {
+    grid-template-columns: minmax(19rem, 24rem) minmax(0, 1fr);
+    gap: 1.1rem;
+  }
+}
+@media (max-width: 62rem) {
+  /* the open record comes first: opening one must show at once, not below a long table */
+  .records-open,
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .records-open > .detail {
+    position: static;
+    order: -1;
+    max-height: none;
+  }
+}

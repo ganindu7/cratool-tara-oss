@@ -1,0 +1,10 @@
+/* The look of the tool, in parts. Each part says at its top what it holds.
+   Every colour, corner, shadow and face is named once, in styles/tokens.css, which the website loads too. */
+
+@import "./styles/tokens.css";
+@import "./styles/base.css";
+@import "./styles/frame.css";
+@import "./styles/records.css";
+@import "./styles/pages.css";
+@import "./styles/drawings.css";
+@import "./styles/diagram.css";

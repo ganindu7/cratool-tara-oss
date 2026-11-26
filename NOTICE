@@ -1,0 +1,50 @@
+Open TARA workbench
+Copyright 2026 The Open TARA workbench contributors
+
+Licensed under the Apache License, Version 2.0. See the file LICENSE.
+
+------------------------------------------------------------------------------
+The scoring method shipped with the tool
+------------------------------------------------------------------------------
+
+"Open TARA method 1.0" (methods/open-tara-1.0.json) was built from sources that
+are free to reuse. The file itself names the source and terms of each part:
+
+- Attack feasibility (the five factors, their points and the bands):
+  Common Methodology for Information Technology Security Evaluation,
+  CEM:2022, November 2022, Annex B.6, Tables B.2 and B.3. Common Criteria
+  portal, commoncriteriaportal.org. The descriptions are written anew.
+
+- Risk matrix (the sixteen values):
+  A. Lautenbach, M. Almgren, T. Olovsson: "Proposing HEAVENS 2.0, an automotive
+  risk assessment model". ACM Computer Science in Cars Symposium (CSCS '21),
+  2021, Table 8. doi:10.1145/3488904.3493378. The values are used and cited;
+  no text of the paper is used.
+
+- Structure (impact in four categories at four levels, attack feasibility at
+  four levels, risk values 1 to 5): follows the requirements of
+  ISO/SAE 21434:2021, clause 15. Only the structure is taken. No text of the
+  standard is reproduced in this project, and none must be added to it.
+
+- Impact criteria, descriptions of factors, threat categories and treatments:
+  written for this method.
+
+------------------------------------------------------------------------------
+Regulation and standards
+------------------------------------------------------------------------------
+
+The one-line summaries of the essential requirements of Regulation (EU)
+2024/2847 (Cyber Resilience Act), Annex I, were written for this tool. They are
+reminders, not the legal text; the regulation itself is authoritative.
+
+This project is not affiliated with, or endorsed by, the European Union, ISO,
+SAE International, the United Nations Economic Commission for Europe, or the
+Common Criteria Recognition Arrangement. Using this tool does not by itself
+make a product conform to any regulation or standard.
+
+------------------------------------------------------------------------------
+Third-party software
+------------------------------------------------------------------------------
+
+The software this project depends on, with its licences, is listed in
+THIRD_PARTY_LICENSES.md.

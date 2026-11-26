@@ -1,0 +1,49 @@
+# Security
+
+A tool for assessing other products should be plain about itself. This page says what the tool protects, what it leaves to you, and what was done about the ways it could be attacked.
+
+To report a vulnerability in the tool, see [SECURITY.md](https://github.com/ganindu7/cratool-tara-oss/blob/main/SECURITY.md).
+
+## What the tool is for
+
+One person's machine, or a team's server behind the organisation's own sign-in. It is not built to face the internet by itself.
+
+**It has no sign-in and no roles.** Whoever can reach the tool can read and change every TARA in it. The name a person gives is a label for the history; it proves nothing. This is a choice, not an omission: sign-in done properly belongs to the organisation that already has one, and a half-built one inside the tool would give a false sense of safety. [Deployment](deployment.md) shows how to put the tool behind a proxy that signs people in and passes on their verified name.
+
+## What is protected, and how
+
+| Asset                          | Threat                                                                                                  | What the tool does                                                                                                                                                                                                                                                                                                                                                 | What is left to you                                                                                                                                                      |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Your TARAs                     | Someone on the network reads or changes them                                                            | By default it listens on `127.0.0.1` only. When started on another address it says so, and says what to do.                                                                                                                                                                                                                                                        | On a network, put it behind sign-in.                                                                                                                                     |
+| Your TARAs                     | A web page you visit talks to the tool through your browser (cross-site request forgery, DNS rebinding) | Requests that name a host other than the tool's own are refused; where the tool listens on another address than this machine's, that holds once `TARA_ALLOWED_HOSTS` is set. Changes are refused unless they come from the tool's own page and carry JSON, which another site's form cannot send. No route answers the browser's permission check for other sites. | Nothing.                                                                                                                                                                 |
+| Your TARAs                     | Text typed into a TARA runs as script in someone's browser                                              | The screens show text as text. The report escapes everything a person typed, links only to `http` and `https` addresses, contains no script, and is served under a policy that forbids scripts and outside resources.                                                                                                                                              | Nothing.                                                                                                                                                                 |
+| Your TARAs                     | A crafted ID reads or writes files outside the data folder                                              | The ID of a TARA is checked against a strict pattern before it becomes part of a path. Names of files kept beside a TARA are checked the same way.                                                                                                                                                                                                                 | Nothing.                                                                                                                                                                 |
+| Your TARAs                     | A crash or two people at once leaves a damaged document                                                 | One change at a time per TARA; the document is replaced in one step; a change that reached the history but not the document is completed before the next change to that TARA. Every document is validated before it is stored and when it is read.                                                                                                                 | Backups.                                                                                                                                                                 |
+| The integrity of an assessment | A reviewed record is changed quietly                                                                    | A review carries a fingerprint of everything it covered and stops counting when that changes. A released TARA refuses every change. Every change is in the history with before and after.                                                                                                                                                                          | The files can still be edited by anyone who can write to the data folder. The tool notices and records that it happened, not what. Restrict who can write to the folder. |
+| The record of who did what     | Someone makes changes under another person's name                                                       | Behind a proxy with `TARA_USER_HEADER` set, names come from your sign-in and what a person types is ignored.                                                                                                                                                                                                                                                       | Without such a proxy, names are what people say they are. Do not rely on them between people who do not trust each other.                                                |
+| The machine the tool runs on   | The tool is used to get at it                                                                           | It runs as an ordinary user, in Docker as the unprivileged `node` user, and writes only to the data folder. It starts no other programs and loads no code at run time.                                                                                                                                                                                             | Run it as a user that owns nothing else.                                                                                                                                 |
+| What you install               | A dependency is compromised                                                                             | Few dependencies: about twenty packages are part of what runs, all under permissive licences, with exact versions and checksums in `package-lock.json`. The rule engine, the storage and the report have none.                                                                                                                                                     | Update deliberately; run `npm audit`.                                                                                                                                    |
+
+## What the tool sends
+
+Nothing. It makes no outgoing connection of any kind: no telemetry, no update check, no fonts or scripts from elsewhere. The screens and the report work with the network unplugged.
+
+## What it does not do
+
+- It does not encrypt the data folder. Use the disk encryption of the machine.
+- It does not keep secrets: there are none. No passwords, no keys, no tokens.
+- It does not limit how many requests a client may make. Behind sign-in on an internal network this has not mattered.
+- It does not sign the history. A person who can write to the data folder can rewrite it. If you need evidence that stands against the people who run the server, keep released TARAs and their reports in a system built for that, such as your document management or a signed, append-only store.
+
+## Hardening checklist for a shared installation
+
+1. The tool listens on `127.0.0.1`; only the proxy reaches it.
+2. The proxy requires sign-in, serves HTTPS only, and sets `TARA_USER_HEADER` itself, removing any such header a client sent.
+3. `TARA_ALLOWED_HOSTS` names the one host the tool is reached by.
+4. The data folder is readable and writable only by the user the tool runs as, on an encrypted disk.
+5. The data folder is backed up, and a restore has been tried.
+6. Updates are applied on purpose, after reading the changelog.
+
+## The tool's own bill of materials
+
+`npm run sbom` writes a CycloneDX bill of materials of what the tool is built from. [Dependencies](dependencies.md) lists the same in words, with the reason for each.

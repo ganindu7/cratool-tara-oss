@@ -1,0 +1,450 @@
+{
+ "source": "Open TARA method 1.0",
+ "sources": [
+  {
+   "part": "Structure: impact in four categories at four levels, attack feasibility at four levels, risk value 1 to 5",
+   "source": "The requirements of ISO/SAE 21434:2021, clause 15. Only the structure is taken; no text of the standard is used.",
+   "terms": "A structure, not text"
+  },
+  {
+   "part": "Attack feasibility: the five factors, their points and the bands",
+   "source": "Common Methodology for Information Technology Security Evaluation, CEM:2022 (November 2022), Annex B.6, Tables B.2 and B.3. Common Criteria portal, commoncriteriaportal.org",
+   "terms": "The legal notice of CEM:2022 supports reuse of the text by any user, including modification and reuse of parts. The descriptions here are written anew."
+  },
+  {
+   "part": "Risk matrix",
+   "source": "A. Lautenbach, M. Almgren, T. Olovsson: Proposing HEAVENS 2.0, an automotive risk assessment model. ACM Computer Science in Cars Symposium (CSCS '21), 2021, Table 8. doi:10.1145/3488904.3493378",
+   "terms": "The sixteen values are used and cited; no text of the paper is used."
+  },
+  {
+   "part": "Impact criteria, descriptions of factors, threat categories and treatments",
+   "source": "Written for this method.",
+   "terms": "Free to use and change with the tool."
+  }
+ ],
+ "impact_levels": [
+  {
+   "level": 3,
+   "name": "Severe"
+  },
+  {
+   "level": 2,
+   "name": "Major"
+  },
+  {
+   "level": 1,
+   "name": "Moderate"
+  },
+  {
+   "level": 0,
+   "name": "Negligible"
+  }
+ ],
+ "impact_categories": [
+  {
+   "key": "safety",
+   "label": "Safety",
+   "heading": "Harm to people: users, bystanders, anyone who relies on the product",
+   "ratings": [
+    {
+     "level": 3,
+     "label": "S3 Severe: life is in danger",
+     "criteria": "Someone may die or be injured so badly that survival is uncertain."
+    },
+    {
+     "level": 2,
+     "label": "S2 Major: serious injury",
+     "criteria": "Someone may be seriously injured and need hospital treatment; survival is expected."
+    },
+    {
+     "level": 1,
+     "label": "S1 Moderate: minor injury",
+     "criteria": "Someone may be slightly injured: first aid or one visit to a doctor is enough."
+    },
+    {
+     "level": 0,
+     "label": "S0 Negligible: nobody is hurt",
+     "criteria": "Nobody is injured."
+    }
+   ]
+  },
+  {
+   "key": "financial",
+   "label": "Financial",
+   "heading": "Loss of money, for whoever bears it: the owner or user, the operator, or the maker",
+   "ratings": [
+    {
+     "level": 3,
+     "label": "F3 Severe: a loss that may not be survived",
+     "criteria": "The loss may be more than the affected party can bear: a business may fail, or a person may not be able to make the loss good."
+    },
+    {
+     "level": 2,
+     "label": "F2 Major: a heavy loss that can be borne",
+     "criteria": "The loss is heavy and felt for a long time, but the affected party gets over it. For example a recall, a lost contract, or large claims."
+    },
+    {
+     "level": 1,
+     "label": "F1 Moderate: a loss within ordinary means",
+     "criteria": "The loss is noticed and is covered from ordinary means. For example repairs, the replacement of some units, or extra support work."
+    },
+    {
+     "level": 0,
+     "label": "F0 Negligible: no loss that matters",
+     "criteria": "There is no loss, or one too small to matter."
+    }
+   ]
+  },
+  {
+   "key": "operational",
+   "label": "Operational",
+   "heading": "What the product is for, and whether it still does it",
+   "ratings": [
+    {
+     "level": 3,
+     "label": "O3 Severe: the main function is lost or wrong, widely or lastingly",
+     "criteria": "A main function is lost or does the wrong thing, on many units or for a long time, or cannot be restored without replacing the product."
+    },
+    {
+     "level": 2,
+     "label": "O2 Major: a main function is lost for a time",
+     "criteria": "A main function is lost or badly degraded on some units or for a limited time; the work the product does stops until it is repaired or restored."
+    },
+    {
+     "level": 1,
+     "label": "O1 Moderate: a lesser function is lost",
+     "criteria": "A function that is not essential is lost, or the product is slower or less convenient. It still does what it is for."
+    },
+    {
+     "level": 0,
+     "label": "O0 Negligible: no effect that is noticed",
+     "criteria": "What the product does is not affected, or not so that a user would notice."
+    }
+   ]
+  },
+  {
+   "key": "privacy",
+   "label": "Privacy",
+   "heading": "The people whose data the product holds or passes on",
+   "ratings": [
+    {
+     "level": 3,
+     "label": "P3 Severe: sensitive data of identified people, with lasting harm",
+     "criteria": "Sensitive personal data of people who can be identified is disclosed or changed, and the harm to them cannot be undone. Sensitive data is, for example, data about health, where someone has been, passwords, or payment data."
+    },
+    {
+     "level": 2,
+     "label": "P2 Major: data of identified people, with serious consequences",
+     "criteria": "Personal data that identifies people is disclosed or changed, with serious consequences for them that can be limited afterwards."
+    },
+    {
+     "level": 1,
+     "label": "P1 Moderate: data that identifies people only with effort",
+     "criteria": "Personal data is disclosed or changed that can be tied to a person only with effort, or the consequences for the people concerned are an inconvenience."
+    },
+    {
+     "level": 0,
+     "label": "P0 Negligible: no personal data that matters",
+     "criteria": "No personal data is involved, or it cannot be tied to anyone."
+    }
+   ]
+  }
+ ],
+ "feasibility_factors": [
+  {
+   "key": "elapsed_time",
+   "label": "Elapsed time",
+   "description": "The time an attacker needs to find the weakness and to carry the attack out, all steps of the path together.",
+   "options": [
+    {
+     "key": "lt_1_day",
+     "label": "Up to one day",
+     "points": 0
+    },
+    {
+     "key": "lt_1_week",
+     "label": "Up to one week",
+     "points": 1
+    },
+    {
+     "key": "lt_2_weeks",
+     "label": "Up to two weeks",
+     "points": 2
+    },
+    {
+     "key": "lt_1_month",
+     "label": "Up to one month",
+     "points": 4
+    },
+    {
+     "key": "lt_2_months",
+     "label": "Up to two months",
+     "points": 7
+    },
+    {
+     "key": "lt_3_months",
+     "label": "Up to three months",
+     "points": 10
+    },
+    {
+     "key": "lt_4_months",
+     "label": "Up to four months",
+     "points": 13
+    },
+    {
+     "key": "lt_5_months",
+     "label": "Up to five months",
+     "points": 15
+    },
+    {
+     "key": "lt_6_months",
+     "label": "Up to six months",
+     "points": 17
+    },
+    {
+     "key": "gt_6_months",
+     "label": "More than six months",
+     "points": 19
+    }
+   ]
+  },
+  {
+   "key": "expertise",
+   "label": "Expertise",
+   "description": "What the attacker has to know and be able to do.",
+   "options": [
+    {
+     "key": "layman",
+     "label": "Layman",
+     "points": 0,
+     "description": "No particular knowledge or skill. The attacker follows instructions that someone else has published."
+    },
+    {
+     "key": "proficient",
+     "label": "Proficient",
+     "points": 3,
+     "description": "Familiar with how products of this kind are secured and with the usual attacks on them. Several proficient people working together still count as proficient."
+    },
+    {
+     "key": "expert",
+     "label": "Expert",
+     "points": 6,
+     "description": "Knows the algorithms, protocols, hardware or techniques concerned well enough to devise a new attack or new tools."
+    },
+    {
+     "key": "multiple_experts",
+     "label": "Multiple experts",
+     "points": 8,
+     "description": "Experts of different fields are needed, each for a distinct step of the attack."
+    }
+   ]
+  },
+  {
+   "key": "knowledge",
+   "label": "Knowledge of the product",
+   "description": "How hard it is to get the information about the product that the attack needs.",
+   "options": [
+    {
+     "key": "public",
+     "label": "Public",
+     "points": 0,
+     "description": "The information is published or can be found by anyone, for example on the internet or in the manual."
+    },
+    {
+     "key": "restricted",
+     "label": "Restricted",
+     "points": 3,
+     "description": "The information is kept by the maker and given to others only under an agreement, for example to suppliers or service partners."
+    },
+    {
+     "key": "sensitive",
+     "label": "Sensitive",
+     "points": 7,
+     "description": "The information is shared only between certain teams of the maker, and access to it is controlled."
+    },
+    {
+     "key": "critical",
+     "label": "Critical",
+     "points": 11,
+     "description": "The information is known to a few named people only and is kept under strict control."
+    }
+   ]
+  },
+  {
+   "key": "window_of_opportunity",
+   "label": "Window of opportunity",
+   "description": "How much access to the product the attack needs: for how long, to how many units, and how hard that access is to get.",
+   "options": [
+    {
+     "key": "unlimited",
+     "label": "Unnecessary or unlimited",
+     "points": 0,
+     "description": "The attack needs no access to the product, or the access it needs is there at any time for as long as wanted, for example over the internet."
+    },
+    {
+     "key": "easy",
+     "label": "Easy",
+     "points": 1,
+     "description": "Access is needed for a short time, to one or a few units, and is simple to get."
+    },
+    {
+     "key": "moderate",
+     "label": "Moderate",
+     "points": 4,
+     "description": "Access is needed for longer or to several units, or is to be had only at certain places or times."
+    },
+    {
+     "key": "difficult",
+     "label": "Difficult",
+     "points": 10,
+     "description": "Access is needed for a long time or to many units, or is hard to get, for example to an opened device in a guarded place."
+    }
+   ]
+  },
+  {
+   "key": "equipment",
+   "label": "Equipment",
+   "description": "The hardware and software the attack needs.",
+   "options": [
+    {
+     "key": "standard",
+     "label": "Standard",
+     "points": 0,
+     "description": "What an attacker has at hand or gets without effort: a laptop, common tools, freely available software."
+    },
+    {
+     "key": "specialised",
+     "label": "Specialised",
+     "points": 4,
+     "description": "Not at hand, but bought without difficulty or written with moderate effort: for example a bus or protocol analyser, a debug probe, or scripts made for this attack."
+    },
+    {
+     "key": "bespoke",
+     "label": "Bespoke",
+     "points": 7,
+     "description": "Made for the purpose, or so costly or controlled that it is hard to obtain. Clearly different sets of specialised equipment for distinct steps also count as bespoke."
+    },
+    {
+     "key": "multiple_bespoke",
+     "label": "Multiple bespoke",
+     "points": 9,
+     "description": "Different bespoke equipment is needed for distinct steps of the attack."
+    }
+   ]
+  }
+ ],
+ "feasibility_bands": [
+  {
+   "key": "high",
+   "label": "High",
+   "min": 0,
+   "max": 13,
+   "potential": "Basic or enhanced-basic attack potential is enough"
+  },
+  {
+   "key": "medium",
+   "label": "Medium",
+   "min": 14,
+   "max": 19,
+   "potential": "Moderate attack potential is needed"
+  },
+  {
+   "key": "low",
+   "label": "Low",
+   "min": 20,
+   "max": 24,
+   "potential": "High attack potential is needed"
+  },
+  {
+   "key": "very_low",
+   "label": "Very low",
+   "min": 25,
+   "potential": "More than high attack potential is needed"
+  }
+ ],
+ "risk_matrix": {
+  "3": {
+   "very_low": 3,
+   "low": 4,
+   "medium": 5,
+   "high": 5
+  },
+  "2": {
+   "very_low": 2,
+   "low": 3,
+   "medium": 4,
+   "high": 5
+  },
+  "1": {
+   "very_low": 1,
+   "low": 2,
+   "medium": 3,
+   "high": 4
+  },
+  "0": {
+   "very_low": 1,
+   "low": 1,
+   "medium": 2,
+   "high": 2
+  }
+ },
+ "threat_categories": [
+  {
+   "key": "spoofing",
+   "label": "Spoofing",
+   "description": "Someone or something passes as another: a person, a device, a server or a message source."
+  },
+  {
+   "key": "tampering",
+   "label": "Tampering",
+   "description": "Data, software or settings are changed by someone who should not be able to."
+  },
+  {
+   "key": "repudiation",
+   "label": "Repudiation",
+   "description": "Someone can deny having done something, because nothing proves it."
+  },
+  {
+   "key": "information_disclosure",
+   "label": "Information disclosure",
+   "description": "Information reaches someone who should not have it."
+  },
+  {
+   "key": "denial_of_service",
+   "label": "Denial of service",
+   "description": "A function or a service is made unavailable to those who need it."
+  },
+  {
+   "key": "elevation_of_privilege",
+   "label": "Elevation of privilege",
+   "description": "Someone gains rights they were not given."
+  },
+  {
+   "key": "general",
+   "label": "General",
+   "description": "A threat that fits none of the other categories."
+  }
+ ],
+ "treatments": [
+  {
+   "key": "retain",
+   "label": "Retain",
+   "description": "The risk is accepted as it is, because it is low enough or for a reason that is written down and approved."
+  },
+  {
+   "key": "reduce",
+   "label": "Reduce",
+   "description": "Controls are added that make the attack harder or its consequences smaller."
+  },
+  {
+   "key": "share",
+   "label": "Share",
+   "description": "The risk is carried together with another party, for example by contract or insurance. It does not go away."
+  },
+  {
+   "key": "avoid",
+   "label": "Avoid",
+   "description": "What gives rise to the risk is removed: the function, the interface or the data is taken out."
+  }
+ ]
+}

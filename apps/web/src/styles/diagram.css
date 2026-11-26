@@ -1,0 +1,589 @@
+/* The architecture diagram: elements, the assets inside them, trust boundaries, and what is laid over the drawing.
+   The three kinds of element are told apart by shape, as in a data flow diagram: a component has rounded
+   corners, an outside party is a shaded rectangle, a data store has only its top and bottom lines.
+   The bar, the canvas and the legend are those of every drawing (drawings.css); here is what only the diagram has.
+   Sizes on the canvas are in pixels, because the places of the elements are (diagram/places.ts). */
+
+/* ------------------------------------------------------------------ the page: the bar, the notes, the canvas */
+.diagram {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+.map-canvas.dg-canvas {
+  /* the part of the overview that is out of sight */
+  --xy-minimap-mask-background-color: color-mix(in srgb, var(--paper) 70%, transparent);
+}
+.dg-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 13px;
+}
+.dg-add span {
+  font-weight: 700;
+}
+.dg-add button,
+.diagram .map-bar > button {
+  font-size: 13px;
+  font-weight: 400;
+  padding: 0.3rem 0.7rem;
+}
+.dg-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 13px;
+}
+.dg-check input {
+  width: auto;
+  margin: 0;
+  accent-color: var(--accent);
+}
+/* how data flows are drawn: three small pictures of a line, the chosen one filled */
+.dg-lines {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 13px;
+}
+.dg-lines-label {
+  color: var(--grey);
+  white-space: nowrap;
+}
+.dg-lines-set {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--paper);
+}
+.dg-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.22rem 0.6rem 0.22rem 0.45rem;
+  border-left: 1px solid var(--line);
+  color: var(--grey);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.dg-line:first-child {
+  border-left: 0;
+  border-radius: var(--radius-control) 0 0 var(--radius-control);
+}
+.dg-line:last-child {
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+}
+.dg-line input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.dg-line svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.dg-line:hover {
+  color: var(--ink);
+}
+.dg-line-on,
+.dg-line-on:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.dg-line:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* what a layer shows, said above the canvas in a note (.banner): the gaps, the route of an attack path, the flows that are not drawn */
+.dg-gaps-note {
+  display: grid;
+  gap: 0.35rem;
+}
+.dg-gaps-note p {
+  margin: 0;
+  max-width: none;
+}
+.dg-gaps-note .map-legend {
+  margin: 0.1rem 0 0;
+}
+/* the note that says which route is shown is in the attacker's colour too */
+.banner.dg-route-note {
+  border-left-color: var(--route);
+  background: var(--route-wash);
+}
+.dg-route-note .ref {
+  margin-left: 0.4rem;
+}
+/* ------------------------------------------------------------------ an element: a head, and beneath it what it holds */
+.dg-node {
+  position: relative;
+  width: 176px;
+  background: var(--paper);
+  border: 1.2px solid var(--ink);
+  font-size: 12px;
+  line-height: 1.25;
+  cursor: grab;
+}
+.dg-node.dg-component {
+  border-radius: var(--radius-process);
+}
+.dg-node.dg-external_interactor {
+  background: var(--shade);
+  border-radius: var(--radius-control);
+}
+.dg-node.dg-data_store {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.dg-node.dg-picked {
+  box-shadow: 0 0 0 2px var(--accent);
+}
+/* the head is as high as two lines of a name need; a longer name is shown whole, and the element grows */
+.dg-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.4rem;
+  align-content: center;
+  min-height: 58px;
+  padding: 0.3rem 0.6rem;
+}
+.dg-head b {
+  font-size: 12px;
+  color: var(--grey);
+  white-space: nowrap;
+}
+.dg-name {
+  grid-column: 1 / -1;
+  font-weight: 700;
+  font-size: 12.5px;
+  overflow-wrap: anywhere;
+}
+.dg-risk {
+  justify-self: end;
+  font-size: 11px;
+}
+/* a place on the route of an attack path, counted from the entry point */
+.dg-step {
+  justify-self: end;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  border-radius: var(--radius-pill);
+  background: var(--route);
+  color: var(--paper);
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.15rem;
+  text-align: center;
+}
+
+/* the rows inside an element, and in the tray: each of a set height, so that an element's height is known */
+.dg-inside {
+  list-style: none;
+  margin: 0;
+  padding: 4px 5px 5px;
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 8px 8px;
+  background: color-mix(in srgb, var(--paper) 60%, transparent);
+  cursor: default;
+}
+.dg-external_interactor .dg-inside {
+  border-radius: 0 0 2px 2px;
+}
+.dg-inside li,
+.dg-tray li {
+  height: 19px;
+}
+/* A row can be picked up. Its text is cut to fit before it is drawn (rowText), so nothing is clipped here. */
+.dg-asset {
+  display: block;
+  width: 100%;
+  height: 17px;
+  padding: 0 0.3rem;
+  border-left: 2px solid var(--ink);
+  border-radius: var(--radius-control);
+  background: var(--shade);
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 17px;
+  white-space: nowrap;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: element;
+}
+.dg-asset:active {
+  cursor: grabbing;
+}
+.dg-asset:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.dg-asset b {
+  font-weight: 700;
+  color: var(--grey);
+}
+.dg-external_interactor .dg-asset {
+  background: var(--paper);
+}
+.dg-asset:hover,
+.dg-asset-on {
+  border-left-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+/* with the controls laid over, the rows are the controls that act in the element */
+.dg-rows-controls .dg-asset {
+  border-left-color: var(--done);
+  background: color-mix(in srgb, var(--done) 8%, transparent);
+}
+.dg-rows-controls .dg-asset:hover,
+.dg-rows-controls .dg-asset-on {
+  border-left-color: var(--accent);
+}
+
+/* ------------------------------------------------------------------ what is laid over an element */
+/* a row is being dragged over it */
+.dg-node.dg-over {
+  box-shadow: 0 0 0 2px var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+/* the route of an attack path: what is on it stands out in the attacker's colour, the rest steps back */
+.dg-node.dg-on-route {
+  border-color: var(--route);
+  box-shadow: 0 0 0 1.5px var(--route);
+}
+.dg-node.dg-dim {
+  opacity: 0.3;
+}
+/* while a route is recorded or something is placed, a click chooses */
+.dg-choosing .dg-node,
+.dg-choosing .react-flow__edge {
+  cursor: pointer;
+}
+.dg-node.dg-target {
+  outline: 2px dashed var(--accent);
+  outline-offset: 3px;
+  cursor: copy;
+}
+.dg-node.dg-target:hover {
+  outline-style: solid;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+/* The gap view. Outlines carry the answer: red where a risk lands and nothing stands, amber where only a
+   proposed control does, green where one acts. What no risk reaches steps back. */
+.dg-node.dg-gap-gap {
+  border-color: var(--todo);
+  box-shadow: 0 0 0 2.5px var(--todo);
+}
+.dg-node.dg-gap-planned {
+  border-color: var(--dg-proposed);
+  box-shadow: 0 0 0 2.5px var(--dg-proposed);
+}
+.dg-node.dg-gap-covered,
+.dg-node.dg-gap-before {
+  border-color: var(--done);
+  box-shadow: 0 0 0 1.5px var(--done);
+}
+.dg-node.dg-gap-before {
+  border-style: dashed;
+}
+.dg-node.dg-gap-none,
+.dg-node.dg-gap-accepted {
+  opacity: 0.45;
+}
+.dg-key {
+  display: inline-block;
+  width: 1.3rem;
+  height: 0.8rem;
+  border: 1.2px solid var(--ink);
+  border-radius: var(--radius-control);
+  background: var(--paper);
+}
+.dg-key.dg-gap-gap {
+  border-color: var(--todo);
+  box-shadow: 0 0 0 1.5px var(--todo);
+}
+.dg-key.dg-gap-planned {
+  border-color: var(--dg-proposed);
+  box-shadow: 0 0 0 1.5px var(--dg-proposed);
+}
+.dg-key.dg-gap-covered,
+.dg-key.dg-gap-before {
+  border-color: var(--done);
+}
+.dg-key.dg-gap-before {
+  border-style: dashed;
+}
+
+/* ------------------------------------------------------------------ a trust boundary: a frame around what is in it */
+.dg-boundary {
+  width: 100%;
+  height: 100%;
+  border: 1.5px dashed var(--accent-deep);
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--accent) 3.5%, transparent);
+  cursor: grab;
+}
+.dg-boundary.dg-picked {
+  border-style: solid;
+}
+.dg-boundary-name {
+  position: absolute;
+  left: 0.6rem;
+  top: 0.35rem;
+  font-size: 12px;
+  color: var(--accent-deep);
+}
+/* the controls that act at the boundary, while controls are laid over */
+.dg-boundary-note {
+  color: var(--done);
+  font-weight: 700;
+}
+.dg-canvas .react-flow__resize-control.dg-resize-line {
+  border-color: var(--accent);
+}
+.dg-canvas .react-flow__resize-control.dg-resize-handle {
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid var(--accent);
+  border-radius: 0;
+  background: var(--paper);
+}
+
+/* ------------------------------------------------------------------ data flows, and the points they are drawn from */
+/* the points a connection is dragged from: quiet until the element is pointed at */
+.dg-canvas .react-flow__handle {
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+.dg-canvas .react-flow__node:hover .react-flow__handle,
+.dg-canvas .react-flow__handle.connectingfrom,
+.dg-canvas .react-flow__handle.connectingto {
+  opacity: 1;
+  pointer-events: all;
+}
+.dg-canvas .react-flow__handle:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.dg-canvas .react-flow__handle-top,
+.dg-canvas .react-flow__handle-bottom {
+  left: 50%;
+}
+.dg-canvas .react-flow__connection-path {
+  stroke: var(--accent);
+  stroke-width: 1.6;
+}
+.dg-canvas .react-flow__edge.dg-flow {
+  cursor: pointer;
+}
+.dg-canvas .react-flow__edge.dg-flow .react-flow__edge-path {
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+.dg-canvas .react-flow__edge.dg-flow .react-flow__edge-text {
+  fill: var(--grey);
+  font-size: 11px;
+}
+.dg-canvas .react-flow__edge.dg-flow .react-flow__edge-textbg {
+  fill: var(--paper);
+}
+/* A line comes forward when it or an element at its end is chosen, and when it is on the route shown; the
+   others step back. A line under the pointer comes forward too, so that one can be followed among many. */
+.dg-canvas .react-flow__edge.dg-back {
+  opacity: 0.25;
+}
+.dg-canvas .react-flow__edge.dg-forward .react-flow__edge-path {
+  stroke: var(--accent);
+  stroke-width: 2.2;
+}
+.dg-canvas .react-flow__edge.dg-forward .react-flow__edge-text,
+.dg-canvas .react-flow__edge.dg-flow:hover .react-flow__edge-text {
+  fill: var(--accent-deep);
+}
+/* a line on the route of an attack path is the attacker's, whatever else is chosen */
+.dg-canvas .react-flow__edge.dg-route .react-flow__edge-path {
+  stroke: var(--route);
+}
+.dg-canvas .react-flow__edge.dg-route .react-flow__edge-text {
+  fill: var(--plum-800);
+}
+.dg-canvas .react-flow__edge.dg-flow:hover {
+  opacity: 1;
+}
+.dg-canvas .react-flow__edge.dg-flow:hover .react-flow__edge-path {
+  stroke: var(--accent);
+  stroke-width: 2.4;
+}
+.dg-canvas .react-flow__edge.dg-flow:hover .react-flow__edge-text {
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ the corners of the canvas: overview, and fitting everything */
+.dg-canvas .react-flow__minimap {
+  margin: 0 0 2.4rem 0.8rem;
+  border: 1px solid var(--ink);
+}
+.dg-canvas .react-flow__minimap-node.dg-mini-box {
+  fill: var(--field);
+}
+.dg-canvas .react-flow__minimap-node.dg-mini-frame {
+  fill: transparent;
+  stroke: var(--accent-deep);
+}
+.dg-canvas .react-flow__minimap-node.dg-mini-picked {
+  fill: var(--accent);
+}
+.dg-canvas .react-flow__controls-button svg.dg-fit {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+/* ------------------------------------------------------------------ what waits to be placed, and placing it */
+/* the assets that do not say where they live yet, or the controls that do not say where they act */
+.dg-tray {
+  position: absolute;
+  z-index: 4;
+  left: 0.8rem;
+  top: 0.8rem;
+  width: 22rem;
+  max-width: calc(100% - 1.6rem);
+  max-height: calc(100% - 4rem);
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 0.35rem;
+  padding: 0.5rem 0.6rem 0.6rem;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  font-size: 13px;
+}
+.dg-tray-shut {
+  width: auto;
+  padding-bottom: 0.5rem;
+}
+button.dg-tray-head {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: inherit;
+  font-weight: 400;
+  text-align: left;
+  white-space: normal;
+}
+.dg-tray-head::after {
+  content: " ▾";
+  color: var(--grey);
+}
+.dg-tray-shut .dg-tray-head::after {
+  content: " ▸";
+}
+.dg-tray p {
+  margin: 0;
+  font-size: 12px;
+}
+.dg-tray ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  overflow-y: auto;
+}
+/* placing without dragging: the offer beside a row, then the choice of where it goes */
+.dg-offer {
+  position: fixed;
+  z-index: 40;
+  width: 15rem;
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.6rem 0.7rem 0.7rem;
+  border: 1px solid var(--ink);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  font-size: 13px;
+}
+.dg-offer p,
+.dg-placing p {
+  margin: 0;
+}
+.dg-offer .muted {
+  font-size: 12px;
+}
+.dg-offer button {
+  justify-self: start;
+  padding: 0.35rem 0.7rem;
+  font-size: 13px;
+}
+.dg-placing {
+  position: absolute;
+  z-index: 6;
+  top: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(34rem, calc(100% - 3rem));
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.7rem 0.9rem 0.8rem;
+  border: 1px solid var(--ink);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  font-size: 14px;
+}
+.dg-placing-how {
+  display: flex;
+  gap: 0.5rem;
+}
+.dg-placing-how select {
+  flex: 1;
+  min-width: 0;
+}
+.dg-placing-how button {
+  padding: 0.3rem 0.8rem;
+  font-size: 13px;
+  font-weight: 400;
+}
+/* what was just done on the diagram, with the way to take it back */
+.dg-done {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 0.8rem;
+  transform: translateX(-50%);
+  max-width: calc(100% - 12rem);
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-card);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+  box-shadow: var(--shadow-card);
+}
+.dg-done .link {
+  color: var(--paper);
+  font-weight: 700;
+}
+.dg-done .muted {
+  color: color-mix(in srgb, var(--paper) 70%, transparent);
+}
+.dg-done .dg-done-close {
+  margin-left: 0.3rem;
+  font-weight: 400;
+  text-decoration: none;
+}

@@ -1,0 +1,21 @@
+# Proposes updates of what the project depends on, once a week, as one pull request per kind.
+# A reviewer reads the diff of THIRD_PARTY_LICENSES.md that comes with it (docs/dependencies.md).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      shipped:
+        dependency-type: production
+      tooling:
+        dependency-type: development
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly

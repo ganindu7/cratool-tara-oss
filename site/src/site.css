@@ -1,0 +1,643 @@
+/* The look of the website. It is the tool's own look at reading sizes: the same paper, ink and rules, the same
+   colours with the same meanings, the ribbon with the word mark, one face, and nothing downloaded.
+   Every colour, corner, rule and face is named in the tool's tokens (apps/web/src/styles/tokens.css), which the
+   build puts beside this file; that file says what each colour means. */
+
+:root {
+  color-scheme: light;
+  font: 17px / 1.6 var(--font-sans);
+  color: var(--ink);
+  background: var(--paper);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+pre {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: var(--accent-deep);
+}
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+code {
+  font: 0.82em / 1.5 var(--font-mono);
+}
+/* what is typed or read from a file stands on shade, behind the bar of a plain note */
+pre {
+  overflow-x: auto;
+  padding: var(--space-16) var(--space-24);
+  border-left: var(--border-bar) solid var(--ink);
+  background: var(--shade);
+}
+pre code {
+  font-size: 13px;
+}
+
+/* ------------------------------------------------------------------ the ribbon
+   The word mark and the ways into the site, as in the tool. It closes with the one blue rule across a page. */
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-8) var(--space-32);
+  width: var(--page);
+  margin-inline: auto;
+  padding: var(--space-16) 0 var(--space-12);
+  border-bottom: var(--border-strong) solid var(--accent);
+}
+.brand {
+  color: var(--ink);
+  font-size: 18px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.brand b {
+  color: var(--accent);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+.masthead nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8) var(--space-24);
+  font-size: 15px;
+}
+.masthead nav a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.masthead nav a:hover,
+.masthead nav a[aria-current] {
+  text-decoration: underline;
+}
+.button {
+  display: inline-block;
+  padding: 0.55rem 1.1rem;
+  border: var(--border-hair) solid var(--ink);
+  border-radius: var(--radius-control);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.button:hover {
+  background: var(--shade);
+  color: var(--ink);
+}
+.button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--paper);
+}
+.button.primary:hover {
+  border-color: var(--accent-deep);
+  background: var(--accent-deep);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  margin-top: var(--space-24);
+}
+
+/* ------------------------------------------------------------------ the tagline
+   One line in tilted letters. --tg is the size of the letters. The line is leaned as one piece, so the lean is
+   the same on every machine, whatever faces it has. Nothing else on the site is tilted. */
+.tagline {
+  --tg: 64px;
+  display: inline-block;
+  /* room at the right for what leans over */
+  margin: 0 calc(var(--tg) * 0.25) 0 0;
+  color: var(--ink);
+  font: 900 var(--tg) / 1.05 var(--font-sans);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  transform: skewX(-12deg);
+  transform-origin: 0 100%;
+}
+.tagline-fast {
+  color: var(--accent);
+}
+.tagline-secure {
+  color: var(--done);
+}
+
+/* ------------------------------------------------------------------ the start page */
+.home main > section {
+  width: var(--page);
+  margin-inline: auto;
+  padding-block: var(--space-64) 0;
+}
+.home .lede,
+.home .text p,
+.home section > p {
+  max-width: var(--measure);
+}
+.home .text p + p,
+.home .text ul,
+.home section > p + p {
+  margin-top: var(--space-16);
+}
+.home h2 {
+  max-width: 26ch;
+  margin-bottom: var(--space-16);
+  font-size: clamp(1.6rem, 1.2rem + 1.3vw, 2rem);
+  letter-spacing: -0.01em;
+}
+.home h3 {
+  margin-bottom: var(--space-8);
+  font-size: 20px;
+}
+.home main > .hero {
+  padding-top: var(--space-48);
+}
+/* the name of the tool is the headline, written as its word mark; both are set smaller where the window is narrow */
+.hero .name {
+  font-size: clamp(1.75rem, 0.8rem + 4.6vw, 4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.hero .name b {
+  color: var(--accent);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+/* the tagline stands under the name, on one line */
+.hero .tagline {
+  --tg: clamp(1.25rem, 0.75rem + 2.2vw, 2.5rem);
+  margin-top: var(--space-16);
+}
+.hero .lede {
+  margin-top: var(--space-24);
+  color: var(--stone-800);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+/* One risk as a chain of records, inside the dashed frame of a trust boundary: the picture of what a TARA builds.
+   Each link is a record as a drawing of the tool shows one: the bar at its left and its mark say it is settled. */
+.chain {
+  padding: var(--space-32) var(--space-16) var(--space-16);
+  border: var(--border-rule) dashed var(--accent-deep);
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--accent) 3.5%, transparent);
+}
+.chain ol {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--space-24);
+  list-style: none;
+}
+.chain-link {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: var(--space-4);
+  padding: var(--space-8) var(--space-12) var(--space-12);
+  border: var(--border-hair) solid var(--ink);
+  border-left: var(--border-bar) solid var(--done);
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  font-size: 14px;
+  line-height: 1.35;
+}
+/* the line that joins a record to the next, with its arrowhead */
+.chain-link + .chain-link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(100% + var(--border-bar));
+  width: var(--space-24);
+  border-top: 1.3px solid var(--ink);
+}
+.chain-link + .chain-link::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(100% + var(--border-bar));
+  border: 5px solid transparent;
+  border-left-color: var(--ink);
+  transform: translate(5px, -50%);
+}
+.chain-kind,
+.chain-rating {
+  color: var(--grey);
+  font-size: 12px;
+}
+.chain-id {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  font-weight: 700;
+}
+/* the mark of a settled record: a filled disc */
+.chain-id::before {
+  content: "";
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--done);
+}
+.chain figcaption {
+  margin-top: var(--space-16);
+  color: var(--accent-deep);
+  font-size: 14px;
+}
+/* the value of a risk, as the tool shows it: a numeral on its colour */
+.risk {
+  display: inline-block;
+  min-width: 1.7rem;
+  margin-right: var(--space-4);
+  padding: 0.08rem 0.3rem;
+  border-radius: var(--radius-control);
+  font-weight: 700;
+  text-align: center;
+}
+.risk-2 {
+  background: var(--risk-2);
+  color: var(--on-risk-2);
+}
+.risk-5 {
+  background: var(--risk-5);
+  color: var(--on-risk-5);
+}
+
+/* a screen of the tool is shown as it is, inside a hairline */
+.shot img,
+.questions img,
+.picture img,
+.report img {
+  border: var(--border-hair) solid var(--line);
+}
+.home main > .shot {
+  padding-top: var(--space-48);
+}
+
+.questions > ol {
+  list-style: none;
+  counter-reset: question;
+}
+.questions > ol > li {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  align-items: start;
+  gap: var(--space-48);
+  padding-block: var(--space-32);
+  border-top: var(--border-hair) solid var(--line);
+  counter-increment: question;
+}
+.questions > ol > li:nth-child(even) {
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+}
+.questions > ol > li:nth-child(even) .text {
+  order: 2;
+}
+.questions h3 {
+  font-size: 24px;
+}
+/* the number of the question */
+.questions h3::before {
+  content: counter(question);
+  display: block;
+  margin-bottom: var(--space-8);
+  color: var(--accent);
+  font-size: 54px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.pair,
+.data,
+.report {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-48);
+  align-items: start;
+}
+/* one drawing with what it shows said beside it: the picture has most of the room */
+.picture {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--space-48);
+  align-items: center;
+}
+.picture img {
+  width: 100%;
+  height: auto;
+}
+.pair h2,
+.picture h2 {
+  font-size: 26px;
+}
+.data ul {
+  padding-left: 1.2rem;
+}
+.report {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: center;
+}
+.report img {
+  width: auto;
+  max-height: 40rem;
+  justify-self: center;
+}
+
+.examples ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-32);
+  margin: var(--space-32) 0 var(--space-24);
+  list-style: none;
+  counter-reset: example;
+}
+.examples li {
+  padding-top: var(--space-16);
+  border-top: var(--border-rule) solid var(--ink);
+  counter-increment: example;
+}
+.examples li::before {
+  content: counter(example);
+  color: var(--accent);
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+}
+.examples h3 {
+  margin-top: var(--space-8);
+}
+
+.run .ways {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-32);
+  margin-bottom: var(--space-24);
+}
+.run h3 {
+  color: var(--grey);
+  font-size: 15px;
+}
+.honest dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-32);
+}
+.honest dt {
+  margin-bottom: var(--space-6);
+  font-size: 20px;
+  font-weight: 700;
+}
+.foot {
+  width: var(--page);
+  margin: var(--space-64) auto 0;
+  padding: var(--space-24) 0 var(--space-48);
+  border-top: var(--border-rule) solid var(--ink);
+  color: var(--grey);
+  font-size: 14px;
+}
+.foot a {
+  margin-right: var(--space-24);
+}
+.foot p + p {
+  margin-top: var(--space-6);
+}
+
+/* ------------------------------------------------------------------ pages of documentation */
+.doc-frame {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr) 13rem;
+  gap: var(--space-48);
+  width: var(--page);
+  margin-inline: auto;
+  padding-top: var(--space-32);
+}
+.doc-nav,
+.on-this-page {
+  position: sticky;
+  top: var(--space-24);
+  align-self: start;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.doc-nav h2,
+.on-this-page h2 {
+  margin: var(--space-24) 0 var(--space-6);
+  color: var(--grey);
+  font-size: 13px;
+}
+.doc-nav section:first-child h2,
+.on-this-page h2 {
+  margin-top: 0;
+}
+.doc-nav ul,
+.on-this-page ul {
+  list-style: none;
+}
+/* the pages stand on a line, as the steps of the tool do; the page that is open has the accent */
+.doc-nav a,
+.on-this-page a {
+  display: block;
+  padding: 0.22rem 0 0.22rem 0.7rem;
+  border-left: var(--border-strong) solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+.doc-nav a:hover,
+.on-this-page a:hover {
+  border-left-color: var(--ink);
+}
+.doc-nav a[aria-current="page"] {
+  border-left-color: var(--accent);
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+.on-this-page {
+  font-size: 14px;
+}
+
+.prose {
+  min-width: 0;
+  padding-bottom: var(--space-64);
+}
+.prose > * {
+  max-width: var(--measure);
+}
+/* the title of a page is in the accent, as the title of a step is */
+.prose h1 {
+  margin-bottom: var(--space-24);
+  color: var(--accent);
+  font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.4rem);
+  letter-spacing: -0.01em;
+}
+.prose h2 {
+  margin: var(--space-48) 0 var(--space-12);
+  padding-top: var(--space-16);
+  border-top: var(--border-rule) solid var(--ink);
+  font-size: 24px;
+}
+.prose h3 {
+  margin: var(--space-32) 0 var(--space-8);
+  font-size: 19px;
+}
+.prose p,
+.prose ul,
+.prose ol,
+.prose pre,
+.prose blockquote {
+  margin-top: var(--space-16);
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.4rem;
+}
+.prose li + li {
+  margin-top: var(--space-4);
+}
+.prose :not(pre) > code {
+  padding: 0.1em 0.3em;
+  background: var(--shade);
+}
+/* a note: the bar at its left, on shade */
+.prose blockquote {
+  margin-inline: 0;
+  padding: var(--space-8) var(--space-16);
+  border-left: var(--border-bar) solid var(--ink);
+  background: var(--shade);
+}
+.prose blockquote > :first-child {
+  margin-top: 0;
+}
+/* tables, pictures and code may be wider than the text */
+.prose > .table,
+.prose > figure,
+.prose > pre {
+  max-width: none;
+}
+.prose .table {
+  margin-top: var(--space-24);
+  overflow-x: auto;
+}
+/* a table as the tool sets one: its head on shade between two rules in ink, its rows parted by hairlines */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.prose th,
+.prose td {
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+}
+.prose th {
+  border-top: var(--border-rule) solid var(--ink);
+  border-bottom: var(--border-hair) solid var(--ink);
+  background: var(--shade);
+  vertical-align: bottom;
+}
+.prose td {
+  border-bottom: var(--border-hair) solid var(--line);
+  vertical-align: top;
+}
+.prose thead th:empty {
+  display: none;
+}
+.prose figure {
+  margin-top: var(--space-24);
+}
+.prose figure img {
+  border: var(--border-hair) solid var(--line);
+}
+.prose figcaption {
+  margin-top: var(--space-8);
+  color: var(--grey);
+  font-size: 14px;
+}
+.prose .edit {
+  margin-top: var(--space-64);
+  padding-top: var(--space-16);
+  border-top: var(--border-hair) solid var(--line);
+  font-size: 14px;
+}
+
+/* ------------------------------------------------------------------ narrow screens */
+@media (max-width: 68rem) {
+  .doc-frame {
+    grid-template-columns: 14rem minmax(0, 1fr);
+  }
+  .on-this-page {
+    display: none;
+  }
+  /* the chain runs downwards, and the lines between its links are left out */
+  .chain ol {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-12);
+  }
+  .chain-link + .chain-link::before,
+  .chain-link + .chain-link::after {
+    display: none;
+  }
+}
+@media (max-width: 48rem) {
+  :root {
+    font-size: 16px;
+  }
+  .doc-frame,
+  .questions > ol > li,
+  .pair,
+  .picture,
+  .data,
+  .report,
+  .run .ways,
+  .examples ol,
+  .honest dl {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-24);
+  }
+  .questions > ol > li:nth-child(even) .text {
+    order: 0;
+  }
+  .doc-nav {
+    position: static;
+    max-height: none;
+    padding-bottom: var(--space-16);
+    border-bottom: var(--border-hair) solid var(--line);
+  }
+}

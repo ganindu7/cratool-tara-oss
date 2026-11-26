@@ -1,0 +1,184 @@
+/* The design language of the tool, as names: every colour, corner, rule, shadow and face is named here, once.
+   The app and the website both load this file; the report repeats its colours (packages/report/src/html.ts, svg.ts).
+
+   A colour means one thing. Blue is what can be acted on, and the tool itself. Green is settled. Yellow waits.
+   Red asks for an entry, or deletes. Plum is the attacker. Nothing is coloured to look nice.
+
+   Build with the roles, not with the steps of a scale: a step is for the rare case no role covers. Text on a wash
+   is the 700 or 800 of its own family. Every pair of text and ground that the roles name holds 4.5:1 or more, and
+   a status is never colour alone: a chip carries its words, a mark its shape. */
+
+:root {
+  /* ------------------------------------------------------------------ the scales, from light to dark */
+  /* blue: what can be acted on, and the tool itself */
+  --blue-50: #f0f8ff;
+  --blue-100: #deefff;
+  --blue-200: #c1e1fc;
+  --blue-300: #99caf4;
+  --blue-400: #67a8dd;
+  --blue-500: #4a93cb;
+  --blue-600: #2d77ae;
+  --blue-700: #1d5d8c;
+  --blue-800: #154566;
+  --blue-900: #082e49;
+  /* green: what is settled */
+  --green-50: #f3f8f4;
+  --green-100: #e6f1e7;
+  --green-200: #dcefe0;
+  --green-300: #b9dcc0;
+  --green-400: #7fb98b;
+  --green-500: #559a63;
+  --green-600: #3d7d46;
+  --green-700: #2f6b3a;
+  --green-800: #224f2b;
+  --green-900: #16351d;
+  /* olive: the step between green and yellow on the risk scale */
+  --olive-50: #f4f9ec;
+  --olive-100: #e8f1d9;
+  --olive-200: #d3e4b7;
+  --olive-300: #b6cf8a;
+  --olive-400: #90af51;
+  --olive-500: #7a9a2e;
+  --olive-600: #5f7f02;
+  --olive-700: #4a6404;
+  --olive-800: #354900;
+  --olive-900: #223100;
+  /* yellow: what waits */
+  --yellow-50: #fefaed;
+  --yellow-100: #fdf3d7;
+  --yellow-200: #f3da9c;
+  --yellow-300: #e6bf62;
+  --yellow-400: #c79a00;
+  --yellow-500: #b9870b;
+  --yellow-600: #a27201;
+  --yellow-700: #8a5a00;
+  --yellow-800: #593a00;
+  --yellow-900: #3e2500;
+  /* red: what is to complete, and what deletes */
+  --red-50: #fff4f3;
+  --red-100: #ffe6e4;
+  --red-200: #ffcfca;
+  --red-300: #feaba4;
+  --red-400: #fa7068;
+  --red-500: #e7534c;
+  --red-600: #d3403b;
+  --red-700: #b3261e;
+  --red-800: #8c1d18;
+  --red-900: #550907;
+  /* rust: the step between yellow and red on the risk scale */
+  --rust-50: #fff4ee;
+  --rust-100: #ffe8db;
+  --rust-200: #fed2b9;
+  --rust-300: #feaf84;
+  --rust-400: #ec8143;
+  --rust-500: #d9661a;
+  --rust-600: #b54e06;
+  --rust-700: #923b01;
+  --rust-800: #6d2900;
+  --rust-900: #4c1900;
+  /* plum: the attacker */
+  --plum-50: #fff3fb;
+  --plum-100: #fbe6f4;
+  --plum-200: #f6cfea;
+  --plum-300: #e9afd9;
+  --plum-400: #cf85bd;
+  --plum-500: #bb6da9;
+  --plum-600: #9d528e;
+  --plum-700: #7f3d73;
+  --plum-800: #5e2b55;
+  --plum-900: #401c3a;
+  /* stone: the neutral of paper, rules and text */
+  --stone-50: #f9f9f8;
+  --stone-100: #f1f1ef;
+  --stone-200: #dad9d5;
+  --stone-300: #c6c4bf;
+  --stone-400: #a4a19b;
+  --stone-500: #8f8c85;
+  --stone-600: #74716a;
+  --stone-700: #5c5953;
+  --stone-800: #3f3d38;
+  --stone-900: #1d1c18;
+
+  /* ------------------------------------------------------------------ the roles: what a colour is for */
+  /* paper, ink, and what stands between them */
+  --paper: #ffffff;
+  --ink: var(--stone-900);
+  --grey: var(--stone-700);
+  --placeholder: var(--stone-600);
+  --field: var(--stone-500);
+  --faint: var(--stone-400);
+  --line: var(--stone-200);
+  --shade: var(--stone-100);
+  --rail-bg: var(--stone-50);
+  /* act here: the word mark, the title of a step, the main button, the current stop */
+  --accent: var(--blue-700);
+  --accent-deep: var(--blue-800);
+  --accent-wash: var(--blue-100);
+  /* settled */
+  --done: var(--green-700);
+  --done-wash: var(--green-100);
+  /* waits */
+  --amber: var(--yellow-700);
+  --amber-wash: var(--yellow-100);
+  /* to complete, and what deletes; on a wash, red text is the deep one */
+  --todo: var(--red-700);
+  --todo-deep: var(--red-800);
+  --todo-wash: var(--red-100);
+  /* the value of a risk, 1 to 5: its fill, the numeral on it, and the wash of its cell in a matrix */
+  --risk-1: var(--green-600);
+  --risk-2: var(--olive-500);
+  --risk-3: var(--yellow-400);
+  --risk-4: var(--rust-500);
+  --risk-5: var(--red-700);
+  --on-risk-1: var(--paper);
+  --on-risk-2: var(--ink);
+  --on-risk-3: var(--ink);
+  --on-risk-4: var(--ink);
+  --on-risk-5: var(--paper);
+  --wash-1: var(--green-200);
+  --wash-2: var(--olive-100);
+  --wash-3: var(--yellow-200);
+  --wash-4: var(--rust-200);
+  --wash-5: var(--red-200);
+  /* the route of an attack path, and nothing else */
+  --route: var(--plum-700);
+  --route-wash: var(--plum-100);
+  /* on the gap view of the diagram: an element where only a proposed control stands */
+  --dg-proposed: var(--yellow-600);
+
+  /* ------------------------------------------------------------------ shapes, space and faces */
+  /* corners: nearly square; round means something (a process on the diagram, a count) */
+  --radius-control: 2px;
+  --radius-card: 4px;
+  --radius-process: 9px;
+  --radius-pill: 999px;
+  /* rules: a hairline, the rule that opens a table, the rule under the ribbon, the bar that says what a thing is */
+  --border-hair: 1px;
+  --border-rule: 1.5px;
+  --border-strong: 2px;
+  --border-bar: 3px;
+  /* shadows: for what lies over the page, and the one hard shadow of a block on a drawing */
+  --shadow-tip: 0 2px 8px #0000002e;
+  --shadow-card: 0 6px 20px #0000001f;
+  --shadow-overlay: 0 10px 30px #0000002e;
+  --shadow-block: 4px 4px 0 #dad9d5;
+  /* space, in steps; a step is named by its size in px */
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  /* the route of steps at the left, the space at the sides of a step; the measure and the column of the website */
+  --rail: 15.5rem;
+  --gutter: 2rem;
+  --measure: 66ch;
+  --page: min(74rem, 100% - 3rem);
+  /* No font is fetched: Lato where the machine has it, and the system's own otherwise. */
+  --font-sans: Lato, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}

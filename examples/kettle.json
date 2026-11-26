@@ -1,0 +1,1847 @@
+{
+  "format": "open-tara/1.0",
+  "id": "example-kettle",
+  "seq": 0,
+  "meta": {
+    "title": "Example TARA: a kettle you can switch on from your phone",
+    "product": "Connected kettle",
+    "organisation": null,
+    "documentNumber": "EX-TARA-000",
+    "revision": "1.0",
+    "status": "draft",
+    "example": true,
+    "storageLocation": "Training material",
+    "distribution": "Anyone learning the method",
+    "createdAt": "2026-11-20T09:00:00.000Z",
+    "updatedAt": "2026-11-20T09:00:00.000Z",
+    "releasedAt": null,
+    "basedOn": null,
+    "revisionReason": null
+  },
+  "method": {
+    "source": "Open TARA method 1.0",
+    "sources": [
+      {
+        "part": "Structure: impact in four categories at four levels, attack feasibility at four levels, risk value 1 to 5",
+        "source": "The requirements of ISO/SAE 21434:2021, clause 15. Only the structure is taken; no text of the standard is used.",
+        "terms": "A structure, not text"
+      },
+      {
+        "part": "Attack feasibility: the five factors, their points and the bands",
+        "source": "Common Methodology for Information Technology Security Evaluation, CEM:2022 (November 2022), Annex B.6, Tables B.2 and B.3. Common Criteria portal, commoncriteriaportal.org",
+        "terms": "The legal notice of CEM:2022 supports reuse of the text by any user, including modification and reuse of parts. The descriptions here are written anew."
+      },
+      {
+        "part": "Risk matrix",
+        "source": "A. Lautenbach, M. Almgren, T. Olovsson: Proposing HEAVENS 2.0, an automotive risk assessment model. ACM Computer Science in Cars Symposium (CSCS '21), 2021, Table 8. doi:10.1145/3488904.3493378",
+        "terms": "The sixteen values are used and cited; no text of the paper is used."
+      },
+      {
+        "part": "Impact criteria, descriptions of factors, threat categories and treatments",
+        "source": "Written for this method.",
+        "terms": "Free to use and change with the tool."
+      }
+    ],
+    "impact_levels": [
+      {
+        "level": 3,
+        "name": "Severe"
+      },
+      {
+        "level": 2,
+        "name": "Major"
+      },
+      {
+        "level": 1,
+        "name": "Moderate"
+      },
+      {
+        "level": 0,
+        "name": "Negligible"
+      }
+    ],
+    "impact_categories": [
+      {
+        "key": "safety",
+        "label": "Safety",
+        "heading": "Harm to people: users, bystanders, anyone who relies on the product",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "S3 Severe: life is in danger",
+            "criteria": "Someone may die or be injured so badly that survival is uncertain."
+          },
+          {
+            "level": 2,
+            "label": "S2 Major: serious injury",
+            "criteria": "Someone may be seriously injured and need hospital treatment; survival is expected."
+          },
+          {
+            "level": 1,
+            "label": "S1 Moderate: minor injury",
+            "criteria": "Someone may be slightly injured: first aid or one visit to a doctor is enough."
+          },
+          {
+            "level": 0,
+            "label": "S0 Negligible: nobody is hurt",
+            "criteria": "Nobody is injured."
+          }
+        ]
+      },
+      {
+        "key": "financial",
+        "label": "Financial",
+        "heading": "Loss of money, for whoever bears it: the owner or user, the operator, or the maker",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "F3 Severe: a loss that may not be survived",
+            "criteria": "The loss may be more than the affected party can bear: a business may fail, or a person may not be able to make the loss good."
+          },
+          {
+            "level": 2,
+            "label": "F2 Major: a heavy loss that can be borne",
+            "criteria": "The loss is heavy and felt for a long time, but the affected party gets over it. For example a recall, a lost contract, or large claims."
+          },
+          {
+            "level": 1,
+            "label": "F1 Moderate: a loss within ordinary means",
+            "criteria": "The loss is noticed and is covered from ordinary means. For example repairs, the replacement of some units, or extra support work."
+          },
+          {
+            "level": 0,
+            "label": "F0 Negligible: no loss that matters",
+            "criteria": "There is no loss, or one too small to matter."
+          }
+        ]
+      },
+      {
+        "key": "operational",
+        "label": "Operational",
+        "heading": "What the product is for, and whether it still does it",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "O3 Severe: the main function is lost or wrong, widely or lastingly",
+            "criteria": "A main function is lost or does the wrong thing, on many units or for a long time, or cannot be restored without replacing the product."
+          },
+          {
+            "level": 2,
+            "label": "O2 Major: a main function is lost for a time",
+            "criteria": "A main function is lost or badly degraded on some units or for a limited time; the work the product does stops until it is repaired or restored."
+          },
+          {
+            "level": 1,
+            "label": "O1 Moderate: a lesser function is lost",
+            "criteria": "A function that is not essential is lost, or the product is slower or less convenient. It still does what it is for."
+          },
+          {
+            "level": 0,
+            "label": "O0 Negligible: no effect that is noticed",
+            "criteria": "What the product does is not affected, or not so that a user would notice."
+          }
+        ]
+      },
+      {
+        "key": "privacy",
+        "label": "Privacy",
+        "heading": "The people whose data the product holds or passes on",
+        "ratings": [
+          {
+            "level": 3,
+            "label": "P3 Severe: sensitive data of identified people, with lasting harm",
+            "criteria": "Sensitive personal data of people who can be identified is disclosed or changed, and the harm to them cannot be undone. Sensitive data is, for example, data about health, where someone has been, passwords, or payment data."
+          },
+          {
+            "level": 2,
+            "label": "P2 Major: data of identified people, with serious consequences",
+            "criteria": "Personal data that identifies people is disclosed or changed, with serious consequences for them that can be limited afterwards."
+          },
+          {
+            "level": 1,
+            "label": "P1 Moderate: data that identifies people only with effort",
+            "criteria": "Personal data is disclosed or changed that can be tied to a person only with effort, or the consequences for the people concerned are an inconvenience."
+          },
+          {
+            "level": 0,
+            "label": "P0 Negligible: no personal data that matters",
+            "criteria": "No personal data is involved, or it cannot be tied to anyone."
+          }
+        ]
+      }
+    ],
+    "feasibility_factors": [
+      {
+        "key": "elapsed_time",
+        "label": "Elapsed time",
+        "description": "The time an attacker needs to find the weakness and to carry the attack out, all steps of the path together.",
+        "options": [
+          {
+            "key": "lt_1_day",
+            "label": "Up to one day",
+            "points": 0
+          },
+          {
+            "key": "lt_1_week",
+            "label": "Up to one week",
+            "points": 1
+          },
+          {
+            "key": "lt_2_weeks",
+            "label": "Up to two weeks",
+            "points": 2
+          },
+          {
+            "key": "lt_1_month",
+            "label": "Up to one month",
+            "points": 4
+          },
+          {
+            "key": "lt_2_months",
+            "label": "Up to two months",
+            "points": 7
+          },
+          {
+            "key": "lt_3_months",
+            "label": "Up to three months",
+            "points": 10
+          },
+          {
+            "key": "lt_4_months",
+            "label": "Up to four months",
+            "points": 13
+          },
+          {
+            "key": "lt_5_months",
+            "label": "Up to five months",
+            "points": 15
+          },
+          {
+            "key": "lt_6_months",
+            "label": "Up to six months",
+            "points": 17
+          },
+          {
+            "key": "gt_6_months",
+            "label": "More than six months",
+            "points": 19
+          }
+        ]
+      },
+      {
+        "key": "expertise",
+        "label": "Expertise",
+        "description": "What the attacker has to know and be able to do.",
+        "options": [
+          {
+            "key": "layman",
+            "label": "Layman",
+            "points": 0,
+            "description": "No particular knowledge or skill. The attacker follows instructions that someone else has published."
+          },
+          {
+            "key": "proficient",
+            "label": "Proficient",
+            "points": 3,
+            "description": "Familiar with how products of this kind are secured and with the usual attacks on them. Several proficient people working together still count as proficient."
+          },
+          {
+            "key": "expert",
+            "label": "Expert",
+            "points": 6,
+            "description": "Knows the algorithms, protocols, hardware or techniques concerned well enough to devise a new attack or new tools."
+          },
+          {
+            "key": "multiple_experts",
+            "label": "Multiple experts",
+            "points": 8,
+            "description": "Experts of different fields are needed, each for a distinct step of the attack."
+          }
+        ]
+      },
+      {
+        "key": "knowledge",
+        "label": "Knowledge of the product",
+        "description": "How hard it is to get the information about the product that the attack needs.",
+        "options": [
+          {
+            "key": "public",
+            "label": "Public",
+            "points": 0,
+            "description": "The information is published or can be found by anyone, for example on the internet or in the manual."
+          },
+          {
+            "key": "restricted",
+            "label": "Restricted",
+            "points": 3,
+            "description": "The information is kept by the maker and given to others only under an agreement, for example to suppliers or service partners."
+          },
+          {
+            "key": "sensitive",
+            "label": "Sensitive",
+            "points": 7,
+            "description": "The information is shared only between certain teams of the maker, and access to it is controlled."
+          },
+          {
+            "key": "critical",
+            "label": "Critical",
+            "points": 11,
+            "description": "The information is known to a few named people only and is kept under strict control."
+          }
+        ]
+      },
+      {
+        "key": "window_of_opportunity",
+        "label": "Window of opportunity",
+        "description": "How much access to the product the attack needs: for how long, to how many units, and how hard that access is to get.",
+        "options": [
+          {
+            "key": "unlimited",
+            "label": "Unnecessary or unlimited",
+            "points": 0,
+            "description": "The attack needs no access to the product, or the access it needs is there at any time for as long as wanted, for example over the internet."
+          },
+          {
+            "key": "easy",
+            "label": "Easy",
+            "points": 1,
+            "description": "Access is needed for a short time, to one or a few units, and is simple to get."
+          },
+          {
+            "key": "moderate",
+            "label": "Moderate",
+            "points": 4,
+            "description": "Access is needed for longer or to several units, or is to be had only at certain places or times."
+          },
+          {
+            "key": "difficult",
+            "label": "Difficult",
+            "points": 10,
+            "description": "Access is needed for a long time or to many units, or is hard to get, for example to an opened device in a guarded place."
+          }
+        ]
+      },
+      {
+        "key": "equipment",
+        "label": "Equipment",
+        "description": "The hardware and software the attack needs.",
+        "options": [
+          {
+            "key": "standard",
+            "label": "Standard",
+            "points": 0,
+            "description": "What an attacker has at hand or gets without effort: a laptop, common tools, freely available software."
+          },
+          {
+            "key": "specialised",
+            "label": "Specialised",
+            "points": 4,
+            "description": "Not at hand, but bought without difficulty or written with moderate effort: for example a bus or protocol analyser, a debug probe, or scripts made for this attack."
+          },
+          {
+            "key": "bespoke",
+            "label": "Bespoke",
+            "points": 7,
+            "description": "Made for the purpose, or so costly or controlled that it is hard to obtain. Clearly different sets of specialised equipment for distinct steps also count as bespoke."
+          },
+          {
+            "key": "multiple_bespoke",
+            "label": "Multiple bespoke",
+            "points": 9,
+            "description": "Different bespoke equipment is needed for distinct steps of the attack."
+          }
+        ]
+      }
+    ],
+    "feasibility_bands": [
+      {
+        "key": "high",
+        "label": "High",
+        "min": 0,
+        "max": 13,
+        "potential": "Basic or enhanced-basic attack potential is enough"
+      },
+      {
+        "key": "medium",
+        "label": "Medium",
+        "min": 14,
+        "max": 19,
+        "potential": "Moderate attack potential is needed"
+      },
+      {
+        "key": "low",
+        "label": "Low",
+        "min": 20,
+        "max": 24,
+        "potential": "High attack potential is needed"
+      },
+      {
+        "key": "very_low",
+        "label": "Very low",
+        "min": 25,
+        "potential": "More than high attack potential is needed"
+      }
+    ],
+    "risk_matrix": {
+      "0": {
+        "very_low": 1,
+        "low": 1,
+        "medium": 2,
+        "high": 2
+      },
+      "1": {
+        "very_low": 1,
+        "low": 2,
+        "medium": 3,
+        "high": 4
+      },
+      "2": {
+        "very_low": 2,
+        "low": 3,
+        "medium": 4,
+        "high": 5
+      },
+      "3": {
+        "very_low": 3,
+        "low": 4,
+        "medium": 5,
+        "high": 5
+      }
+    },
+    "threat_categories": [
+      {
+        "key": "spoofing",
+        "label": "Spoofing",
+        "description": "Someone or something passes as another: a person, a device, a server or a message source."
+      },
+      {
+        "key": "tampering",
+        "label": "Tampering",
+        "description": "Data, software or settings are changed by someone who should not be able to."
+      },
+      {
+        "key": "repudiation",
+        "label": "Repudiation",
+        "description": "Someone can deny having done something, because nothing proves it."
+      },
+      {
+        "key": "information_disclosure",
+        "label": "Information disclosure",
+        "description": "Information reaches someone who should not have it."
+      },
+      {
+        "key": "denial_of_service",
+        "label": "Denial of service",
+        "description": "A function or a service is made unavailable to those who need it."
+      },
+      {
+        "key": "elevation_of_privilege",
+        "label": "Elevation of privilege",
+        "description": "Someone gains rights they were not given."
+      },
+      {
+        "key": "general",
+        "label": "General",
+        "description": "A threat that fits none of the other categories."
+      }
+    ],
+    "treatments": [
+      {
+        "key": "retain",
+        "label": "Retain",
+        "description": "The risk is accepted as it is, because it is low enough or for a reason that is written down and approved."
+      },
+      {
+        "key": "reduce",
+        "label": "Reduce",
+        "description": "Controls are added that make the attack harder or its consequences smaller."
+      },
+      {
+        "key": "share",
+        "label": "Share",
+        "description": "The risk is carried together with another party, for example by contract or insurance. It does not go away."
+      },
+      {
+        "key": "avoid",
+        "label": "Avoid",
+        "description": "What gives rise to the risk is removed: the function, the interface or the data is taken out."
+      }
+    ]
+  },
+  "scope": {
+    "configuration_id": {
+      "decision": "CFG-KETTLE-K2-EU",
+      "evidence": "KT-DOC-01 section 1"
+    },
+    "scoring_method": {
+      "decision": "The Open TARA method, version 1.0: impact 0 to 3 in four categories, attack feasibility by attack potential (Common Criteria), risk value 1 to 5.",
+      "evidence": "KT-DOC-02"
+    },
+    "variant_boundary": {
+      "decision": "Kettle K2 for the European market, with software 1.4. The K1, which has no Wi-Fi, is not covered.",
+      "evidence": "KT-DOC-01 section 1"
+    },
+    "intended_use": {
+      "decision": "Boiling water at home. Switched on at the kettle or from the owner's phone.",
+      "evidence": "KT-DOC-01 section 2"
+    },
+    "architecture_trust_boundaries": {
+      "decision": "One trust boundary: the kettle's housing. The phone app, the update server and the home network are outside it.",
+      "evidence": "KT-DOC-01 section 3"
+    },
+    "lifecycle_support": {
+      "decision": "Security updates for five years from the day the last K2 is sold.",
+      "evidence": "KT-DOC-07 section 2"
+    },
+    "product_market_context": {
+      "decision": "A consumer product sold in shops. This is a training example: the product is invented.",
+      "evidence": "KT-DOC-01 section 2"
+    },
+    "assumptions_exclusions": {
+      "decision": "The owner's phone and the home router are not part of the product and are assessed by their makers. Electrical and fire safety are covered by the product safety assessment; this TARA relies on its mechanical cut-out and says so where it does.",
+      "evidence": "KT-DOC-01 section 4"
+    },
+    "reassessment_triggers": {
+      "decision": "A new software release, a change of the Wi-Fi module, a reported vulnerability, and in any case every year.",
+      "evidence": "KT-DOC-07 section 3"
+    },
+    "cra_applicability": {
+      "decision": "in_scope",
+      "evidence": "KT-DOC-03: a product with digital elements that connects to a network, placed on the Union market"
+    },
+    "iso21434_applicability": {
+      "decision": "in_scope",
+      "evidence": "KT-DOC-04: the standard is written for road vehicles; its method is used here by the company's choice"
+    },
+    "r155_applicability": {
+      "decision": "out_of_scope",
+      "evidence": "KT-DOC-01 section 2: not a vehicle"
+    },
+    "scope_review": {
+      "decision": "Approved",
+      "evidence": null
+    },
+    "cra_annex_i_part_i_1": {
+      "decision": "The risk assessment is this TARA. Its three controls are in the product; two risks are accepted with a claim.",
+      "evidence": "KT-DOC-05"
+    },
+    "cra_annex_i_part_ii": {
+      "decision": "Vulnerability handling follows the maker's procedure.",
+      "evidence": "KT-DOC-07"
+    },
+    "cra_annex_vii": {
+      "decision": "The technical documentation holds this assessment, the security concept and the test report.",
+      "evidence": "KT-DOC-01, KT-DOC-05, KT-TEST-01"
+    },
+    "iso_work_products": {
+      "decision": "Item definition, TARA, cybersecurity goals and the concept are kept.",
+      "evidence": "KT-DOC-01, KT-DOC-05"
+    },
+    "vehicle_supplier_evidence": {
+      "decision": null,
+      "evidence": null
+    },
+    "release_review": {
+      "decision": "Approved",
+      "evidence": null
+    }
+  },
+  "items": [
+    {
+      "id": "IT01",
+      "configurationRef": "CFG-KETTLE-K2-EU",
+      "name": "Connected kettle K2",
+      "boundaryFunctions": "The kettle with its controller and settings memory. The functions are to boil water, to be switched on at the kettle or from the owner's phone, and to keep its own software up to date.",
+      "architectureInterfaces": "Two ways in, both over the home Wi-Fi: commands from the phone app, and software updates from the maker's server. See the diagram and KT-DOC-01 section 3.",
+      "environmentUse": "A home kitchen. Used by the owner, family and guests. Connected to the home Wi-Fi, which guests may also use. Eventually thrown away, returned or sold on."
+    }
+  ],
+  "elements": [
+    {
+      "id": "EX01",
+      "itemId": "IT01",
+      "kind": "external_interactor",
+      "name": "Owner's phone app",
+      "description": "The app that switches the kettle on, sets the temperature and shows when the water has boiled. Talks to the kettle over the home Wi-Fi.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 0,
+      "y": 96,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "EX02",
+      "itemId": "IT01",
+      "kind": "external_interactor",
+      "name": "Maker's update server",
+      "description": "Offers new software for the kettle. The kettle asks it once a day.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 0,
+      "y": 312,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "TB01",
+      "itemId": "IT01",
+      "kind": "trust_boundary",
+      "name": "The kettle",
+      "description": "Everything inside the kettle's housing. What comes in over Wi-Fi comes from outside and is not trusted until it is checked.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": null,
+      "x": 300,
+      "y": 110,
+      "w": 640,
+      "h": 250
+    },
+    {
+      "id": "C01",
+      "itemId": "IT01",
+      "kind": "component",
+      "name": "Kettle controller",
+      "description": "The small computer in the base: joins the Wi-Fi, takes commands, switches the heating element.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB01",
+      "x": 360,
+      "y": 204,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "ST01",
+      "itemId": "IT01",
+      "kind": "data_store",
+      "name": "Settings memory",
+      "description": "Keeps the home Wi-Fi name and password, the paired phones and the owner's settings.",
+      "sourceId": null,
+      "targetId": null,
+      "direction": null,
+      "boundaryId": "TB01",
+      "x": 720,
+      "y": 204,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF01",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Commands and status",
+      "description": "Switch on, switch off, set temperature; and back: temperature, boiled, error.",
+      "sourceId": "EX01",
+      "targetId": "C01",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF02",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Software updates",
+      "description": "A new version of the kettle's software, when there is one.",
+      "sourceId": "EX02",
+      "targetId": "C01",
+      "direction": "forward",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    },
+    {
+      "id": "DF03",
+      "itemId": "IT01",
+      "kind": "data_flow",
+      "name": "Settings read and stored",
+      "description": "Read at every start; written when the owner changes something.",
+      "sourceId": "C01",
+      "targetId": "ST01",
+      "direction": "both",
+      "boundaryId": null,
+      "x": null,
+      "y": null,
+      "w": null,
+      "h": null
+    }
+  ],
+  "assets": [
+    {
+      "id": "A01",
+      "name": "Switch-on command",
+      "itemId": "IT01",
+      "elementIds": [
+        "DF01",
+        "C01"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A02",
+      "name": "Kettle software",
+      "itemId": "IT01",
+      "elementIds": [
+        "C01"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A03",
+      "name": "Home Wi-Fi password",
+      "itemId": "IT01",
+      "elementIds": [
+        "ST01"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    },
+    {
+      "id": "A04",
+      "name": "Kettle status",
+      "itemId": "IT01",
+      "elementIds": [
+        "DF01"
+      ],
+      "variant": "All",
+      "coverageRationale": null
+    }
+  ],
+  "damages": [
+    {
+      "id": "DS-0001",
+      "assetId": "A01",
+      "confidentiality": false,
+      "integrity": true,
+      "availability": false,
+      "description": "The kettle is switched on by someone who is not the owner, while nobody is in the kitchen.",
+      "ratings": {
+        "safety": 1,
+        "financial": 1,
+        "operational": 1,
+        "privacy": 0
+      },
+      "impactRationale": "Moderate. A mechanical cut-out, which no software can switch off, stops an empty kettle from overheating. What is left is a nuisance, wasted energy, and an owner who no longer trusts the product."
+    },
+    {
+      "id": "DS-0002",
+      "assetId": "A02",
+      "confidentiality": false,
+      "integrity": true,
+      "availability": false,
+      "description": "Software the maker did not release runs in the kettle and ignores the temperature limit.",
+      "ratings": {
+        "safety": 3,
+        "financial": 3,
+        "operational": 1,
+        "privacy": 0
+      },
+      "impactRationale": "Severe. Altered software can keep the element on beyond its limit. The cut-out is then the only protection, and a product recall follows as soon as it is known."
+    },
+    {
+      "id": "DS-0003",
+      "assetId": "A03",
+      "confidentiality": true,
+      "integrity": false,
+      "availability": false,
+      "description": "The password of the owner's home Wi-Fi becomes known to a stranger.",
+      "ratings": {
+        "safety": 0,
+        "financial": 1,
+        "operational": 0,
+        "privacy": 2
+      },
+      "impactRationale": "Major for privacy: with the password a stranger joins the home network and sees what is on it. No safety effect."
+    },
+    {
+      "id": "DS-0004",
+      "assetId": "A04",
+      "confidentiality": true,
+      "integrity": false,
+      "availability": false,
+      "description": "Someone else in the home learns whether the kettle is on and how hot the water is.",
+      "ratings": {
+        "safety": 0,
+        "financial": 0,
+        "operational": 0,
+        "privacy": 0
+      },
+      "impactRationale": "Negligible. The status says nothing that anyone standing in the kitchen could not see, and nothing about a person."
+    },
+    {
+      "id": "DS-0005",
+      "assetId": "A02",
+      "confidentiality": false,
+      "integrity": false,
+      "availability": true,
+      "description": "The kettle goes without a software update for months, although one has been released.",
+      "ratings": {
+        "safety": 0,
+        "financial": 1,
+        "operational": 1,
+        "privacy": 0
+      },
+      "impactRationale": "Moderate. A weakness that was corrected stays open in this kettle for longer, and the maker answers the questions. The kettle itself works as before."
+    }
+  ],
+  "threats": [
+    {
+      "id": "TS001",
+      "category": "spoofing",
+      "description": "Someone other than the owner sends the kettle a switch-on command.",
+      "damageIds": [
+        "DS-0001"
+      ]
+    },
+    {
+      "id": "TS002",
+      "category": "tampering",
+      "description": "The kettle is given software that does not come from the maker.",
+      "damageIds": [
+        "DS-0002"
+      ]
+    },
+    {
+      "id": "TS003",
+      "category": "information_disclosure",
+      "description": "The Wi-Fi password is read out of a kettle that was thrown away, returned or sold on.",
+      "damageIds": [
+        "DS-0003"
+      ]
+    },
+    {
+      "id": "TS004",
+      "category": "information_disclosure",
+      "description": "Someone on the home Wi-Fi asks the kettle for its status.",
+      "damageIds": [
+        "DS-0004"
+      ]
+    },
+    {
+      "id": "TS005",
+      "category": "denial_of_service",
+      "description": "The kettle is kept from learning that an update exists.",
+      "damageIds": [
+        "DS-0005"
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "id": "AP001",
+      "threatIds": [
+        "TS001"
+      ],
+      "elementIds": [
+        "EX01",
+        "DF01",
+        "C01"
+      ],
+      "description": "From any device on the same Wi-Fi, a guest's phone for instance, send the switch-on command. As first built, the kettle obeys whoever asks.",
+      "factors": {
+        "elapsed_time": "lt_1_day",
+        "expertise": "proficient",
+        "knowledge": "public",
+        "window_of_opportunity": "moderate",
+        "equipment": "standard"
+      },
+      "feasibilityBasis": "The command is simple and can be found on the internet. The only hurdle is being on the home network. 0+3+0+4+0 = 7: high.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP002",
+      "threatIds": [
+        "TS002"
+      ],
+      "elementIds": [
+        "EX02",
+        "DF02",
+        "C01"
+      ],
+      "description": "On the home network, pose as the maker's update server and offer the kettle altered software.",
+      "factors": {
+        "elapsed_time": "lt_1_month",
+        "expertise": "expert",
+        "knowledge": "sensitive",
+        "window_of_opportunity": "moderate",
+        "equipment": "specialised"
+      },
+      "feasibilityBasis": "Needs working kettle software, which takes an expert and the maker's internal documents, and a place on the home network. 4+6+7+4+4 = 25: very low.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP003",
+      "threatIds": [
+        "TS003"
+      ],
+      "elementIds": [
+        "ST01"
+      ],
+      "description": "Open a discarded kettle, connect to the memory chip and read what is on it.",
+      "factors": {
+        "elapsed_time": "lt_1_week",
+        "expertise": "proficient",
+        "knowledge": "public",
+        "window_of_opportunity": "unlimited",
+        "equipment": "specialised"
+      },
+      "feasibilityBasis": "A hobbyist with a chip reader can do it, and a kettle in the rubbish can be studied for as long as it takes. 1+3+0+0+4 = 8: high.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP004",
+      "threatIds": [
+        "TS004"
+      ],
+      "elementIds": [
+        "EX01",
+        "DF01",
+        "C01"
+      ],
+      "description": "From any device on the same Wi-Fi, ask the kettle for its status. It answers whoever asks.",
+      "factors": {
+        "elapsed_time": "lt_1_day",
+        "expertise": "layman",
+        "knowledge": "public",
+        "window_of_opportunity": "easy",
+        "equipment": "standard"
+      },
+      "feasibilityBasis": "Anyone on the home network can do it with a free app. 0+0+0+1+0 = 1: high.",
+      "disposition": "included"
+    },
+    {
+      "id": "AP005",
+      "threatIds": [
+        "TS005"
+      ],
+      "elementIds": [
+        "EX02",
+        "DF02",
+        "C01"
+      ],
+      "description": "Between the home and the maker, answer the kettle's daily question in the server's place, every day, with \"nothing new\".",
+      "factors": {
+        "elapsed_time": "lt_1_month",
+        "expertise": "expert",
+        "knowledge": "restricted",
+        "window_of_opportunity": "difficult",
+        "equipment": "specialised"
+      },
+      "feasibilityBasis": "The attacker has to sit on the line between this one home and the maker for months, and to know how the question is put. 4+6+3+10+4 = 27: very low.",
+      "disposition": "included"
+    }
+  ],
+  "risks": [
+    {
+      "id": "R001",
+      "threatId": "TS001",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-001"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 4: moderate damage, but easy. Reduced: only a phone the owner has paired can give commands.",
+      "owner": "Product manager, small appliances",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 1,
+      "residualFeasibility": "very_low",
+      "residualBasis": "A stranger would need a paired phone in their hand. KT-TEST-01 case 1."
+    },
+    {
+      "id": "R002",
+      "threatId": "TS002",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-002"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 3: the worst damage, but very hard to do. Reduced all the same, because the damage would be severe. The value stays 3: the control cannot make a very hard attack count as harder, it makes sure it stays that hard.",
+      "owner": "Product manager, small appliances",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 3,
+      "residualFeasibility": "very_low",
+      "residualBasis": "Needs the maker's signing key. KT-TEST-01 case 2."
+    },
+    {
+      "id": "R003",
+      "threatId": "TS003",
+      "treatment": "reduce",
+      "existingControlIds": [
+        "CTL-003"
+      ],
+      "proposedControlIds": [],
+      "rationale": "Value 5, the highest: major damage and easy. Reduced: the password is encrypted in the chip, and the owner can erase it before parting with the kettle.",
+      "owner": "Product manager, small appliances",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 2,
+      "residualFeasibility": "very_low",
+      "residualBasis": "Readable only by taking the controller itself apart, which destroys it. KT-TEST-01 case 3."
+    },
+    {
+      "id": "R004",
+      "threatId": "TS004",
+      "treatment": "retain",
+      "existingControlIds": [],
+      "proposedControlIds": [],
+      "rationale": "Value 2: as easy as an attack gets, and harmless. Retained: a control would cost more than there is to protect. The product manager accepts it.",
+      "owner": "Product manager, small appliances",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 0,
+      "residualFeasibility": "high",
+      "residualBasis": "Unchanged: the risk is accepted as it is."
+    },
+    {
+      "id": "R005",
+      "threatId": "TS005",
+      "treatment": "retain",
+      "existingControlIds": [],
+      "proposedControlIds": [],
+      "rationale": "Value 1, the lowest there is: some damage, and out of almost anyone's reach. Retained: nothing is added for it. The signature on updates (CTL-002) already makes sure that what does arrive is genuine.",
+      "owner": "Product manager, small appliances",
+      "reviewDate": "2026-11-20",
+      "residualImpact": 1,
+      "residualFeasibility": "very_low",
+      "residualBasis": "Unchanged: the risk is accepted as it is."
+    }
+  ],
+  "controls": [
+    {
+      "id": "CTL-001",
+      "name": "Paired phones only",
+      "description": "The kettle takes commands only from a phone that was paired with it by pressing the button on its base.",
+      "type": "technical",
+      "craTags": [
+        "d"
+      ],
+      "coveredPathIds": [
+        "AP001"
+      ],
+      "elementIds": [
+        "C01"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-002",
+      "name": "Signed software updates",
+      "description": "The kettle installs an update only if it carries the maker's signature.",
+      "type": "technical",
+      "craTags": [
+        "c",
+        "f"
+      ],
+      "coveredPathIds": [
+        "AP002"
+      ],
+      "elementIds": [
+        "C01"
+      ],
+      "workLink": null
+    },
+    {
+      "id": "CTL-003",
+      "name": "Stored encrypted, erased on reset",
+      "description": "The Wi-Fi password is stored encrypted with a key that never leaves the controller. Holding the button for ten seconds erases all settings.",
+      "type": "technical",
+      "craTags": [
+        "e",
+        "m"
+      ],
+      "coveredPathIds": [
+        "AP003"
+      ],
+      "elementIds": [
+        "ST01"
+      ],
+      "workLink": null
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-001",
+      "riskId": "R001",
+      "controlId": "CTL-001",
+      "configurationId": "CFG-KETTLE-K2-EU",
+      "state": "verified",
+      "effect": "A command from a phone that is not paired is ignored.",
+      "implementationRef": "KT-DOC-05 section 2: pairing",
+      "verificationRef": "KT-TEST-01 case 1: 50 commands from an unpaired phone, none carried out",
+      "result": "pass",
+      "verifiedCraTags": [
+        "d"
+      ]
+    },
+    {
+      "id": "EV-002",
+      "riskId": "R002",
+      "controlId": "CTL-002",
+      "configurationId": "CFG-KETTLE-K2-EU",
+      "state": "verified",
+      "effect": "An update without the maker's signature is not installed.",
+      "implementationRef": "KT-DOC-05 section 3: signed updates",
+      "verificationRef": "KT-TEST-01 case 2: altered update offered ten times, refused each time",
+      "result": "pass",
+      "verifiedCraTags": [
+        "c",
+        "f"
+      ]
+    },
+    {
+      "id": "EV-003",
+      "riskId": "R003",
+      "controlId": "CTL-003",
+      "configurationId": "CFG-KETTLE-K2-EU",
+      "state": "verified",
+      "effect": "The password cannot be read from the memory chip, and is gone after a reset.",
+      "implementationRef": "KT-DOC-05 section 4: settings memory",
+      "verificationRef": "KT-TEST-01 case 3: chip read before and after a reset, no password recovered",
+      "result": "pass",
+      "verifiedCraTags": [
+        "e",
+        "m"
+      ]
+    }
+  ],
+  "goalClaims": [
+    {
+      "id": "CG01",
+      "kind": "goal",
+      "statement": "Only the owner's own phones can operate the kettle.",
+      "riskIds": [
+        "R001"
+      ]
+    },
+    {
+      "id": "CG02",
+      "kind": "goal",
+      "statement": "Only software released by the maker runs in the kettle.",
+      "riskIds": [
+        "R002"
+      ]
+    },
+    {
+      "id": "CG03",
+      "kind": "goal",
+      "statement": "Nothing personal can be read from a kettle that has left the home.",
+      "riskIds": [
+        "R003"
+      ]
+    },
+    {
+      "id": "CC01",
+      "kind": "claim",
+      "statement": "The kettle's status may be read by anyone on the home network. It holds nothing personal, and the manual says that the status is visible on the home network (KT-DOC-01 section 4).",
+      "riskIds": [
+        "R004"
+      ]
+    },
+    {
+      "id": "CC02",
+      "kind": "claim",
+      "statement": "A kettle that an attacker cuts off from the update server for months is accepted. The app shows the date of the last successful check, so the owner can see it (KT-DOC-05 section 3).",
+      "riskIds": [
+        "R005"
+      ]
+    }
+  ],
+  "craDecisions": [
+    {
+      "id": "CRA-a",
+      "requirementKey": "a",
+      "applicability": "applies",
+      "justification": "Sold with no known exploitable vulnerability: the three risks that matter are reduced by controls that were tested, and the two that are accepted are accepted in writing.",
+      "implementationRef": "KT-DOC-05: security concept",
+      "verificationRef": "KT-TEST-01: all cases passed"
+    },
+    {
+      "id": "CRA-b",
+      "requirementKey": "b",
+      "applicability": "applies",
+      "justification": "Sold in a secure state: no phone paired, no Wi-Fi stored. A reset returns it to that state.",
+      "implementationRef": "KT-DOC-05 section 1: delivery state",
+      "verificationRef": "KT-TEST-01 case 4: new and reset kettles checked"
+    },
+    {
+      "id": "CRA-c",
+      "requirementKey": "c",
+      "applicability": "applies",
+      "justification": "The software can be updated, and updates are installed automatically unless the owner switches that off.",
+      "implementationRef": "KT-DOC-05 section 3",
+      "verificationRef": "KT-TEST-01 case 2"
+    },
+    {
+      "id": "CRA-d",
+      "requirementKey": "d",
+      "applicability": "applies",
+      "justification": "Commands are accepted only from paired phones.",
+      "implementationRef": "KT-DOC-05 section 2",
+      "verificationRef": "KT-TEST-01 case 1"
+    },
+    {
+      "id": "CRA-e",
+      "requirementKey": "e",
+      "applicability": "applies",
+      "justification": "The Wi-Fi password is stored encrypted; commands travel encrypted.",
+      "implementationRef": "KT-DOC-05 section 4",
+      "verificationRef": "KT-TEST-01 case 3"
+    },
+    {
+      "id": "CRA-f",
+      "requirementKey": "f",
+      "applicability": "applies",
+      "justification": "Updates are checked for the maker's signature before they are installed.",
+      "implementationRef": "KT-DOC-05 section 3",
+      "verificationRef": "KT-TEST-01 case 2"
+    },
+    {
+      "id": "CRA-g",
+      "requirementKey": "g",
+      "applicability": "applies",
+      "justification": "The kettle keeps only what it needs: Wi-Fi details, paired phones, one temperature setting. It records nothing about when it is used.",
+      "implementationRef": "KT-DOC-05 section 4",
+      "verificationRef": "KT-TEST-01 case 3"
+    },
+    {
+      "id": "CRA-h",
+      "requirementKey": "h",
+      "applicability": "applies",
+      "justification": "The switch on the kettle always works, with or without Wi-Fi, app or update server.",
+      "implementationRef": "KT-DOC-05 section 5",
+      "verificationRef": "KT-TEST-01 case 5: kettle used with Wi-Fi off"
+    },
+    {
+      "id": "CRA-i",
+      "requirementKey": "i",
+      "applicability": "applies",
+      "justification": "The kettle sends little: a status when asked, and one request for updates a day.",
+      "implementationRef": "KT-DOC-05 section 5",
+      "verificationRef": "KT-TEST-01 case 6: traffic observed for a week"
+    },
+    {
+      "id": "CRA-j",
+      "requirementKey": "j",
+      "applicability": "applies",
+      "justification": "Two ways in, both guarded: commands over Wi-Fi and updates. No other service runs.",
+      "implementationRef": "KT-DOC-05 sections 2 and 3",
+      "verificationRef": "KT-TEST-01 case 7: network scan, nothing else open"
+    },
+    {
+      "id": "CRA-k",
+      "requirementKey": "k",
+      "applicability": "applies",
+      "justification": "Whatever the software does, the mechanical cut-out stops an overheating kettle.",
+      "implementationRef": "KT-DOC-05 section 5",
+      "verificationRef": "KT-TEST-01 case 8: cut-out tested with the software's limit removed"
+    },
+    {
+      "id": "CRA-l",
+      "requirementKey": "l",
+      "applicability": "applies",
+      "justification": "Refused commands and refused updates are counted, and the app shows the count to the owner.",
+      "implementationRef": "KT-DOC-05 section 6",
+      "verificationRef": "KT-TEST-01 cases 1 and 2"
+    },
+    {
+      "id": "CRA-m",
+      "requirementKey": "m",
+      "applicability": "applies",
+      "justification": "Holding the button for ten seconds erases every setting.",
+      "implementationRef": "KT-DOC-05 section 4",
+      "verificationRef": "KT-TEST-01 case 3"
+    },
+    {
+      "id": "CRA-II-1",
+      "requirementKey": "II(1)",
+      "applicability": "applies",
+      "justification": "The software components of the kettle are listed, and vulnerabilities in them are recorded.",
+      "implementationRef": "KT-DOC-07 section 1: component list",
+      "verificationRef": "KT-TEST-01 case 9: list compared with a kettle"
+    },
+    {
+      "id": "CRA-II-2",
+      "requirementKey": "II(2)",
+      "applicability": "applies",
+      "justification": "Vulnerabilities are corrected without delay by a signed update.",
+      "implementationRef": "KT-DOC-07 section 2",
+      "verificationRef": "KT-TEST-01 case 2"
+    },
+    {
+      "id": "CRA-II-3",
+      "requirementKey": "II(3)",
+      "applicability": "applies",
+      "justification": "The kettle's security is tested before each software release and at least yearly.",
+      "implementationRef": "KT-DOC-07 section 3",
+      "verificationRef": "KT-TEST-01"
+    },
+    {
+      "id": "CRA-II-4",
+      "requirementKey": "II(4)",
+      "applicability": "applies",
+      "justification": "When an update is out, the app tells the owner what was corrected.",
+      "implementationRef": "KT-DOC-07 section 4",
+      "verificationRef": "KT-DOC-07 annex: sample notice"
+    },
+    {
+      "id": "CRA-II-5",
+      "requirementKey": "II(5)",
+      "applicability": "applies",
+      "justification": "A policy for coordinated disclosure of vulnerabilities is in force.",
+      "implementationRef": "KT-DOC-07 section 5",
+      "verificationRef": "KT-DOC-07 section 5, reviewed"
+    },
+    {
+      "id": "CRA-II-6",
+      "requirementKey": "II(6)",
+      "applicability": "applies",
+      "justification": "Anyone can report a vulnerability to an address printed in the manual and on the website.",
+      "implementationRef": "KT-DOC-07 section 6",
+      "verificationRef": "KT-DOC-07 section 6, address tested"
+    },
+    {
+      "id": "CRA-II-7",
+      "requirementKey": "II(7)",
+      "applicability": "applies",
+      "justification": "Updates are distributed signed, from the maker's server.",
+      "implementationRef": "KT-DOC-05 section 3",
+      "verificationRef": "KT-TEST-01 case 2"
+    },
+    {
+      "id": "CRA-II-8",
+      "requirementKey": "II(8)",
+      "applicability": "applies",
+      "justification": "Security updates are free and come with a note in the app.",
+      "implementationRef": "KT-DOC-07 section 8",
+      "verificationRef": "KT-DOC-07 annex: sample notice"
+    }
+  ],
+  "references": [
+    {
+      "id": "KT-DOC-00",
+      "title": "How to read this example",
+      "revision": "1.1",
+      "date": "2026-11-20",
+      "location": "Pasted text, in this register",
+      "content": "This is the smallest complete TARA: a kettle you can switch on from your phone. The product is invented. The method and the checks are the real ones. It takes about ten minutes to read, in the order of the steps on the left.\n\nA TARA answers four questions, and the steps follow them.\n\n1. What are we assessing?\nScope and Assessed items say which product, which version, and what is left out. Architecture shows what it is made of. Open the Diagram there: two things outside (the phone app and the update server), two things inside (the controller and its memory), and a dashed frame around the kettle. Everything that crosses the frame comes from outside.\n\n2. What could go wrong, and how bad would it be?\nAssets are the things worth protecting: the switch-on command, the software, the Wi-Fi password, the status.\nDamage scenarios say what happens if one is misused, changed, read or kept away, and rate it from 0 to 3. Read the five rationales: the same kettle gives a 1, a 3, a 2, a 0 and a 1.\nThreat scenarios say who does what to cause the damage.\n\n3. How easy is it, and so how big is the risk?\nAttack paths describe how it would be done and rate how hard that is from five factors. The sum is in each path's basis: 7, 25, 8, 1 and 27. A low sum means easy.\nRisks combines the two: how bad, and how easy. The five risks have the five values there are, each for its own reason:\nR003, value 5: major damage and easy. The password in a discarded kettle.\nR001, value 4: moderate damage, but easy. A guest switches the kettle on.\nR002, value 3: the worst damage of all, but very hard. Altered software.\nR004, value 2: as easy as it gets, and harmless. Someone reads the status.\nR005, value 1: some damage, and out of almost anyone's reach. Updates held back.\nSo the worst damage is not the highest risk, and the easiest attack is not either. Open the Report, section Method, to see the table the values come from.\n\n4. What do we do about it, and how do we know it works?\nControls are the three measures. Risk treatment says what is done about each risk: three are reduced by a control, two are retained, which means accepted as they are.\nGoals and claims says in one sentence each what the product must achieve (a goal, for a risk that is reduced) or what is accepted and by whom (a claim, for a risk that is retained). A retained risk needs no control, but it needs that sentence.\nControl evidence points to where each control is described and how it was tested. A control without a passed test does not count.\nRisk treatment also gives the risk that remains. Compare before and after: R003 falls from 5 to 2 and R001 from 4 to 1, because the attacks become very hard. R002 stays at 3: it was very hard already, and the control keeps it so. R004 and R005 stay as they are, by decision.\nCRA requirements goes through the regulation's list, one decision each.\n\nThen References lists every document that was cited, the Graph shows how all the records hang together, and the Report is what goes into the technical file.\n\nThings to try\nOpen AP002 and change \"Expertise\" from Expert to Proficient: the sum falls from 25 to 22, the feasibility rises from very low to low, and R002 goes from 3 to 4. Watch which reviews ask to be confirmed again.\nOpen DS-0004 and rate Privacy as 1, as if the status told something about a person: R004 goes from 2 to 4, and a risk of 4 that is merely retained should make you uneasy.\nUnder Controls, open CTL-003 and set its state back to Built: see which checks object, on its evidence and on R003. Then, under Risk treatment, change R004 from Retain to Reduce and see what it now asks for.\nUnder Architecture, open the Diagram and lay the gaps over it.\nOpen the Graph and choose R003: its whole chain, from the asset to the goal, on one screen.\nOpen History at the top to see what you changed, and undo it.\n\nWhen this one is clear, read the door lock and the gateway, which are written as the assessment of a real product would be."
+    },
+    {
+      "id": "KT-DOC-01",
+      "title": "Connected kettle K2: item definition and architecture (invented, for training)",
+      "revision": "A",
+      "date": "2026-10-01",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "KT-DOC-02",
+      "title": "Open TARA method, impact and feasibility scales",
+      "revision": "1.0",
+      "date": "2026-01-15",
+      "location": "The method built into this tool",
+      "content": null
+    },
+    {
+      "id": "KT-DOC-03",
+      "title": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+      "revision": "OJ L, 20.11.2024",
+      "date": "2024-11-20",
+      "location": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj",
+      "content": null
+    },
+    {
+      "id": "KT-DOC-04",
+      "title": "ISO/SAE 21434:2021, Road vehicles: cybersecurity engineering",
+      "revision": "2021",
+      "date": "2021-08-31",
+      "location": "Licensed standard, not included",
+      "content": null
+    },
+    {
+      "id": "KT-DOC-05",
+      "title": "Connected kettle K2: cybersecurity concept (invented, for training)",
+      "revision": "A",
+      "date": "2026-11-01",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "KT-DOC-07",
+      "title": "Vulnerability handling and update procedure (invented, for training)",
+      "revision": "A",
+      "date": "2026-09-15",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "KT-TEST-01",
+      "title": "Connected kettle K2: cybersecurity test report (invented, for training)",
+      "revision": "1",
+      "date": "2026-11-10",
+      "location": "Training material, not a real document",
+      "content": null
+    },
+    {
+      "id": "KT-REV-01",
+      "title": "Minutes of the TARA review, 18 November 2026 (invented, for training)",
+      "revision": "1",
+      "date": "2026-11-18",
+      "location": "Training material, not a real document",
+      "content": null
+    }
+  ],
+  "reviews": [
+    {
+      "kind": "scope",
+      "subjectId": null,
+      "reference": "KT-REV-01",
+      "fingerprint": "daeea1b16afaa95fdb7ef4650a65e18adea847a4aae7c9664285c1c3b3e89da4",
+      "revision": 1,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "release",
+      "subjectId": null,
+      "reference": "KT-REV-01",
+      "fingerprint": "d519af16f58fc0db04ab5df5b1a71eeb71e3987bd140013944897c18461a3fcc",
+      "revision": 2,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP001",
+      "reference": "KT-REV-01",
+      "fingerprint": "c728832bf04f5d982edfa971710042905eb83ca8956d810333f31bf083f8cd9c",
+      "revision": 3,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP002",
+      "reference": "KT-REV-01",
+      "fingerprint": "f154395db685c8183c45ac171374b3d40f808062203a379f085b954636d013ba",
+      "revision": 4,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP003",
+      "reference": "KT-REV-01",
+      "fingerprint": "9134fc6a03b0546457d6ebdae6e2f4397aa7bc148ea40d2c1fabb0ecc1d9cd75",
+      "revision": 5,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP004",
+      "reference": "KT-REV-01",
+      "fingerprint": "15db2f0333d91f2919981bac8a1467324e7a49f092e3fe28d37080f5684a5541",
+      "revision": 6,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "attack_path",
+      "subjectId": "AP005",
+      "reference": "KT-REV-01",
+      "fingerprint": "d1a09979aa9b7974e7be62b3b8fb254436b391acbee386d81764c2d4065e53e5",
+      "revision": 7,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R001",
+      "reference": "KT-REV-01",
+      "fingerprint": "f940751e120c252a200cfbae4a0d0fbab732f9c53a649bbab9748d4ddbdb2e97",
+      "revision": 8,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R002",
+      "reference": "KT-REV-01",
+      "fingerprint": "42193d8fd1090a46594dd5cff9e40cf1a530d81ea4956b490e84736750c85d40",
+      "revision": 9,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R003",
+      "reference": "KT-REV-01",
+      "fingerprint": "b7c92b251249f420443fb96f7d12532222d8bc24a556d9b4a15ab04400989a60",
+      "revision": 10,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R004",
+      "reference": "KT-REV-01",
+      "fingerprint": "09e5d46df52f8728809826360befae5ed61df6b3105520f11b950c9784141f19",
+      "revision": 11,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "risk_rating",
+      "subjectId": "R005",
+      "reference": "KT-REV-01",
+      "fingerprint": "abaf4e6f103dcdfcf36c36131836c6459e5ec4c7398259d26bfd21f1e6f13f3c",
+      "revision": 12,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG01",
+      "reference": "KT-REV-01",
+      "fingerprint": "6402658f7a144044262a19b354b363ca1dfe242cfd2e60c1610859bf88f7e37b",
+      "revision": 13,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG02",
+      "reference": "KT-REV-01",
+      "fingerprint": "8221821643613f96b96bfc71e8bb202393063f59a42047f9a11fe44e028214f1",
+      "revision": 14,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CG03",
+      "reference": "KT-REV-01",
+      "fingerprint": "4660428d673dd67a61be60a45dc73961ef97ff0bc00f814d3bdbb830adc4e0e7",
+      "revision": 15,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CC01",
+      "reference": "KT-REV-01",
+      "fingerprint": "c54a51d6d1c467f1d801da6381f779f9353c08ca01e793eae9e723eb3b08f929",
+      "revision": 16,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "goal_claim",
+      "subjectId": "CC02",
+      "reference": "KT-REV-01",
+      "fingerprint": "303afdd3a8138a0b3a32b1f3aca0326070fbc753d04f87fc6fb0e5b70ad2e5e6",
+      "revision": 17,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-001",
+      "reference": "KT-REV-01",
+      "fingerprint": "d5356840de92edc794c9d9b6fe7cfec09614bb71323e34a4f8b2b5f7d1acb31b",
+      "revision": 18,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-002",
+      "reference": "KT-REV-01",
+      "fingerprint": "562784c60810ae69f936783ca6125bf499af82cf1f29fb44d558187fd1e3aa47",
+      "revision": 19,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "control_evidence",
+      "subjectId": "EV-003",
+      "reference": "KT-REV-01",
+      "fingerprint": "62d574753b5dd6e9b23c9752ed459166bcabe5d2c44ea8ebce3129b70072c426",
+      "revision": 20,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R001",
+      "reference": "KT-REV-01",
+      "fingerprint": "55fa45fd1aaf3b2ac053aff33b685fa5892bf661f21775497a4308e7163fc8ed",
+      "revision": 21,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R002",
+      "reference": "KT-REV-01",
+      "fingerprint": "f504ebec2f8ee8367f5a9db2ae7ffacad176e901d708ba0bb20a8e003fd8e9a1",
+      "revision": 22,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R003",
+      "reference": "KT-REV-01",
+      "fingerprint": "187856cab8c0ba5a53d3f8c1a154396955095e56eb21c514d59083dd3baea2f6",
+      "revision": 23,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R004",
+      "reference": "KT-REV-01",
+      "fingerprint": "9f8dcfdf442803125f1cc375180c4d0efe188b75a1fe893e57aa3e0ab7fc8fff",
+      "revision": 24,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "treatment",
+      "subjectId": "R005",
+      "reference": "KT-REV-01",
+      "fingerprint": "0023d038f2b6f2bc07735e3550b68bb4d680d178bb0161016e457b73eab8ff07",
+      "revision": 25,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-a",
+      "reference": "KT-REV-01",
+      "fingerprint": "7642299890141a8cca2586cdba7c3bfc0dfe26d1784e23b20b7cc54b0c44e9ca",
+      "revision": 26,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-b",
+      "reference": "KT-REV-01",
+      "fingerprint": "a8dc11d4d1d4d1e332615c0a2b9711ed03c38f9d7ca7371eaada52000e851a23",
+      "revision": 27,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-c",
+      "reference": "KT-REV-01",
+      "fingerprint": "0d9b77b08d866574c73fd96c74bb64a27ff2272173b7344880722a9be6c49880",
+      "revision": 28,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-d",
+      "reference": "KT-REV-01",
+      "fingerprint": "c618160b33ec18171a470b617cd385fcc8f11072b6d9662eb6419d12623954e4",
+      "revision": 29,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-e",
+      "reference": "KT-REV-01",
+      "fingerprint": "302c380466174c4b901912798ada13c7e9e92be5c8af41a1a7dd3f0d9c8f6bf5",
+      "revision": 30,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-f",
+      "reference": "KT-REV-01",
+      "fingerprint": "a540b101763930e93c8f5be07262475ad2ee9f92374c6499a845609edc001988",
+      "revision": 31,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-g",
+      "reference": "KT-REV-01",
+      "fingerprint": "92b4fafd62684deb8c4c2743c3de46ddf05e5e181c275179d83c0d541b277e70",
+      "revision": 32,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-h",
+      "reference": "KT-REV-01",
+      "fingerprint": "7b9df365b90f90dd69cf25ea5d3b913acfb8ee7399522f3343fd952b80820e69",
+      "revision": 33,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-i",
+      "reference": "KT-REV-01",
+      "fingerprint": "3332271b75cb06270858975fad746e075e931fb802974939d4378cf43b97c60d",
+      "revision": 34,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-j",
+      "reference": "KT-REV-01",
+      "fingerprint": "3bde4f53c626a644573a8a9bbece94a5aec9b29cc54d76d10f40ca123b1fe44c",
+      "revision": 35,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-k",
+      "reference": "KT-REV-01",
+      "fingerprint": "9c8e4be76c432be9967172317f2d107d62f79053d1c17851c3eb4d824bf9b94f",
+      "revision": 36,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-l",
+      "reference": "KT-REV-01",
+      "fingerprint": "460e995b8e723cc83e30a9b499e63150a51faa1cdba0eb234a7c13bf9f748d2f",
+      "revision": 37,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-m",
+      "reference": "KT-REV-01",
+      "fingerprint": "5fa703151515fad1ed66c1f8556a22bdc0ba9b728c3f90290842d042d383f6de",
+      "revision": 38,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-1",
+      "reference": "KT-REV-01",
+      "fingerprint": "be5576b3b6f05b25c378a90b8b9faff406ac3d2f19a1d1386bdc2527d807faaa",
+      "revision": 39,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-2",
+      "reference": "KT-REV-01",
+      "fingerprint": "55922cf6276a0a90938e7283f7467563b272b4b670c6e19a79c6bdb38a05d8c5",
+      "revision": 40,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-3",
+      "reference": "KT-REV-01",
+      "fingerprint": "e6fc38d2f5883006a54fca1c94207f472b8957ed4358c7ac1b0c6ed196d21a92",
+      "revision": 41,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-4",
+      "reference": "KT-REV-01",
+      "fingerprint": "7ce72149486589c42e2d85f353bccc03053934738d2ed21da90d6980353eb20a",
+      "revision": 42,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-5",
+      "reference": "KT-REV-01",
+      "fingerprint": "51a5bcfe567c1450399b7369fbd020b89049b7f4f353cca1a1fbc9fc7149b1e4",
+      "revision": 43,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-6",
+      "reference": "KT-REV-01",
+      "fingerprint": "4188682c36a9bf39dcf192dae2707ce021f46cbac0f585005622576a2c43ef47",
+      "revision": 44,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-7",
+      "reference": "KT-REV-01",
+      "fingerprint": "d27cd25e1348853518273d404325a92e4dc62ff8c020c5e56d0576e544ea66a3",
+      "revision": 45,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    },
+    {
+      "kind": "cra_requirement",
+      "subjectId": "CRA-II-8",
+      "reference": "KT-REV-01",
+      "fingerprint": "0877e61f609ff6f90b2ef32d3f8541a1994832232b28c6110b0c1cce3968c11c",
+      "revision": 46,
+      "confirmedBy": "Training material",
+      "confirmedAt": "2026-11-20T09:00:00.000Z"
+    }
+  ],
+  "reviewCount": 46,
+  "signoffs": [],
+  "changeLog": [
+    {
+      "version": "1.0",
+      "date": "2026-11-20",
+      "author": "Training material",
+      "description": "First issue of the training example.",
+      "approvedBy": null
+    }
+  ],
+  "counters": {
+    "EX": 2,
+    "TB": 1,
+    "C": 1,
+    "ST": 1,
+    "DF": 3,
+    "A": 4,
+    "DS-": 5,
+    "TS": 5,
+    "AP": 5,
+    "CTL-": 3,
+    "EV-": 3,
+    "CG": 3,
+    "CC": 2
+  }
+}

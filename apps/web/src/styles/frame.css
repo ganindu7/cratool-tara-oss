@@ -1,0 +1,425 @@
+/* The frame of a TARA: the ribbon at the top, the route of the steps at the left, the step in the middle,
+   and what is opened over them on request (what is left, the history, a question). */
+
+/* ------------------------------------------------------------------ the ribbon
+   It holds what it has to say whole: where the window is narrow it takes a second row, and a long title a
+   second line. Nothing ends in an ellipsis. */
+.masthead {
+  /* what a drawer hangs from */
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  min-width: 0;
+  padding: 0.8rem 1.5rem;
+  border-bottom: 2px solid var(--accent);
+}
+.brand {
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.brand b {
+  color: var(--accent);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+/* the version of the tool: beside the word mark, small and grey */
+.brand-with-version {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+.brand-version {
+  color: var(--grey);
+  font-size: 12px;
+  cursor: default;
+}
+.masthead-title {
+  flex: 1 1 12rem;
+  min-width: 0;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+/* a TARA is named by its product, small above, and its title; the title gives way first, on to a second line,
+   so that the buttons stay beside it on the one line of the bar */
+.masthead-tara {
+  display: grid;
+  flex-basis: 11rem;
+  gap: 0.1rem;
+}
+.masthead-product {
+  color: var(--grey);
+  font-size: 12px;
+  font-weight: 400;
+}
+.masthead-meta {
+  color: var(--grey);
+  font-size: 14px;
+  white-space: nowrap;
+}
+/* the buttons and the person stay together, at the right; in a narrow window the group goes beneath the name */
+.masthead-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem 1.25rem;
+  margin-left: auto;
+}
+.masthead .button.on {
+  background: var(--ink);
+  color: var(--paper);
+}
+/* something is still open: it waits, it is not an error */
+.masthead .button.pending {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+.masthead .button.pending.on {
+  background: var(--amber);
+  color: var(--paper);
+}
+.whoami {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--line);
+  white-space: nowrap;
+}
+.whoami-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+.whoami-change {
+  padding: 0.25rem 0.7rem;
+  border-color: var(--line);
+  color: var(--grey);
+  font-size: 13px;
+  font-weight: 400;
+}
+.whoami-change:hover,
+.whoami-change:focus-visible {
+  border-color: var(--accent);
+  background: var(--paper);
+  color: var(--accent-deep);
+}
+
+/* ------------------------------------------------------------------ the frame */
+.workspace {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+}
+.workspace > .masthead {
+  grid-column: 1 / -1;
+}
+.step {
+  min-width: 0;
+  padding: 1.75rem var(--gutter) 4rem;
+}
+/* A page that ends in a drawing, or in the report, ends where the window ends: the drawing has the room, and
+   nothing empty lies beneath it to be moved to. */
+.step:has(.map-canvas, .rv-canvas, .report-frame) {
+  padding-bottom: 1rem;
+}
+.step-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.8rem 1.5rem;
+  margin-bottom: 1.4rem;
+}
+.step-head > div:first-child {
+  flex: 1 1 24rem;
+  min-width: 0;
+}
+.view-choice {
+  align-self: center;
+}
+
+/* ------------------------------------------------------------------ the route: the steps of the method as stops along a line */
+.route {
+  padding: 1.5rem 0 2rem;
+  border-right: 1px solid var(--line);
+  background: var(--rail-bg);
+}
+.route ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.stop a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1rem 1fr;
+  column-gap: 0.75rem;
+  padding: 0.5rem 1rem 0.5rem 1.4rem;
+  text-decoration: none;
+}
+/* the line the stops stand on */
+.stop a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(1.4rem + 0.55rem - 1px);
+  width: 2px;
+  background: var(--line);
+}
+.stop:first-child a::before {
+  top: 50%;
+}
+.stop:last-child a::before {
+  bottom: 50%;
+}
+.stop-mark {
+  position: relative;
+  z-index: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid var(--field);
+  border-radius: 50%;
+  background: var(--paper);
+}
+.stop-done .stop-mark {
+  border-color: var(--done);
+  background: var(--done);
+}
+.stop-waiting .stop-mark {
+  border-color: var(--amber);
+  background: var(--amber-wash);
+}
+.stop-todo .stop-mark {
+  border-color: var(--todo);
+  box-shadow:
+    inset 0 0 0 3px var(--paper),
+    inset 0 0 0 1rem var(--todo);
+}
+.stop-title {
+  font-weight: 700;
+}
+.stop-count {
+  grid-column: 2;
+  min-height: 1.1em;
+  color: var(--grey);
+  font-size: 12px;
+}
+.stop-todo .stop-count {
+  color: var(--todo-deep);
+}
+.stop-waiting .stop-count {
+  color: var(--amber);
+}
+.stop-done .stop-count {
+  color: var(--done);
+}
+.stop a:hover .stop-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.stop-current a {
+  background: var(--paper);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+/* ------------------------------------------------------------------ what is opened over the page
+   What is left to do and the history hang from the ribbon, at the right; a question stands in the middle. */
+/* A drawer hangs from the top bar, just beneath it, however many lines the bar takes. */
+.drawer {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 0.5rem);
+  right: 1rem;
+  display: grid;
+  gap: 0.7rem;
+  width: min(34rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 5.5rem);
+  padding: 1rem 1.1rem 1.2rem;
+  overflow-y: auto;
+  border: 1px solid var(--ink);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  box-shadow: var(--shadow-overlay);
+  font-size: 14px;
+}
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.drawer h3 {
+  margin: 0.4rem 0 0;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+}
+.drawer h3 a {
+  text-decoration: none;
+}
+.drawer h3 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* one thing that is still open: which record, and what it needs */
+.open-list {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.open-list li {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: baseline;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.open-list li > span {
+  justify-self: start;
+}
+
+/* every change that was stored, newest first */
+.history {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+.history li {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.4rem 0 0.4rem 0.7rem;
+  border-left: 2px solid var(--line);
+}
+.history li:first-child {
+  border-left-color: var(--done);
+}
+.history li.undone {
+  color: var(--grey);
+}
+.history li.undone .history-what {
+  text-decoration: line-through;
+}
+.history-what {
+  font-weight: 700;
+}
+.history-who {
+  color: var(--grey);
+  font-size: 13px;
+}
+/* what one change altered: the place, and from what to what */
+.delta {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.3rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+.delta li {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.3rem 0.5rem;
+  border-left: 0;
+  background: var(--shade);
+}
+.delta del {
+  color: var(--todo-deep);
+}
+.delta ins {
+  color: var(--done);
+  text-decoration: none;
+}
+
+.dialog-shade {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: grid;
+  place-items: start center;
+  padding: 12vh 1rem 1rem;
+  background: color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.dialog {
+  display: grid;
+  gap: 0.9rem;
+  width: min(32rem, 100%);
+  padding: 1.2rem 1.3rem 1.3rem;
+  border: 1px solid var(--ink);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  box-shadow: var(--shadow-overlay);
+}
+
+/* ------------------------------------------------------------------ narrower windows */
+@media (max-width: 78rem) {
+  :root {
+    --gutter: 1.5rem;
+  }
+}
+@media (max-width: 62rem) {
+  :root {
+    --gutter: 1rem;
+  }
+  /* the route lies across the top, and is moved through sideways */
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+  }
+  .route {
+    padding: 0.4rem 0;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .route ol {
+    display: flex;
+  }
+  .stop a {
+    grid-template-columns: 1.1rem auto;
+    padding: 0.5rem 0.9rem;
+    white-space: nowrap;
+  }
+  .stop a::before {
+    display: none;
+  }
+  .stop-current a {
+    box-shadow: inset 0 -3px 0 var(--accent);
+  }
+  .masthead {
+    gap: 0.5rem 0.8rem;
+    padding: 0.7rem 1rem;
+  }
+  /* on a narrow screen the name of the TARA has a row to itself */
+  .masthead-tara {
+    flex-basis: 100%;
+  }
+}
+@media (max-width: 40rem) {
+  .whoami {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .stop-mark {
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@tara/store",
+  "version": "0.1.0",
+  "description": "Where TARAs are kept: one folder per TARA with the document and its history. The only package that touches the data.",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@tara/core": "*"
+  }
+}

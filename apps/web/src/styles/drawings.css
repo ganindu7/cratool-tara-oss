@@ -1,0 +1,1017 @@
+/* The graph of a TARA, the views of one record, the card of what is chosen on a drawing, and the ratings of a
+   record as they are drawn. The canvas is the page: controls sit in one quiet bar above it, and what is chosen
+   is described on the canvas itself. */
+
+/* ------------------------------------------------------------------ the bar above a drawing, and its legend */
+.map {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+}
+.map-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.5rem;
+}
+.map-show {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 14px;
+  font-weight: 700;
+}
+.map-show select {
+  width: auto;
+  max-width: 24rem;
+  font-weight: 400;
+}
+/* which kinds of record are shown: a list that opens under its own name */
+.map-filter {
+  position: relative;
+  font-size: 14px;
+}
+.map-filter summary {
+  padding: 0.42rem 0.7rem;
+  border: 1px solid var(--field);
+  border-radius: var(--radius-control);
+  list-style-position: inside;
+  cursor: pointer;
+}
+.map-filter[open] summary {
+  border-color: var(--ink);
+}
+.map-filter-body {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 0.3rem);
+  left: 0;
+  display: grid;
+  gap: 0.4rem;
+  min-width: 15rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+.map-open-only {
+  margin-top: 0.3rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+}
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.1rem;
+  margin: 0;
+  padding: 0;
+  color: var(--grey);
+  font-size: 12px;
+  list-style: none;
+}
+.map-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+.map-count {
+  margin-left: auto;
+  color: var(--grey);
+  font-size: 13px;
+  white-space: nowrap;
+}
+/* A canvas that is the page reaches the bottom of the window (ui/useHeightToBottom.ts); this is the height it
+   has until that is known, and the least it ever has. */
+.map-canvas {
+  position: relative;
+  /* the grid of a canvas, fainter than a rule */
+  --xy-background-pattern-color: color-mix(in srgb, var(--line) 60%, var(--paper));
+  height: calc(100vh - 15.5rem);
+  min-height: 26rem;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+.map-empty-note {
+  padding: 2rem;
+}
+.map-hint {
+  position: absolute;
+  z-index: 4;
+  bottom: 0.7rem;
+  left: 0.8rem;
+  margin: 0;
+  padding: 0.2rem 0.5rem;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  color: var(--grey);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ a record on a drawing
+   The bar on its left says how it stands; the ID leads, the text follows. */
+.map-node {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  column-gap: 0.4rem;
+  align-items: center;
+  width: 184px;
+  height: 48px;
+  padding: 0.3rem 0.55rem 0.3rem 0.5rem;
+  border: 1px solid var(--ink);
+  border-left-width: 3px;
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 11.5px;
+  line-height: 1.25;
+  cursor: pointer;
+}
+.map-node b {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.map-node .risk {
+  justify-self: start;
+  min-width: 1.4rem;
+  padding: 0 0.25rem;
+  font-size: 11px;
+}
+/* one line of the record's text, cut after a whole word (cutText); the ID beside it leads to the text in full */
+.map-text {
+  grid-column: 1 / -1;
+  color: var(--grey);
+  white-space: nowrap;
+}
+.map-mark {
+  display: inline-block;
+  flex: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 2px solid var(--field);
+  border-radius: 50%;
+  background: var(--paper);
+}
+.map-done .map-mark,
+.map-mark.map-done {
+  border-color: var(--done);
+  background: var(--done);
+}
+.map-waiting .map-mark,
+.map-mark.map-waiting {
+  border-color: var(--amber);
+  background: var(--amber-wash);
+}
+/* to complete is a ring with a dot, as on the route: the shape says it where the colour may not */
+.map-todo .map-mark,
+.map-mark.map-todo {
+  border-color: var(--todo);
+  background: var(--paper);
+  box-shadow:
+    inset 0 0 0 1px var(--paper),
+    inset 0 0 0 1rem var(--todo);
+}
+.map-node.map-todo {
+  border-left-color: var(--todo);
+}
+.map-node.map-waiting {
+  border-left-color: var(--amber);
+}
+.map-node.map-done {
+  border-left-color: var(--done);
+}
+.map-node.map-empty {
+  border-color: var(--field);
+}
+.map-node.map-dim {
+  opacity: 0.2;
+}
+.map-node.map-picked {
+  box-shadow: 0 0 0 2px var(--ink);
+}
+/* the record a drawing is about */
+.map-node.map-centre {
+  border-color: var(--ink);
+  background: var(--ink);
+  box-shadow: none;
+  color: var(--paper);
+}
+.map-node.map-centre .map-text {
+  color: var(--stone-300);
+}
+.map-node:hover {
+  background: var(--rail-bg);
+}
+.map-node.map-centre:hover {
+  background: var(--ink);
+}
+/* a loose end: the chain from item to decision stops here although it should go on */
+.map-node.map-loose {
+  border-style: dashed;
+  border-left-style: solid;
+}
+.map-node.map-loose::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  width: 9px;
+  height: 9px;
+  margin-top: -5px;
+  border: 2px solid var(--todo);
+  border-radius: 50%;
+  background: var(--paper);
+}
+.map-loose-key {
+  display: inline-block;
+  width: 1.1rem;
+  height: 0.7rem;
+  border: 1px dashed var(--ink);
+  border-left: 3px solid var(--ink);
+}
+.map-loose-toggle {
+  padding: 0.3rem 0.7rem;
+  border-style: dashed;
+  font-size: 13px;
+  font-weight: 400;
+}
+.map-loose-toggle.on {
+  border-style: solid;
+  background: var(--ink);
+  color: var(--paper);
+}
+.map-loose-note {
+  padding: 0.45rem 0.6rem;
+  background: var(--todo-wash);
+  color: var(--todo-deep);
+  font-size: 13px;
+}
+/* the name of a column of the graph, with how many records it holds */
+.map-heading {
+  display: flex;
+  justify-content: space-between;
+  width: 184px;
+  padding-bottom: 0.3rem;
+  border-bottom: 1.5px solid var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: default;
+}
+.map-heading span {
+  color: var(--grey);
+  font-weight: 400;
+}
+.map-canvas .react-flow__handle {
+  opacity: 0;
+  pointer-events: none;
+}
+.map-canvas .react-flow__node {
+  cursor: pointer;
+}
+.map-canvas .react-flow__node-heading {
+  cursor: default;
+}
+.map-canvas .react-flow__controls {
+  border: 1px solid var(--ink);
+  box-shadow: none;
+}
+.map-canvas .react-flow__controls-button {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 0;
+  border-bottom-color: var(--line);
+}
+.map-canvas .react-flow__controls-button svg {
+  width: 14px;
+  max-width: none;
+  height: 14px;
+  max-height: none;
+}
+.map-canvas .react-flow__controls-button svg.line-icon {
+  fill: none;
+}
+.map-canvas .react-flow__attribution {
+  background: none;
+  color: var(--faint);
+  font-size: 9px;
+}
+
+/* ------------------------------------------------------------------ the card of what is chosen on a drawing */
+.map-inspector {
+  position: absolute;
+  z-index: 5;
+  top: 0.8rem;
+  right: 0.8rem;
+  display: grid;
+  gap: 0.6rem;
+  width: 19rem;
+  max-width: calc(100% - 1.6rem);
+  max-height: calc(100% - 4.5rem);
+  padding: 0.85rem 1rem 1rem;
+  overflow-y: auto;
+  border: 1px solid var(--ink);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  font-size: 14px;
+}
+/* the card moves to the left when the chosen record lies beneath it */
+[data-card="left"] > .map-inspector {
+  right: auto;
+  left: 0.8rem;
+}
+.map-inspector.editing {
+  width: 31rem;
+}
+/* few fields: the card keeps the width it has when it is read */
+.map-inspector.editing.slim {
+  width: 19rem;
+}
+.map-inspector.editing section h3 {
+  color: var(--grey);
+  font-size: 13px;
+  font-weight: 400;
+}
+.map-inspector.small {
+  gap: 0.3rem;
+  width: 24rem;
+  max-width: calc(100% - 5rem);
+  padding: 0.5rem 0.8rem 0.6rem;
+}
+.map-inspector section {
+  display: grid;
+  gap: 0.35rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+}
+.map-inspector .next {
+  margin: 0;
+}
+.map-inspector .lever-step {
+  padding: 0.3rem 0.62rem 0.4rem;
+}
+.map-kind {
+  color: var(--grey);
+  font-size: 13px;
+}
+/* what a record says beyond its name */
+.map-more {
+  color: var(--grey);
+  font-size: 14px;
+}
+.map-small-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.map-small-head > b,
+.map-small-head > .map-kind {
+  white-space: nowrap;
+}
+.map-small-head .map-card-buttons {
+  margin-left: auto;
+}
+.map-small-text {
+  margin: 0;
+  line-height: 1.4;
+}
+.map-card-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.map-edit-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+.map-foot-links {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+/* Edit, and Done while editing: one small button, in the same corner of the card in each of its forms */
+.card-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.6rem;
+  border-color: var(--accent);
+  color: var(--accent-deep);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.card-edit:hover,
+.card-edit.on {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--paper);
+}
+.card-edit.on:hover {
+  border-color: var(--accent-deep);
+  background: var(--accent-deep);
+}
+.card-edit .line-icon {
+  flex: none;
+}
+/* the records a card names: what the chosen one rests on, what it leads to */
+.uses {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  list-style: none;
+}
+
+/* ------------------------------------------------------------------ the signs that lead to a drawing of a record */
+.graph-link {
+  display: inline-flex;
+  padding: 0.2rem 0.35rem;
+  border: 1px solid var(--field);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  line-height: 0;
+}
+.graph-link:hover,
+.graph-link:focus-visible {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+.view-sign {
+  padding: 0.12rem 0.25rem;
+}
+/* a record that is drawn in two views has both signs, side by side */
+.view-signs {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+/* the same sign with the name of the view beside it: among the buttons of a card, or plain among the links of a panel */
+.view-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.view-link .view-icon {
+  flex: none;
+}
+
+/* ------------------------------------------------------------------ the view of one record
+   The record in the middle, what belongs to it around it. One column that never grows wider than its place: a
+   drawing that is larger is moved through inside its canvas. */
+.rv {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.6rem;
+  align-content: start;
+}
+/* over the graph, which stays beneath as it was left */
+.rv.over {
+  position: absolute;
+  z-index: 40;
+  inset: 0;
+  background: var(--paper);
+}
+.rv > .help {
+  max-width: none;
+}
+.rv-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.6rem 1.5rem;
+}
+.rv-head h2 {
+  font-size: 17px;
+}
+.rv-head .map-show select {
+  max-width: 22rem;
+}
+.rv-buttons {
+  display: flex;
+  gap: 0.6rem;
+  margin-left: auto;
+}
+.rv-what {
+  max-width: 70rem;
+}
+.rv-frame {
+  position: relative;
+  min-width: 0;
+}
+/* nothing stands in the corner of a view's canvas, so the card of a record may be as tall as the canvas */
+.rv-frame > .map-inspector {
+  max-height: calc(100% - 1.6rem);
+}
+/* The canvas reaches the bottom of the window (ui/useHeightToBottom.ts). In a low window it keeps this height,
+   and the page is moved through instead. */
+.rv-canvas {
+  display: flex;
+  height: calc(100vh - 16rem);
+  min-height: 27rem;
+  overflow: auto;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+.rv-fit {
+  flex: none;
+  margin: auto;
+}
+.rv-stage {
+  position: relative;
+  transform-origin: 0 0;
+}
+.rv-stage svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+}
+.rv-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.3;
+}
+/* what does not count yet or any more: a path that is screened out, a threat without a path, a control that is only proposed */
+.rv-line.faint {
+  stroke: var(--field);
+  stroke-dasharray: 4 3;
+}
+/* a record is chosen: what belongs to it stands out, the rest steps back, as on the graph */
+.rv-line.lit {
+  stroke-width: 1.8;
+}
+.rv-line.dim {
+  opacity: 0.14;
+}
+.rv-stage .rv-node {
+  position: absolute;
+  text-decoration: none;
+}
+.rv-beside {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.rv-tag {
+  color: var(--grey);
+  white-space: nowrap;
+}
+.rv-beside .risk {
+  min-width: 1.4rem;
+  padding: 0 0.25rem;
+  font-size: 11px;
+}
+/* what a record is linked to besides what is drawn: a mark for each, on the corner that points away from the middle */
+.rv-also {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  gap: 3px;
+  /* at the right corner the marks end at their place; at the left one they begin there */
+  transform: translateX(-100%);
+}
+.rv-also.left {
+  transform: none;
+}
+.rv-also.dim {
+  opacity: 0.2;
+}
+.rv-more {
+  padding: 0 0.35rem;
+  font-weight: 400;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 10.5px;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.rv-more:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.rv-more.key,
+.rv-more.key:hover {
+  background: var(--paper);
+  color: var(--ink);
+  cursor: default;
+}
+/* the ID of the record a line stands for, on the line */
+.rv-stage .rv-label {
+  position: absolute;
+  padding: 0 0.3rem;
+  background: var(--paper);
+  font-size: 11.5px;
+  line-height: 1.3;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+.rv-label.faint {
+  color: var(--grey);
+}
+.rv-stage .rv-label.picked {
+  border-radius: var(--radius-control);
+  box-shadow: 0 0 0 2px var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+.rv-stage .rv-label.dim {
+  opacity: 0.25;
+}
+.rv-stage .rv-node.map-centre.map-picked {
+  box-shadow:
+    0 0 0 2px var(--paper),
+    0 0 0 4px var(--ink);
+}
+/* in a view lines meet the middle of a side: the sign of a loose end stands on the lower edge, clear of them */
+.rv-stage .rv-node.map-loose::after {
+  top: auto;
+  right: 12px;
+  bottom: -5px;
+  margin-top: 0;
+}
+/* detailed: a record large enough to read its text, which then runs over as many lines as it needs */
+.rv-stage.readable .rv-node {
+  grid-template-rows: auto 1fr auto;
+  width: 280px;
+}
+.rv-stage.readable .rv-node .map-text {
+  align-self: start;
+  margin-top: 0.15rem;
+  white-space: normal;
+}
+/* the ego view: the record as a block one looks into, and the words above each group of what is linked to it */
+.rv-stage .rv-node.rv-block {
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  box-shadow: var(--shadow-block);
+}
+.rv-stage .rv-node.rv-block.map-picked {
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.rv-stage .rv-node.rv-block b {
+  font-size: 14px;
+}
+.rv-stage .rv-node.rv-block .map-text {
+  align-self: start;
+  margin-top: 0.15rem;
+  color: var(--ink);
+  white-space: normal;
+}
+.rv-stage .rv-node.rv-block:hover {
+  background: var(--paper);
+}
+.rv-caption {
+  position: absolute;
+  color: var(--grey);
+  font-size: 10.5px;
+  line-height: 12px;
+  white-space: nowrap;
+}
+.rv-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.6rem;
+}
+.rv-key {
+  display: inline-block;
+  width: 1.4rem;
+  border-top: 1.5px solid var(--ink);
+}
+.rv-key.faint {
+  border-top: 1.5px dashed var(--field);
+}
+
+/* ------------------------------------------------------------------ the links of the open record, beside its page */
+.map-pane {
+  position: sticky;
+  top: 1rem;
+  display: grid;
+  gap: 0.6rem;
+  min-width: 0;
+}
+.map-pane-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+.map-pane-head h2 {
+  flex: 1 1 auto;
+  font-size: 16px;
+}
+.map-pane-head a.ref {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.map-pane .map-canvas {
+  height: calc(100vh - 9.5rem);
+  min-height: 22rem;
+}
+
+/* ------------------------------------------------------------------ the ratings of a record, drawn
+   A rating is so many steps, so many of them filled. More ink is more risk: a higher impact, a more feasible attack. */
+.meter {
+  display: inline-flex;
+  gap: 1px;
+  vertical-align: -1px;
+}
+.meter i {
+  width: 7px;
+  height: 8px;
+  border: 1px solid var(--ink);
+}
+.meter i.on {
+  background: var(--ink);
+}
+.meter.open i {
+  border: 1px dashed var(--field);
+}
+/* on the record itself, where a view draws its records large: one line beneath the text */
+.pf-strip {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  align-self: end;
+  gap: 0.6rem;
+  padding-top: 7px;
+  color: var(--grey);
+  font-size: 10.5px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.pf-rated {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.22rem;
+}
+.pf-rated.sets {
+  color: var(--ink);
+  font-weight: 700;
+}
+/* which of confidentiality, integrity and availability is lost: a letter each, filled where it is */
+.pf-lost {
+  display: inline-flex;
+  gap: 2px;
+  margin-right: 0.15rem;
+}
+.pf-lost i {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 1px solid var(--field);
+  color: var(--grey);
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 11px;
+  text-align: center;
+}
+.pf-lost i.on {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+/* in the card of the record: every rating with its name and its words, in the order of its form */
+.pf-lost.full {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.9rem;
+  margin: 0;
+  color: var(--grey);
+  font-size: 14px;
+}
+.pf-lost.full span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.pf-lost.full span.on {
+  color: var(--ink);
+  font-weight: 700;
+}
+.pf-lost.full i {
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  line-height: 14px;
+}
+.pf-rows {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 0.3rem 0.6rem;
+  align-items: baseline;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  list-style: none;
+}
+.pf-rows li {
+  display: contents;
+}
+.pf-rows li > span:first-child {
+  color: var(--grey);
+}
+.pf-rows li.sets > span:first-child {
+  color: var(--ink);
+  font-weight: 700;
+}
+.pf-words {
+  display: grid;
+}
+.pf-words b {
+  font-weight: 400;
+}
+.pf-rows li.sets .pf-words b {
+  font-weight: 700;
+}
+.pf-words small {
+  color: var(--grey);
+  font-size: 12px;
+  line-height: 1.35;
+}
+.pf-points {
+  grid-template-columns: auto 1fr auto;
+}
+.pf-points b {
+  text-align: right;
+}
+.pf-sum {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding-top: 0.3rem;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 700;
+}
+/* where the points of an attack path fall among the bands of feasibility */
+.pf-scale {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  gap: 2px;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  font-size: 12px;
+  text-align: center;
+  list-style: none;
+}
+.pf-scale li {
+  display: grid;
+  padding: 0.2rem 0.1rem;
+  border: 1px solid var(--field);
+  color: var(--grey);
+}
+.pf-scale li b {
+  color: inherit;
+  font-weight: 400;
+}
+.pf-scale li.on {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+.pf-scale li.on b {
+  font-weight: 700;
+}
+/* in the block of an ego view: what the record is made of, one line for each part, each of a set height */
+.pf-block {
+  display: block;
+  grid-column: 1 / -1;
+  align-self: end;
+  padding-top: 6px;
+  border-top: 1px solid var(--line);
+  font-size: 10.5px;
+}
+.pf-parts {
+  display: grid;
+  grid-template-columns: fit-content(8.6rem) max-content minmax(0, 1fr) max-content;
+  column-gap: 0.45rem;
+  align-items: center;
+  white-space: nowrap;
+}
+.pf-part {
+  display: contents;
+}
+.pf-part-name {
+  color: var(--grey);
+}
+.pf-part-drawn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.pf-part-words {
+  min-width: 0;
+  color: var(--ink);
+}
+.pf-part-points {
+  color: var(--ink);
+  font-weight: 700;
+  text-align: right;
+}
+.pf-part.sets .pf-part-name,
+.pf-part.sets .pf-part-words {
+  color: var(--ink);
+  font-weight: 700;
+}
+/* the matrix of the method, with the place of one risk in it */
+.pf-matrix {
+  width: auto;
+  margin-top: 0.2rem;
+  border-collapse: separate;
+  border-spacing: 2px;
+  font-size: 12px;
+}
+.pf-matrix th {
+  padding: 0 0.5rem 0 0;
+  border: 0;
+  background: none;
+  color: var(--grey);
+  font-weight: 400;
+  vertical-align: middle;
+}
+.pf-matrix tfoot th {
+  padding: 0.1rem 0 0;
+  font-size: 10.5px;
+  text-align: center;
+}
+.pf-matrix td {
+  width: 2.7rem;
+  padding: 0.15rem 0;
+  border: 0;
+  border-radius: var(--radius-control);
+  color: var(--grey);
+  text-align: center;
+}
+/* a numeral on the wash of its value is in ink */
+.pf-matrix td[class*="wash-"] {
+  color: var(--ink);
+}
+/* the place of this risk: the value as a risk is shown everywhere, filling its cell */
+.pf-matrix td.here {
+  padding: 0;
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+.pf-matrix td.here .risk {
+  display: block;
+  justify-self: stretch;
+  min-width: 0;
+  padding: 0.15rem 0;
+}
+.pf-block .pf-matrix {
+  margin-top: 4px;
+  font-size: 10.5px;
+}
+.pf-block .pf-matrix td {
+  width: 2.75rem;
+  padding: 0.1rem 0;
+}
+.pf-block .pf-matrix tfoot th {
+  white-space: nowrap;
+}
+.pf-block .pf-matrix td.here .risk {
+  padding: 0.1rem 0;
+  font-size: 10.5px;
+}
+
+@media (max-width: 62rem) {
+  .map-pane {
+    position: static;
+    order: -1;
+  }
+  .map-pane .map-canvas,
+  .map-canvas {
+    height: 56vh;
+  }
+  .map-count {
+    margin-left: 0;
+  }
+  .map-inspector {
+    position: static;
+    width: auto;
+    max-width: none;
+    max-height: 45%;
+    border-width: 0;
+    border-top: 1px solid var(--ink);
+    box-shadow: none;
+  }
+}
